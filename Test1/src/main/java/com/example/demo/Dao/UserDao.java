@@ -30,6 +30,19 @@ public class UserDao {
         }
         return null;
     }
+    public static List<User> searchbyusername(String username,UserRepository userRepository)
+    {
+        List<User> userList=userRepository.findAll();
+        for(int i=0;i<userList.size();i++)
+        {
+            if(userList.get(i).getUsername().contains(username)!=false)
+            {
+                userList.remove(i);
+            }
+
+        }
+        return userList;
+    }
 
 
 
