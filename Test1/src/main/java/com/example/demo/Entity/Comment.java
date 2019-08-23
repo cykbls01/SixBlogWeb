@@ -3,6 +3,8 @@ package com.example.demo.Entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Document(collection = "Comment")
 public class Comment {
     @Id
@@ -10,7 +12,26 @@ public class Comment {
     private String Blogid;
     private String Userid;
     private String content;
-    private String status;
+    private String date;
+    private List<CComment> commentList;
+
+    public List<CComment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<CComment> commentList) {
+        this.commentList = commentList;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+
 
 
     public String getUserid() {
@@ -29,13 +50,7 @@ public class Comment {
         this.content = content;
     }
 
-    public String getStatus() {
-        return status;
-    }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
 
     public String getBlogid() {

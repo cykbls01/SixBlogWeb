@@ -5,7 +5,6 @@ import com.example.demo.Dao.UserDao;
 import com.example.demo.Entity.User;
 import com.example.demo.Repository.UserRepository;
 import com.example.demo.Tools.Convert;
-import com.example.demo.Tools.Mail;
 import com.example.demo.Tools.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,9 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @Controller
 public class UserController {
@@ -29,30 +26,32 @@ public class UserController {
 
 
 
-    @PostMapping(value ="/login")//三种情况，邮箱不存在，密码错误，全部匹配
+    @PostMapping(value ="/user/login")//三种情况，邮箱不存在，密码错误，全部匹配
     public String login(@RequestParam("email")String email,
-                         @RequestParam("password")String password,
-                         Map<String,Object> map,
-                         HttpSession session) throws NoSuchAlgorithmException {
+                        @RequestParam("password")String password,
+                        Map<String,Object> map,
+                        HttpSession session, Model model) throws NoSuchAlgorithmException {
         password= Convert.SHA(password);//密码转换
         if(UserDao.findbyemail(email,userRepository)==null)
         {
             map.put("msg","邮箱不存在");
-            return "login";
+            return "Login";
         }
         else if(UserDao.findbyemail(email,userRepository).getPassword().equals(password)==true)
         {
-            map.put("msg","登录成功");
-            return "login";
+            User user=UserDao.findbyemail(email,userRepository);
+            session.setAttribute("msg",user.getId());
+            map.put("msg",user.getId());
+            return "redirect:/Success.html";
         }
         else
         {
             map.put("msg","密码错误");
-            return "login";
+            return "Login";
         }
     }
 
-    @PostMapping(value ="/register")//四种情况，邮箱存在，用户名存在，密码不符合要求，全部符合
+    @PostMapping(value ="/user/register")//四种情况，邮箱存在，用户名存在，密码不符合要求，全部符合
     public String register(User user,
                         Map<String,Object> map,
                         HttpSession session) throws NoSuchAlgorithmException {
@@ -60,22 +59,46 @@ public class UserController {
         if(UserDao.findbyemail(user.getEmail(),userRepository)!=null)
         {
             map.put("msg","邮箱已存在");
-            return "register";
+            return "Register";
         }
         else if(UserDao.findbyusername(user.getUsername(),userRepository)!=null)
         {
             map.put("msg","用户名重复");
-            return "register";
+            return "Register";
         }
         else
         {
             user.setPassword(Convert.SHA(user.getPassword()));
             userRepository.save(user);
-            return "register";
+
+            //session.setAttribute("user",user);
+            //String yanzhengma=(String.valueOf((int)(1+Math.random()*(100000))));
+            //mail.sendSimpleMail(user.getEmail(),"邮箱验证邮件",yanzhengma);
+            //session.setAttribute("pan",yanzhengma);
+            return "redirect:/Login.html";
         }
     }
 
-    @PostMapping(value ="/findpwd")//两种情况，邮箱不存在，邮箱存在
+   /* @PostMapping(value = "/user/sure")
+    public String sure(@RequestParam("yanzhengma")String yanzhengma,
+                       Map<String,Object> map,
+                       HttpSession session)
+    {
+        if(yanzhengma.equals(session.getAttribute("pan"))==true)
+        {
+            userRepository.save((User)session.getAttribute("user"));
+            return "redirect:/Login.html";
+        }
+        else
+        {
+            map.put("msg","验证码错误");
+            return "Sure";
+        }
+    }*/
+
+
+
+    @PostMapping(value ="/user/findpwd")//两种情况，邮箱不存在，邮箱存在
     public String findpwd(@RequestParam("email")String email,
                         Map<String,Object> map,
                         HttpSession session) throws NoSuchAlgorithmException {
@@ -83,21 +106,94 @@ public class UserController {
         if(UserDao.findbyemail(email,userRepository)==null)
         {
             map.put("msg","邮箱不存在");
-            return "findpwd";
+            return "Findpwd";
         }
         else
         {
             User user=UserDao.findbyemail(email,userRepository);
-
-            user.setPassword(Convert.SHA(String.valueOf((int)(1+Math.random()*(100000)))));
-            userRepository.save(user);
-            map.put("msg","邮件已发送到您的邮箱");
-            return "findpwd";
+            session.setAttribute("user",user);
+            String yanzhengma=(String.valueOf((int)(1+Math.random()*(100000))));
+            mail.sendSimpleMail(user.getEmail(),"密码找回邮件",yanzhengma);
+            session.setAttribute("pan",yanzhengma);
+            //user.setPassword(Convert.SHA(String.valueOf((int)(1+Math.random()*(100000)))));
+            //userRepository.save(user);
+            //map.put("msg","邮件已发送到您的邮箱");
+            return "Modifypwd";
         }
 
     }
+
+    @PostMapping(value ="/user/modifypwd")
+    public String modifypwd(@RequestParam("yanzhengma")String yanzhengma,
+                         @RequestParam("password")String password,
+                         Map<String,Object> map,
+                         HttpSession session) throws NoSuchAlgorithmException {
+        if(yanzhengma.equals(session.getAttribute("pan"))==true)
+        {
+            User user=(User)session.getAttribute("user");
+            user.setPassword(Convert.SHA(password));
+            userRepository.save(user);
+            return "redirect:/Login.html";
+        }
+        else
+        {
+            map.put("msg","验证码错误");
+            return "Modifypwd";
+        }
+    }
+
+    @PostMapping(value ="/user/modify")
+    public String modify(User user,
+                         Map<String,Object> map,
+                         HttpSession session) throws NoSuchAlgorithmException {
+        if(UserDao.findbyemail(user.getEmail(),userRepository)!=null)
+        {
+            map.put("msg","邮箱已存在");
+            return "Modify";
+        }
+        else if(UserDao.findbyusername(user.getUsername(),userRepository)!=null)
+        {
+            map.put("msg","用户名重复");
+            return "Modify";
+        }
+        else
+        {
+            user.setPassword(Convert.SHA(user.getPassword()));
+            userRepository.save(user);
+            return "redirect:/Modify.html";
+        }
+
+
+    }
+
+    @PostMapping(value ="/user/modifyemail")
+    public String modifyemail(@RequestParam("email")String email,
+                              Map<String,Object> map,
+                              HttpSession session)
+    {
+
+        if(UserDao.findbyemail(email,userRepository)!=null)
+        {
+            map.put("msg","邮箱已存在");
+            return "Register";
+        }
+        else
+        {
+            User user=(User)session.getAttribute("userid");
+            user.setEmail(email);
+            String yanzhengma=(String.valueOf((int)(1+Math.random()*(100000))));
+            mail.sendSimpleMail(email,"邮箱验证邮件",yanzhengma);
+            session.setAttribute("pan",yanzhengma);
+            session.setAttribute("user",user);
+            return "Register";
+        }
+
+    }
+
+
+
     @ResponseBody
-    @RequestMapping("/hello")
+    @RequestMapping("/123")
     public String helloWorld(){
 
         mail.sendSimpleMail("2541601705@qq.com","测试一下","测试邮件正文");

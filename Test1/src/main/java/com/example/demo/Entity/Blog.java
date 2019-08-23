@@ -4,6 +4,7 @@ package com.example.demo.Entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
 import java.util.List;
 
 @Document(collection = "Blog")
@@ -12,6 +13,38 @@ public class Blog {
     private String id;
     private String theme;
     private String content;
+    private String date;
+    private String Authorid;
+    private List<String> label;
+
+
+    public List<String> getLabel() {
+        return label;
+    }
+
+    public void setLabel(List<String> label) {
+        this.label = label;
+    }
+
+
+
+
+
+    public String getAuthorid() {
+        return Authorid;
+    }
+
+    public void setAuthorid(String authorid) {
+        Authorid = authorid;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public String getId() {
         return id;
@@ -37,13 +70,5 @@ public class Blog {
         this.content = content;
     }
 
-    public List<String> getLabellist() {
-        return labellist;
-    }
 
-    public void setLabellist(List<String> labellist) {
-        this.labellist = labellist;
-    }
-
-    private List<String> labellist;
 }
