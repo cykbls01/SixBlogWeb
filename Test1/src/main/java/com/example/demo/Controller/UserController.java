@@ -1,8 +1,13 @@
 package com.example.demo.Controller;
 
 
+import com.example.demo.Dao.BlogDao;
+import com.example.demo.Dao.FollowDao;
 import com.example.demo.Dao.UserDao;
+import com.example.demo.Entity.Blog;
 import com.example.demo.Entity.User;
+import com.example.demo.Repository.BlogRepository;
+import com.example.demo.Repository.FollowRepository;
 import com.example.demo.Repository.UserRepository;
 import com.example.demo.Tools.Convert;
 import com.example.demo.Tools.MailService;
@@ -13,6 +18,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -20,17 +27,21 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private FollowRepository followRepository;
 
     @Autowired
     private MailService mail;
 
+    @Autowired
+    private BlogRepository blogRepository;
 
 
     @PostMapping(value ="/user/login")//三种情况，邮箱不存在，密码错误，全部匹配
     public String login(@RequestParam("email")String email,
                         @RequestParam("password")String password,
                         Map<String,Object> map,
-                        HttpSession session, Model model) throws NoSuchAlgorithmException {
+                        HttpSession session, Model model) throws NoSuchAlgorithmException, ParseException {
         password= Convert.SHA(password);//密码转换
         if(UserDao.findbyemail(email,userRepository)==null)
         {
@@ -40,9 +51,15 @@ public class UserController {
         else if(UserDao.findbyemail(email,userRepository).getPassword().equals(password)==true)
         {
             User user=UserDao.findbyemail(email,userRepository);
-            session.setAttribute("msg",user.getId());
-            map.put("msg",user.getId());
-            return "redirect:/Success.html";
+            //List<User> userList= FollowDao.findfollowbyid(user.getId(),followRepository,userRepository);
+            //session.setAttribute("follows",userList);
+            session.setAttribute("follownumber",3);
+            session.setAttribute("user",user);
+            List<Blog> blogList= BlogDao.findbyAuthorid(user.getId(),blogRepository);
+            session.setAttribute("blogs",blogList);
+            session.setAttribute("blognumber",blogList.size());
+            return "redirect:/Zone.html";
+
         }
         else
         {

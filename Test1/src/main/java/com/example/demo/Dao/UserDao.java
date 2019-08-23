@@ -33,7 +33,8 @@ public class UserDao {
     public static List<User> searchbyusername(String username,UserRepository userRepository)
     {
         List<User> userList=userRepository.findAll();
-        for(int i=0;i<userList.size();i++)
+        int size=userList.size();
+        for(int i=0;i<size;i++)
         {
             if(userList.get(i).getUsername().contains(username)!=false)
             {

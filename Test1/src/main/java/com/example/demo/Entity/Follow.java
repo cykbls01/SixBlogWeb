@@ -10,7 +10,19 @@ import java.util.List;
 public class Follow {
     @Id
     private String id;
+    private String userid;
     private List<String> idlist;
+
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+
+
 
     public String getId() {
         return id;
