@@ -51,17 +51,18 @@ public class UserController {
         else if(UserDao.findbyemail(email,userRepository).getPassword().equals(password)==true)
         {
             User user=UserDao.findbyemail(email,userRepository);
-            //List<User> userList= FollowDao.findfollowbyid(user.getId(),followRepository,userRepository);
-            //session.setAttribute("follows",userList);
+
             session.setAttribute("follownumber",3);
             session.setAttribute("user",user);
             List<Blog> blogList= BlogDao.findbyAuthorid(user.getId(),blogRepository);
             session.setAttribute("blogs",blogList);
             session.setAttribute("blognumber",blogList.size());
-            return "redirect:/Zone.html";
+            session.setAttribute("status","true");
+            return "redirect:/index.html";
 
         }
         else
+
         {
             map.put("msg","密码错误");
             return "Login";
@@ -87,11 +88,6 @@ public class UserController {
         {
             user.setPassword(Convert.SHA(user.getPassword()));
             userRepository.save(user);
-
-            //session.setAttribute("user",user);
-            //String yanzhengma=(String.valueOf((int)(1+Math.random()*(100000))));
-            //mail.sendSimpleMail(user.getEmail(),"邮箱验证邮件",yanzhengma);
-            //session.setAttribute("pan",yanzhengma);
             return "redirect:/Login.html";
         }
     }
@@ -132,9 +128,6 @@ public class UserController {
             String yanzhengma=(String.valueOf((int)(1+Math.random()*(100000))));
             mail.sendSimpleMail(user.getEmail(),"密码找回邮件",yanzhengma);
             session.setAttribute("pan",yanzhengma);
-            //user.setPassword(Convert.SHA(String.valueOf((int)(1+Math.random()*(100000)))));
-            //userRepository.save(user);
-            //map.put("msg","邮件已发送到您的邮箱");
             return "Modifypwd";
         }
 
@@ -183,39 +176,13 @@ public class UserController {
 
     }
 
-    @PostMapping(value ="/user/modifyemail")
-    public String modifyemail(@RequestParam("email")String email,
-                              Map<String,Object> map,
-                              HttpSession session)
-    {
-
-        if(UserDao.findbyemail(email,userRepository)!=null)
-        {
-            map.put("msg","邮箱已存在");
-            return "Register";
-        }
-        else
-        {
-            User user=(User)session.getAttribute("userid");
-            user.setEmail(email);
-            String yanzhengma=(String.valueOf((int)(1+Math.random()*(100000))));
-            mail.sendSimpleMail(email,"邮箱验证邮件",yanzhengma);
-            session.setAttribute("pan",yanzhengma);
-            session.setAttribute("user",user);
-            return "Register";
-        }
-
-    }
-
-
-
-    @ResponseBody
+    /*@ResponseBody
     @RequestMapping("/123")
     public String helloWorld(){
 
         mail.sendSimpleMail("2541601705@qq.com","测试一下","测试邮件正文");
         return "success";
-    }
+    }*/
 
 
 

@@ -15,6 +15,26 @@ public class User {
 
     private String email;
 
+    private String content;
+
+    private String birth;
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getBirth() {
+        return birth;
+    }
+
+    public void setBirth(String birth) {
+        this.birth = birth;
+    }
+
     public String getId() {
         return id;
     }

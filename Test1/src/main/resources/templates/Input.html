@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" class="style-version-3 " id="page_id_lesson_package" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+  <form th:action="@{/Blog/add}" method="post">
+      <input type="text" name="theme">
+      <br>
+      <textarea name="content" rows="100" cols="100">
+
+      </textarea >
+      <input type="hidden" name="Authorid" value="5d5f3d29977b3907e8a38f3b">
+      <input type="hidden" name="Authorname" value="cykbls01">
+
+
+      <button type="submit">提交</button>
+
+
+  </form>
+
+<p th:text="${bbb}"></p>
+
+
+
+
+
+</body>
+</html>

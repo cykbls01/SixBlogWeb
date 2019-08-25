@@ -2,14 +2,16 @@ package com.example.demo.Controller;
 
 import com.example.demo.Entity.CComment;
 import com.example.demo.Entity.Comment;
-import com.example.demo.Repository.BlogRepository;
+import com.example.demo.Entity.User;
 import com.example.demo.Repository.CommentRepository;
-import com.example.demo.Repository.UserRepository;
 import com.example.demo.Tools.Time;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpSession;
 
 
 @Controller
@@ -18,13 +20,16 @@ public class CommentController {
     private CommentRepository commentRepository;
 
     @PostMapping(value ="/comment/add")
-    public String add(Comment comment)
+    public String add(Comment comment, HttpSession session)
     {
         comment.setDate(Time.getTime());
+        User user=(User)session.getAttribute("user");
+        comment.setAuthorid(user.getId());
+        comment.setAuthorname(user.getUsername());
         commentRepository.save(comment);
         return "comment/add";
     }
-    @PostMapping(value ="/comment/delete")
+    @GetMapping(value ="/comment/delete/{id}")
     public String delete(@RequestParam("comment")String id)
     {
 
@@ -56,6 +61,9 @@ public class CommentController {
         commentRepository.save(comment);
         return "comment/delete";
     }
+
+
+
 
 
 

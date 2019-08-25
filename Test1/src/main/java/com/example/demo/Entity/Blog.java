@@ -13,6 +13,27 @@ public class Blog {
     private String content;
     private String date;
     private String Authorid;
+    private String Authorname;
+    private int number;
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public String getAuthorname() {
+        return Authorname;
+    }
+
+    public void setAuthorname(String authorname) {
+        Authorname = authorname;
+    }
+
+
+
     private List<String> label;
 
 

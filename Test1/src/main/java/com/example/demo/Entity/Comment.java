@@ -10,10 +10,19 @@ public class Comment {
     @Id
     private String id;
     private String Blogid;
-    private String Userid;
+    private String Authorid;
+    private String Authorname;
     private String content;
     private String date;
     private List<CComment> commentList;
+
+    public String getAuthorname() {
+        return Authorname;
+    }
+
+    public void setAuthorname(String authorname) {
+        Authorname = authorname;
+    }
 
     public List<CComment> getCommentList() {
         return commentList;
@@ -34,12 +43,12 @@ public class Comment {
 
 
 
-    public String getUserid() {
-        return Userid;
+    public String getAuthorid() {
+        return Authorid;
     }
 
-    public void setUserid(String userid) {
-        Userid = userid;
+    public void setAuthorid(String userid) {
+        Authorid = userid;
     }
 
     public String getContent() {
