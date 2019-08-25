@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" class="style-version-3 " id="page_id_lesson_package" xmlns:th="https://www.thymeleaf.org">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+    <meta charset="UTF-8">
+    <title>zone</title>
+
+    <link rel="index" href="/">
+    <link rel="stylesheet" href="https://dotinstall.com/css/cf.css?v=20190611">
+    <script src="https://dotinstall.com/js/jquery-1.10.2.min.js"></script>
+
+    <link rel="stylesheet" href="https://dotinstall.com/css/bootstrap_328.css?v=20130813">
+    <link rel="stylesheet" href="https://dotinstall.com/css/font-awesome-4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://dotinstall.com/css/dotinstall-icons/css/dotinstall-icons.css?v=20170508">
+    <link href="https://dotinstall.com/css/highlight/github-gist.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://dotinstall.com/css/dotinstall.css?v=20190716">
+    <link rel="stylesheet" href="https://dotinstall.com/css/normal-responsive.css?v=20190507">
+
+    <link rel="stylesheet" href="https://dotinstall.com/css/package-201905.css?v=20190707a">
+    <script src="https://dotinstall.com/js/bootstrap_328.min.js"></script>
+    <script src="https://dotinstall.com/js/underscore.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js"></script>
+    <script src="https://dotinstall.com/js/main.js?v=20190511"></script>
+    <script src="https://dotinstall.com/js/bundle.min.js?v=20190603"></script>
+    <script src="https://dotinstall.com/js/dotinstall.bundle.min.js?v=20190716"></script>
+
+</head>
+
+<body>
+
+<div id="fb-root" style="display:none;"></div>
+<!--导航栏-->
+
+<div class="navbar navbar-fixed-top no-top-border  dotinstall-normal-topbar " id="lesson_package_page">
+
+    <div class="navbar-inner">
+
+        <div id="topbar_inner_container" class="container wide ">
+
+            <h2 style="margin: 18px 20px 0 0;padding: 0;height: 30px;width: 160px;float: left;align-content: center;">
+                <a href="/" style="align-self: center"><span>DSNC博客</span></a>
+            </h2>
+            <ul class="nav" id="global_menu" style="position:center;font-size:12px;width:50%;text-align:center">
+                <li style="text-align: center;align-items: center;width: 50%">
+                    <!--提交地址-->
+                    <form action="  " id="personalblog_search" style="position:relative;margin:0 0 0 170%;text-align:center;"
+                          class="form pull-left enable-incremental-lesson-search"
+                          onsubmit="if ($(this).find('.q').val() === '') { return false; }">
+                        <div class="input-append" style="padding:12px 0 0 0;">
+                            <div class="btn-group">
+                                <input type="text" style="font-size:12px;font-family: 宋体" placeholder="检索"
+                                       name="pblogsearch"
+                                       class="q" id="pblogsearch" value="" autocomplete="off">
+                                <input type="hidden" name="f" value="topbar">
+                                <button type="submit" class="btn"><i class="icon-search"></i></button>
+                            </div>
+                        </div>
+                        <div id="incremental"></div>
+                    </form>
+                </li>
+            </ul><!-- /.nav -->
+
+            <ul class="nav pull-right topbar-right-nav" id="global_pulldown">
+                <li id="topbar_login_button">
+                    <!-- login,html-->
+                    <a class="btn btn-small lh24"
+                       href="     "
+                       style="font-family: 宋体"><i class="icon-user"></i> 登录/注册</a>
+                </li>
+            </ul><!-- /nav pull-right -->
+        </div><!--/container -->
+    </div><!-- /navbar-inner -->
+</div><!-- /navbar -->
+
+
+<div class="container wide" style="margin-top: 24px;">
+
+    <div class="row">
+        <div class="span13" id="package_main">
+            <div class="scroll-tabs-container">
+                <ul class="nav nav-tabs" style="font-family: 宋体">
+                    <li class="active">
+                        <a href="zone">博文一览
+                            <span class="s10">(<span class="s10" th:text="${pblognum}">0</span>)</span></a>
+                    </li>
+                    <!---------------------------------------------------------拉取博文数量----------------------------------------->
+                    <li>
+                        <a href="zone_follow">关注动态
+                            <span class="s10">(<span class="s10" th:text="${follownum}">0</span>)</span></a>
+                    </li>
+                    <!---------------------------------------------------拉取评论数量--------------------------------------------->
+                </ul>
+            </div>
+
+            <div class="tab-content" style="min-height:400px">
+
+                <div id="lessons" class="tab-pane active">
+                    <ul id="lessons_list">
+                        <li id="lesson_row_49801" style="overflow:hidden;" th:each="pblog:${pblogs}">
+                            <div class="responsive-flex">
+                                <span class="lessons-list-icon">
+<i class="   "></i>
+</span><!-- /icon -->
+                                <span class="lessons-list-title">
+                                    <a href="/lessons/basic_html_v5/49801" class="lesson_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                                            th:text="${pblogtitle}">#[[${pblog.order}]] [[${pblog.title}]]</span></a>
+<span class="s12">([[${pblog.date}]])</span>
+</span>
+                                <!------------------------------------------------日期------------------------------------------------------------------------>
+                                <span class="lessons-list-complete-btn-placeholder"></span>
+                            </div>
+                            <ul class="lesson-summaries">
+                                <li>[[${pblog.content}]]</li>
+                                <ul>&nbsp;</ul>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div><!-- /#package_main -->
+
+        <div class="span5 relax-sidebar" id="sidebar">
+            <div class="side-clear-box">
+                <h2 class="package-sideSection_title" style="font-family: 宋体">
+                    个人信息
+                </h2>
+                <div class="box-profile" style="border: 1px solid #5a6268 !important;text-align: center;">
+                    <p class="thumb" th:text="${icon}" style="-webkit-transition: opacity 0.3s linear;transition: opacity 0.3s linear;
+                                              position: relative;
+                                              margin: 0 auto;
+                                              margin-top: 10px;
+                                              width: 115px;
+                                              height: 115px;
+                                              position: relative;
+                                              overflow: hidden;
+                                              border-radius: 100%;
+                                              border: 1px solid #d2d2d2; ">
+                        <a href="[[${icon}]] "><img style=" position: absolute;
+                                                width: auto;
+                                                height: auto;
+                                                left: 50%;
+                                                top: 50%;
+                                                -webkit-transform: translate(-50%, -50%);
+                                                transform: translate(-50%, -50%);
+                                                max-width: 100%;"
+                                         src="[[${icon}]]"/></a>
+                    </p>
+                    <!-------------------------------------------------头像↑  &↓-------------------------------------------------->
+                    <p class="name" style="font-size: 16px;font-size: 1.5rem;margin: 14px 0 0 0;">
+                        <span th:text="${username}">用户名</span>
+                    </p>
+                    <p class="location" style=" font-size: 10px;font-size: 1rem;margin-bottom: 0;">
+                        <span th:text="${location}">所在地</span>
+                    </p>
+                    <p class="birth" style="font-size: 10px;font-size: 1rem;margin: 4px 0 4px 0;">
+                        <span th:text="${birth}">生日</span>
+                    </p>
+                    <p th:text="${detail}" class="detail" style="font-size: 10px;font-size: 1rem;color: #df8ccf;margin-bottom: 16px;">
+                        <a  href="[[${detail}]]">详细信息</a>
+                        <!----------------------------详细信息------------------------------------------>
+                    </p>
+                </div>
+            </div>
+
+            <div class="sbox" style="border: 1px solid #5a6268 !important;">
+                <h2 style="font-family: 宋体">关于作者</h2>
+                <div class="sboxInner">
+                    <dl class="about-video">
+                        <dt style="font-family: 宋体">最终更新日期</dt>
+                        <dd>
+<span class="s12">
+    <span>[[${lastupdate}]]</span>
+</span><!----------------------------------date↑ ↓---------------------------------------------------->
+                        </dd>
+                        <!------------------------------------------------------tag↓------------------------------------------------------------>
+                        <dt style="font-family: 宋体">Tag <span class="s10" >([[${tagnum}]])</span></dt>
+                        <dd style="font-family: 宋体">
+                            <span class="tags" th:each="tag:${tags}"><a href="[[${tag.url}]]" >[[${tag.name}]]<span
+                                    class="s10">([[${tag.num}]])</span></a></span>
+                        </dd>
+
+                    </dl><!-- /.about-video -->
+                </div><!-- /sboxInner -->
+            </div><!-- /sbox -->
+<!-------------------------------------------------------分享---------------------------------------->
+            <div class="sbox" style="border: 1px solid #5a6268 !important;">
+                <h2 style="font-family: 宋体">分享</h2>
+                <div class="sboxInner">
+                    <ul class="unstyled" id="shareButtons">
+                        <li><a href="  "
+                               class=" "
+                               title="分享"><img
+                                src="https://dotinstall.com/img/hatena-button-only.gif" alt=" "
+                                width="20" height="20" style="border: none;"/></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div><!-- /sidebar -->
+
+    </div><!-- /row -->
+
+    <input type="hidden" id="user_id" value="">
+    <input type="hidden" id="package_id" value="498">
+    <input type="hidden" id="open_lesson_history" value="1">
+
+    <div id="simple_lightbox_mask">
+        <div id="simple_lightbox_container">
+            <img src="" id="simple_lightbox_img" alt="">
+        </div>
+    </div>
+</div><!-- /container -->
+
+<script src="https://dotinstall.com/js/packages_for_search.js?v=2610768"></script>
+
+<script src="https://dotinstall.com/js/jquery.circliful.min.js"></script>
+<script src="https://dotinstall.com/js/highlight.pack.js"></script>
+
+<script>
+    $(function () {
+        function applyResponsive() {
+            Dotinstall.responsive.topbar.apply(false);
+
+            Dotinstall.responsive.packagePage.apply(function (mainWidth) {
+                $('#package_main').width(mainWidth);
+            });
+        }
+
+
+        Array.prototype.forEach.call(document.querySelectorAll('.package-gallery-item > a > img'), function (img) {
+            img.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.getElementById('simple_lightbox_img').src = img.src;
+                document.getElementById('simple_lightbox_mask').classList.add('show');
+            });
+        });
+
+        document.getElementById('simple_lightbox_mask').addEventListener('click', function () {
+            document.getElementById('simple_lightbox_mask').classList.remove('show');
+        });
+
+        $('a[data-toggle="tab"]').on('shown', function () {
+            Dotinstall.ga.tracking('Tabs', 'Click', $(this).data('tracking-label'));
+        });
+
+        $(window).on('resize', function () {
+            applyResponsive();
+        });
+
+        applyResponsive();
+    });
+
+    $(function () {
+        HMHM.wait(2000).done(function () {
+            frameInFrame('/js/async.js?v=20150502');
+        });
+    });
+</script>
+</body>
+</html>
