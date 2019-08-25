@@ -29,10 +29,8 @@ public class BlogController {
         blog.setAuthorid(user.getId());
         blog.setAuthorname(user.getUsername());
         blog.setNumber(0);
-        blogRepository.save(blog);
-
-        //return "add";
-        //System.out.println(blog.getTheme()+"\n"+blog.getContent());
+        //blogRepository.save(blog);
+        System.out.println(blog.getContent());
         return "bingo";
     }
 
@@ -52,16 +50,14 @@ public class BlogController {
         return "modify";
     }
 
-    @ResponseBody
+
     @RequestMapping("/hello")
     public String helloWorld(){
 
-        Blog blog;
-        blog=blogRepository.findById("5d5e3ef6977b3935ac12a6bd").get();
-        System.out.println(blog.getLabel().get(1));
 
 
-        return "success";
+
+        return "Bingo";
     }
 
 
@@ -84,15 +80,15 @@ public class BlogController {
         return "Bingo";
     }
 
-    /*@GetMapping(value = "/blog/123")
+    @GetMapping(value = "/blog/123")
     public  String search123()
     {
         List<Blog> blogList= BlogDao.search("Java",blogRepository);
         //model.addAttribute("blogs",blogList);
         for(int i=0;i<blogList.size();i++)
             System.out.println(blogList.get(i).getTheme());
-        return "Bingo";
-    }*/
+        return "redirect:/hello";
+    }
 
     @GetMapping(value ="/blog/{label}")
     public String getbylabel(@PathVariable String label, Model model) throws ParseException {

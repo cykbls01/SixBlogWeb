@@ -58,16 +58,18 @@ public class BlogDao {
 
     public static List<Blog> findbyAuthorid(String id,BlogRepository blogRepository) throws ParseException {
         List<Blog> blogList = blogRepository.findAll();
+        List<Blog> blogList1=new ArrayList<Blog>();
+
         int size=blogList.size();
         for(int i=0;i<size;i++)
         {
             if(blogList.get(i).getAuthorid().equals(id)==false)
             {
-                blogList.remove(i);
+                blogList1.add(blogList.get(i));
             }
         }
-        blogList=sort(blogList);
-        return blogList;
+        blogList1=sort(blogList1);
+        return blogList1;
 
 
     }
@@ -103,14 +105,15 @@ public class BlogDao {
     }
     public static List<Blog> findbylabel(String label,BlogRepository blogRepository) throws ParseException {
         List<Blog> blogList=blogRepository.findAll();
+        List<Blog> blogList1=new ArrayList<Blog>();
         int size=blogList.size();
         for(int i=0;i<size;i++)
         {
             if(blogList.get(i).getLabel().contains(label)==false)
-                blogList.remove(i);
+                blogList1.add(blogList.get(i));
         }
-        blogList=sort(blogList);
-        return blogList;
+        blogList1=sort(blogList1);
+        return blogList1;
 
 
     }

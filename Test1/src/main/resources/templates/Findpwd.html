@@ -41,17 +41,18 @@
 <body class="text-center">
 <form class="form-signin" th:action="@{/user/findpwd}" method="post">
     <img class="mb-4" src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">找回密码</h1>
     <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
     <label for="inputEmail" class="sr-only">Email address</label>
     <input type="email" name="email" id="inputEmail" class="form-control" placeholder="输入邮箱地址" required autofocus>
     <br>
-    <button class="btn btn-lg btn-primary btn-block" type="submit" >发送验证码邮件</button>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" >发送验证码</button>
     <button type="button"  class="btn btn-sm btn-default" onclick=jumpSignIn()>返回登录页面</button>
 </form>
 </body>
 <script type="text/javascript">
         function jumpSignIn() {
-            window.location.href="Login.html";
+            window.location.href="/Login.html";
         }
 
 </script>

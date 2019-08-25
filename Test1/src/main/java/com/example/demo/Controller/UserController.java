@@ -51,14 +51,9 @@ public class UserController {
         else if(UserDao.findbyemail(email,userRepository).getPassword().equals(password)==true)
         {
             User user=UserDao.findbyemail(email,userRepository);
-
-            session.setAttribute("follownumber",3);
             session.setAttribute("user",user);
-            List<Blog> blogList= BlogDao.findbyAuthorid(user.getId(),blogRepository);
-            session.setAttribute("blogs",blogList);
-            session.setAttribute("blognumber",blogList.size());
             session.setAttribute("status","true");
-            return "redirect:/index.html";
+            return "redirect:/index/zone";
 
         }
         else
@@ -87,6 +82,7 @@ public class UserController {
         else
         {
             user.setPassword(Convert.SHA(user.getPassword()));
+            user.setContent(" ");
             userRepository.save(user);
             return "redirect:/Login.html";
         }
@@ -128,7 +124,7 @@ public class UserController {
             String yanzhengma=(String.valueOf((int)(1+Math.random()*(100000))));
             mail.sendSimpleMail(user.getEmail(),"密码找回邮件",yanzhengma);
             session.setAttribute("pan",yanzhengma);
-            return "Modifypwd";
+            return "redirect:/Modifypwd.html";
         }
 
     }

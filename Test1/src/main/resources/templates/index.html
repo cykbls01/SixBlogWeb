@@ -44,7 +44,7 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="index.html">首页<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/index.html">首页<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">HTML</a>
@@ -136,8 +136,8 @@
                                 </div>
                             </form>
                             <div class="container">
-                                <label><a href="findCode.html">忘记密码</a></label>|
-                                <label><a href="register.html">注册账号</a></label>
+                                <label><a href="Findpwd.html">忘记密码</a></label>|
+                                <label><a href="Register.html">注册账号</a></label>
                             </div>
                         </div>
                         </div>
@@ -172,9 +172,9 @@
                                     <span th:text=" @{(${session.user} ? ${session.user.email} : 'null')}">所在地</span>
                                 </p>
                                 <p class="birth" style="font-size: 10px;font-size: 1rem;margin: 4px 0 4px 0;">
-                                    <span th:text="${birth}">生日</span>
+                                    <span th:text="@{(${session.user} ? ${session.user.birth} : 'null')}">生日</span>
                                 </p>
-                                <p th:text="${detail}" class="detail" style="font-size: 10px;font-size: 1rem;color: #df8ccf;margin-bottom: 16px;">
+                                <p th:text="@{(${session.user} ? ${session.user.birth} : 'null')}" class="detail" style="font-size: 10px;font-size: 1rem;color: #df8ccf;margin-bottom: 16px;">
                                     <a  href="[[${detail}]]">详细信息</a>
                                     <!----------------------------详细信息------------------------------------------>
                                 </p>

@@ -1,0 +1,164 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Jumbotron Template · Bootstrap</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/jumbotron/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/4.3/examples/jumbotron/jumbotron.css" rel="stylesheet">
+</head>
+
+<body>
+<!-- 导航栏 -->
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">CSND</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Java <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">C#</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Python</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">栏目</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+
+<main role="main">
+<form th:action="@{/Blog/add}" method="post">
+    <!-- 发布按键栏 -->
+      <div class="jumbotron">
+    <div class="container">
+        <input name="theme" class="display-3" placeholder="创建新的博文"></input>
+
+        <p>  </p>
+
+        <button class="btn btn-primary btn-lg" th:type="submit">发布 &raquo;</button>
+    </div>
+</div>
+
+    <div class="container">
+        <!-- 编辑页面部分 -->
+        <div class="row">
+            <div class="column">
+
+            <div id="middle" style="width:800px;height:1200px;margin:0px auto;">
+
+                    <!-- 加载编辑器的容器 -->
+                    <script id="container" name="content" type="text/plain">
+                    在这里创建新的博文
+                    </script>
+                    <!-- 配置文件 -->
+                    <script type="text/javascript" th:src="@{/Addblog/ueditor.config.js}"></script>
+                    <!-- 编辑器源码文件 -->
+                    <script type="text/javascript" th:src="@{/Addblog/ueditor.all.js}"></script>
+                    <!-- 实例化编辑器 -->
+                    <script type="text/javascript">
+                        var ue = UE.getEditor('container');
+                    </script>
+
+            </div>
+
+            </div>
+            <input type="hidden" name="label" value="java html">
+</form>
+            <div class="side-clear-box" style="width:40px;height:400px"></div>
+
+            <div class="side-clear-box" style="width:200px;height:400px">
+                <h2 class="package-sideSection_title" style="font-family: 宋体">
+                    个人信息
+                </h2>
+                <div class="box-profile" style="border: 1px solid #5a6268 !important;text-align: center;">
+                    <p class="thumb" th:text="${icon}" style="-webkit-transition: opacity 0.3s linear;transition: opacity 0.3s linear;
+                                              position: relative;
+                                              margin: 0 auto;
+                                              margin-top: 10px;
+                                              width: 115px;
+                                              height: 115px;
+                                              position: relative;
+                                              overflow: hidden;
+                                              border-radius: 100%;
+                                              border: 1px solid #d2d2d2; ">
+                        <a href="[[${icon}]] "><img style=" position: absolute;
+                                                width: auto;
+                                                height: auto;
+                                                left: 50%;
+                                                top: 50%;
+                                                -webkit-transform: translate(-50%, -50%);
+                                                transform: translate(-50%, -50%);
+                                                max-width: 100%;"
+                                                    src="[[${icon}]]"/></a>
+                    </p>
+                    <!-------------------------------------------------头像↑  &↓-------------------------------------------------->
+                    <p class="name" style="font-size: 16px;font-size: 1.5rem;margin: 14px 0 0 0;">
+                        <span th:text="${username}">用户名</span>
+                    </p>
+                    <p class="location" style=" font-size: 10px;font-size: 1rem;margin-bottom: 0;">
+                        <span th:text="${location}">所在地</span>
+                    </p>
+                    <p class="birth" style="font-size: 10px;font-size: 1rem;margin: 4px 0 4px 0;">
+                        <span th:text="${birth}">生日</span>
+                    </p>
+                    <p th:text="${detail}" class="detail" style="font-size: 10px;font-size: 1rem;color: #df8ccf;margin-bottom: 16px;">
+                        <a  href="[[${detail}]]">详细信息</a>
+                        <!----------------------------详细信息------------------------------------------>
+                    </p>
+                </div>
+            </div>
+        </div>
+       </div>  <!-- /container -->
+</div><!-- /#package_main -->
+
+
+</main>
+
+
+</body>
+</html>
+
