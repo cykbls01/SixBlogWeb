@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        <!doctype html>
+        <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <meta name="description" content="">
+            <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+            <meta name="generator" content="Jekyll v3.8.5">
+            <title>Signin Template · Bootstrap</title>
+            <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+            <!--            <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">-->
+            <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+            <script src="https://cdn.bootcss.com/moment.js/2.18.1/moment-with-locales.min.js"></script>
+            <!--           导入 文件-->
+            <link th:href="@{/bootstrap-datetimepicker.css}" rel="stylesheet">
+            <script th:src="@{/bootstrap-datetimepicker.js}"></script>
+
+            <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/sign-in/">
+
+            <!-- Bootstrap core CSS -->
+            <link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+            <style>
+                .bd-placeholder-img {
+                    font-size: 1.125rem;
+                    text-anchor: middle;
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
+                }
+
+                @media (min-width: 768px) {
+                    .bd-placeholder-img-lg {
+                        font-size: 3.5rem;
+                    }
+                }
+            </style>
+            <!-- Custom styles for this template -->
+            <link href="https://getbootstrap.com/docs/4.3/examples/sign-in/signin.css" rel="stylesheet">
+        </head>
+<body class="text-center">
+<form class="form-signin" th:action="@{/user/modify}" method="post">
+    <img class="mb-4" src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">修改个人信息</h1>
+    <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+    <!--用户名-->
+    <label for="inputUserName" class="sr-only">User name</label>
+    <input type="userName" name="username" th:value="${session.user.username}"  id="inputUserName" class="form-control" placeholder="输入用户名" required >
+    <br>
+    <!--邮箱-->
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="email" name="email" th:value="${session.user.email}" id="inputEmail" class="form-control" placeholder="输入邮箱地址" required autofocus>
+    <br>
+    <!--    生日期-->
+    <label for="inputBirthday" class="sr-only">Birthday</label>
+    <input type="text" name="birth" th:value="${session.user.birth}" id="inputBirthday" class="form-control" placeholder="选择出生日期" required>
+    <br>
+    <!--    -->
+    <!--用户密码-->
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" name="password" th:value="${session.user.password}" id="inputPassword" class="form-control" placeholder="输入密码" required>
+    <!--确认密码-->
+    <label for="checkPassword" class="sr-only">Password</label>
+    <input type="password" name="pwd2" th:value="${session.user.password}" id="checkPassword" class="form-control" placeholder="确认密码" onchange="check()">
+    <div id="msg" style="color: red"></div>
+    <br>
+
+    <label for="inputUserName" class="sr-only">User name</label>
+    <textarea type="userName" name="content" th:value="${session.user.content}"   placeholder="输入个人介绍" >
+    </textarea>
+    <br>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="return checkAllInf()" id="confirmPost">注册</button>
+
+</form>
+</body>
+<script type="text/javascript">
+    function jumpSignIn() {
+        window.location.href="/Login.html";
+    }
+    function check() {
+        var a = document.getElementById("inputPassword").value;
+        var b = document.getElementById("checkPassword").value;
+
+        if(a != b){
+            //alert("密码不一致");
+            //document.getElementById("msg").innerHTML="密码不一致";
+            checkPassword.focus();
+            return false;
+        }
+    }
+    function  checkAllInf() {
+        var n = document.getElementById("inputUserName").value;
+        var pwd1 = document.getElementById("inputPassword").value;
+        var pwd2 = document.getElementById("checkPassword").value;
+        var name = String(n);
+        var re =  /^[0-9a-zA-Z]+$/;
+        //alert(pwd1.length);
+        if(name.length < 6 || name.length > 24){
+            document.getElementById("msg").innerHTML="用户名长度在6~24之间";
+            return false;
+        }
+        else if(re.test(n) == false){
+            document.getElementById("msg").innerHTML="用户名只有数字或字母";
+            return false;
+        }
+        else if(pwd1.length < 6){
+            document.getElementById("msg").innerHTML="密码长度不少于6";
+            return false;
+        }
+        else if(pwd1 != pwd2) {
+            document.getElementById("msg").innerHTML = "两次密码不等";
+            return false;
+        }
+        return true;
+    }
+    $(function() {
+        $("#inputBirthday").datetimepicker({
+            format: 'yyyy-mm-dd',
+            locale: moment.locale('zh-cn'),
+            minView:"month",
+            autoClose:true,
+            todayBtn:true
+        });
+    });
+</script>
+</html>
+</title>
+</head>
+<body>
+
+</body>
+</html>

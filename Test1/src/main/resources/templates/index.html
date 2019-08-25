@@ -72,12 +72,22 @@
                     <a class="dropdown-item" href="#">ccc</a>
                 </div>
             </li>
-            <li>
+
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-2" type="submit">Search</button>
         </form>
+        <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link " href="#"  th:text=" @{(${session.user} ? '发布博客' : '')}">发布博客</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " href="#"  th:text=" @{(${session.user} ? '登出系统' : '')}">登出系统</a>
+        </li>
+
+        </ul>
+
     </div>
 </nav>
 <br><br><br>
@@ -136,8 +146,8 @@
                                 </div>
                             </form>
                             <div class="container">
-                                <label><a href="Findpwd.html">忘记密码</a></label>|
-                                <label><a href="Register.html">注册账号</a></label>
+                                <label><a href="/Findpwd.html">忘记密码</a></label>|
+                                <label><a href="/Register.html">注册账号</a></label>
                             </div>
                         </div>
                         </div>
@@ -174,7 +184,7 @@
                                 <p class="birth" style="font-size: 10px;font-size: 1rem;margin: 4px 0 4px 0;">
                                     <span th:text="@{(${session.user} ? ${session.user.birth} : 'null')}">生日</span>
                                 </p>
-                                <p th:text="@{(${session.user} ? ${session.user.birth} : 'null')}" class="detail" style="font-size: 10px;font-size: 1rem;color: #df8ccf;margin-bottom: 16px;">
+                                <p th:text="@{(${session.user} ? ${session.user.content} : 'null')}" class="detail" style="font-size: 10px;font-size: 1rem;color: #df8ccf;margin-bottom: 16px;">
                                     <a  href="[[${detail}]]">详细信息</a>
                                     <!----------------------------详细信息------------------------------------------>
                                 </p>

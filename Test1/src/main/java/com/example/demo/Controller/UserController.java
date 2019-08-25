@@ -152,33 +152,28 @@ public class UserController {
     public String modify(User user,
                          Map<String,Object> map,
                          HttpSession session) throws NoSuchAlgorithmException {
-        if(UserDao.findbyemail(user.getEmail(),userRepository)!=null)
+        if(((User)session.getAttribute("user")).getEmail().equals(user.getEmail())==false&&UserDao.findbyemail(user.getEmail(),userRepository)!=null)
         {
             map.put("msg","邮箱已存在");
-            return "Modify";
+            return "Modifyinfo";
         }
-        else if(UserDao.findbyusername(user.getUsername(),userRepository)!=null)
+        else if(((User)session.getAttribute("user")).getPassword().equals(user.getPassword())==false&&UserDao.findbyusername(user.getUsername(),userRepository)!=null)
         {
             map.put("msg","用户名重复");
-            return "Modify";
+            return "Modifyinfo";
         }
         else
         {
             user.setPassword(Convert.SHA(user.getPassword()));
+            session.setAttribute("user",user);
             userRepository.save(user);
-            return "redirect:/Modify.html";
+            return "redirect:/index.html";
         }
 
 
     }
 
-    /*@ResponseBody
-    @RequestMapping("/123")
-    public String helloWorld(){
 
-        mail.sendSimpleMail("2541601705@qq.com","测试一下","测试邮件正文");
-        return "success";
-    }*/
 
 
 
