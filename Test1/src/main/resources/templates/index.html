@@ -177,7 +177,7 @@
                         <!--登录后显示个人信息-->
                         <div th:style="'display:' + @{(${session.status} ? 'block' : 'none')}" >
                             <div class="box-profile" style="!important;text-align: center; ">
-                                <p class="thumb" th:text="${icon}" style="-webkit-transition: opacity 0.3s linear;transition: opacity 0.3s linear;
+                                <p class="thumb"  style="-webkit-transition: opacity 0.3s linear;transition: opacity 0.3s linear;
                                               position: relative;
                                               margin: 0 auto;
                                               margin-top: 10px;
@@ -195,7 +195,8 @@
                                                 -webkit-transform: translate(-50%, -50%);
                                                 transform: translate(-50%, -50%);
                                                 max-width: 100%;"
-                                                                src="[[${icon}]]"/></a>
+                                                                src="/file/image/5d634f8d9655bf0dbcda69c4"/>
+                                    </a>
                                 </p>
                                 <!-------------------------------------------------头像↑  &↓-------------------------------------------------->
                                 <p class="name" style="font-size: 16px;font-size: 1.5rem;margin: 14px 0 0 0;">
@@ -233,8 +234,9 @@
                     <a href="#" style="color: #5a6268" th:text="${blog.date}"> 时间</a>
                 </p>
                 <p><a class="btn btn-secondary" th:href="@{/blog/get/}+${blog.id}" role="button">查看详情</a></p>
+                <br>
             </div>
-            <br>
+
 
 
 

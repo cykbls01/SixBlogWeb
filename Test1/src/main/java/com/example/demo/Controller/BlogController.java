@@ -155,7 +155,7 @@ public class BlogController {
         return "index";
     }
 
-    @GetMapping(value = "/index")
+    @GetMapping(value = "/index.html")
     public String recommon1(Model model) throws ParseException {
         List<Blog> blogList=BlogDao.recommond(blogRepository);
         model.addAttribute("blogs",blogList);

@@ -209,10 +209,10 @@
         <ul class="navbar-nav mr-auto"
             style="font-family:inherit;font-size: 1.6rem;font-weight: 400;padding:1.7rem .8rem">
             <li class="nav-item" style="margin-right: .6rem">
-                <a class="nav-link " href="#" th:text=" @{(${session.user} ? '发布博客' : '')}">发布博客</a>
+                <a class="nav-link " href="/Addblog.html" th:text=" @{(${session.user} ? '发布博客' : '')}">发布博客</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="#" th:text=" @{(${session.user} ? '登出系统' : '')}">登出系统</a>
+                <a class="nav-link " href="@{/user/logout}" th:text=" @{(${session.user} ? '登出系统' : '')}">登出系统</a>
             </li>
         </ul>
 
