@@ -2,12 +2,15 @@ package com.example.demo.Controller;
 
 import com.example.demo.Dao.BlogDao;
 import com.example.demo.Dao.CommentDao;
+import com.example.demo.Dao.FollowDao;
 import com.example.demo.Dao.UserDao;
 import com.example.demo.Entity.Blog;
 import com.example.demo.Entity.Comment;
+import com.example.demo.Entity.Follow;
 import com.example.demo.Entity.User;
 import com.example.demo.Repository.BlogRepository;
 import com.example.demo.Repository.CommentRepository;
+import com.example.demo.Repository.FollowRepository;
 import com.example.demo.Repository.UserRepository;
 import com.example.demo.Tools.Time;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +34,8 @@ public class BlogController {
 
     @Autowired
     private CommentRepository commentRepository;
+    @Autowired
+    private FollowRepository followRepository;
 
     @PostMapping(value ="/Blog/add")
     public String add(@RequestParam("label")String label, Blog blog, HttpSession session){
@@ -63,16 +68,6 @@ public class BlogController {
     }
 
 
-    @RequestMapping("/hello")
-    public String helloWorld(){
-
-
-
-
-        return "Bingo";
-    }
-
-
     @GetMapping(value ="/blog/get/{id}")
     public String getbyid(@PathVariable String id, Model model,HttpSession session)
     {
@@ -89,8 +84,6 @@ public class BlogController {
         session.setAttribute("dd",blog.getDate().substring(8,10));
         List<Comment> commentList= CommentDao.findbyblogid(blog.getId(),commentRepository);
         model.addAttribute("comments",commentList);
-
-
         return "Blog";
     }
 
@@ -104,15 +97,7 @@ public class BlogController {
         return "Bingo";
     }
 
-    @GetMapping(value = "/blog/123")
-    public  String search123()
-    {
-        List<Blog> blogList= BlogDao.search("Java",blogRepository);
-        //model.addAttribute("blogs",blogList);
-        for(int i=0;i<blogList.size();i++)
-            System.out.println(blogList.get(i).getTheme());
-        return "redirect:/hello";
-    }
+
 
     @GetMapping(value ="/blog/label/{label}")
     public String getbylabel(@PathVariable String label, Model model) throws ParseException {
@@ -136,7 +121,8 @@ public class BlogController {
         else
         {
             List<User> userList=UserDao.searchbyusername(name,userRepository);
-            System.out.println(name);
+
+
             model.addAttribute("users",userList);
             return "SearchUser";
         }

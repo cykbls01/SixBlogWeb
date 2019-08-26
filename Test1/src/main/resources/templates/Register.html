@@ -48,7 +48,7 @@
         </head>
 <body class="text-center">
 <form class="form-signin" th:action="@{/user/register}" method="post">
-    <img class="mb-4" src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+    <img class="mb-4" src="/index.html" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">注册</h1>
     <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
     <!--用户名-->
@@ -74,7 +74,7 @@
     <br>
 
     <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="return checkAllInf()" id="confirmPost">注册</button>
-    <button type="button"  class="btn btn-sm btn-default btn-block" onclick=jumpSignIn() id="signIn">登录系统</button>
+    <button type="button"  class="btn btn-sm btn-default btn-block" onclick=jumpSignIn() id="signIn">返回登录页面</button>
 </form>
 </body>
 <script type="text/javascript">

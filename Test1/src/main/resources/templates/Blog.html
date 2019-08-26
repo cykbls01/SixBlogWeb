@@ -169,7 +169,7 @@
 
         </ul>
         <form class="form-inline my-2 my-lg-0" style="margin-left: 500px">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="name"
                    style="font-family:-apple-system;borderradius:.8rem;width: 20rem;height:3.8rem;padding:.375rem .75rem;font-size:1.5rem;font-weight:400;line-height:1.5;">
             <div class="btn-group">
                 <button class="btn btn-outline-success my-2 my-sm-2" type="submit"
@@ -185,6 +185,7 @@
                         onmousemove="green(this)" onmouseout="transparent(this)" onm>
                     <span class="choose"></span>
                 </button>
+                <input type="hidden" id="instruction" name="button">
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="width: 160px;height: 80px">
                     <a class="dropdown-item" id="bowen" href="#"
                        style="padding-left:25px;padding-top:6px;position: relative;height: 40px;text-align: left;font-family: 微软雅黑;font-weight: 500;font-size: 15px"
@@ -194,12 +195,12 @@
                        onclick="clickBozhu()">博主</a>
                     <script>
                         function clickBowen() {
-                            alert("bowen");
+
                             document.getElementById("instruction").innerHTML = "博文";
                         }
 
                         function clickBozhu() {
-                            alert("bozhu");
+
                             document.getElementById("instruction").innerHTML = "博主";
                         }
                     </script>
@@ -232,12 +233,12 @@
                         <article style="border-top: 1px solid #5a6268;border-bottom: 1px solid #5a6268;">
                             <div class="innerHead">
                                 <div class="box-date" style="background-color:#5a6268 !important">
-                                    <time>[[${session.yyyymm}]]</time>
-                                    <time>[[${session.dd}]]</time>
+                                    <time>[[${yyyymm}]]</time>
+                                    <time>[[${dd}]]</time>
                                 </div>
                                 <div class="box-ttl">
                                     <h3>
-                                        [[${session.blog.theme}]]
+                                        [[${blog.theme}]]
                                     </h3>
                                     <p class="name">
                                         <a th:href="${userzone}" style="color:#5a6268">[[${username}]]</a>
@@ -245,7 +246,7 @@
                                 </div>
                             </div>
                             <div class="box-article">
-                                [(${session.blog.content})]
+                                [(${blog.content})]
                             </div>
                             <div class="box-bottom" style="margin-bottom: 80px">
                                 <ul>
@@ -335,20 +336,20 @@
                             </p>
                             <!-------------------------------------------------头像↑  &↓-------------------------------------------------->
                             <p class="name" style="font-size: 16px;font-size: 1.5rem;margin: 14px 0 0 0;">
-                                <span th:text="${session.author.username}">用户名</span>
+                                <span th:text="${author.username}">用户名</span>
                             </p>
                             <p class="location" style=" font-size: 10px;font-size: 1rem;margin-bottom: 0;">
-                                <span th:text="${session.author.birth}">生日</span>
+                                <span th:text="${author.birth}">生日</span>
                             </p>
                             <p class="birth" style="font-size: 10px;font-size: 1rem;margin: 4px 0 4px 0;">
-                                <span th:text="${session.author.content}">个人介绍</span>
+                                <span th:text="${author.content}">个人介绍</span>
                             </p>
 
                         </div>
 
                         <div class="box-nenwEntry_member" style="border: 1px solid #5a6268 !important;">
                             <p class="name" style="color: #5a6268">
-                                [[${session.author.username}]]
+                                [[${author.username}]]
                             </p>
                             <h4 style="color: #5a6268;">
                                 NEW ENTRY

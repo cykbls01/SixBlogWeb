@@ -12,7 +12,15 @@ public class Follow {
     private String id;
     private String userid;
     private List<String> idlist;
+    private int num;
 
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
 
     public String getUserid() {
         return userid;

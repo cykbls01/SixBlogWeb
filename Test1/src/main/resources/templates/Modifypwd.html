@@ -41,6 +41,8 @@
 <body class="text-center">
 <form class="form-signin" th:action="@{/user/modifypwd}" method="post">
     <img class="mb-4" src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+    h1 class="h3 mb-3 font-weight-normal">修改为新的密码</h1>
+    <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
     <label for="inputEmail" class="sr-only">Email address</label>
     <input type="text" name="yanzhengma" id="inputEmail" class="form-control" placeholder="输入验证码" required autofocus>
     <label for="inputEmail" class="sr-only">New Password</label>

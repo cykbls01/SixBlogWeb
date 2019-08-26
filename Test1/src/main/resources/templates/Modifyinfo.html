@@ -11,7 +11,7 @@
             <meta name="description" content="">
             <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
             <meta name="generator" content="Jekyll v3.8.5">
-            <title>Signin Template · Bootstrap</title>
+            <title>修改个人信息</title>
             <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
             <!--            <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">-->
             <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -48,7 +48,7 @@
         </head>
 <body class="text-center">
 <form class="form-signin" th:action="@{/user/modify}" method="post">
-    <img class="mb-4" src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+    <img class="mb-4" src="/index.html" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">修改个人信息</h1>
     <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
     <!--用户名-->

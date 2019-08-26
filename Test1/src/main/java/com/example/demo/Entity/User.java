@@ -19,6 +19,16 @@ public class User {
 
     private String birth;
 
+    private int follow;
+
+    public int getFollow() {
+        return follow;
+    }
+
+    public void setFollow(int follow) {
+        this.follow = follow;
+    }
+
     public String getContent() {
         return content;
     }

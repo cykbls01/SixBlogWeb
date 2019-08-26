@@ -12,6 +12,7 @@ import com.example.demo.Repository.UserRepository;
 import com.example.demo.Tools.Convert;
 import com.example.demo.Tools.MailService;
 
+import com.example.demo.Tools.Time;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -84,27 +85,16 @@ public class UserController {
         {
             user.setPassword(Convert.SHA(user.getPassword()));
             user.setContent(" ");
+            user.setBirth(Time.getTime());
+            user.setFollow(0);
             userRepository.save(user);
-            return "redirect:/Login.html";
+            user=UserDao.findbyusername(user.getUsername(),userRepository);
+            session.setAttribute("user",user);
+            session.setAttribute("status",true);
+            return "redirect:/";
         }
     }
 
-   /* @PostMapping(value = "/user/sure")
-    public String sure(@RequestParam("yanzhengma")String yanzhengma,
-                       Map<String,Object> map,
-                       HttpSession session)
-    {
-        if(yanzhengma.equals(session.getAttribute("pan"))==true)
-        {
-            userRepository.save((User)session.getAttribute("user"));
-            return "redirect:/Login.html";
-        }
-        else
-        {
-            map.put("msg","验证码错误");
-            return "Sure";
-        }
-    }*/
 
 
 
@@ -170,7 +160,7 @@ public class UserController {
 
             session.setAttribute("user",user);
             userRepository.save(user);
-            return "redirect:/index.html";
+            return "redirect:/Login.html";
         }
     }
 

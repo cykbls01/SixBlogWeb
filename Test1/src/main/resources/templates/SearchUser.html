@@ -231,7 +231,13 @@
                     <hr>
                     <p th:text="${user.content}">个人简介</p>
                     <hr>
-                    <p>关注数</p>
+                    被关注: [[${user.follow}]]
+<!--                    <p th:text="${user.follow}"></p>-->
+                    <br>
+                    <form th:action="@{/follow/add}" method="post">
+                        <input name="id" type="hidden" th:value="${user.id}">
+                    <button type="submit" >关注</button>
+                    </form>
                 </div>
             </div>
             <hr>

@@ -11,7 +11,7 @@
             <meta name="description" content="">
             <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
             <meta name="generator" content="Jekyll v3.8.5">
-            <title>Signin Template · Bootstrap</title>
+            <title>找回密码</title>
 
             <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/sign-in/">
 
@@ -40,7 +40,7 @@
         </head>
 <body class="text-center">
 <form class="form-signin" th:action="@{/user/findpwd}" method="post">
-    <img class="mb-4" src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+    <img class="mb-4" src="/index.html" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">找回密码</h1>
     <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
     <label for="inputEmail" class="sr-only">Email address</label>

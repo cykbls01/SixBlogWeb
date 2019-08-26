@@ -35,6 +35,47 @@ public class FollowDao {
     }
 
 
+    public static boolean isfollow(String id, String fid,FollowRepository followRepository, UserRepository userRepository)
+    {
+
+        List<String> idList=new ArrayList<String>();
+        List<Follow> followList=followRepository.findAll();
+        for(int i=0;i<followList.size();i++)
+        {
+            if(followList.get(i).getUserid().equals(id)==true)
+            {
+                idList=followList.get(i).getIdlist();
+                break;
+            }
+
+
+        }
+
+        if(idList.contains(fid))
+        return true;
+        else
+            return false;
+    }
+
+    public static Follow findbyid(String id,FollowRepository followRepository)
+    {
+
+        List<Follow> followList=followRepository.findAll();
+        for(int i=0;i<followList.size();i++)
+        {
+            if(followList.get(i).getUserid().equals(id)==true)
+            {
+                return followList.get(i);
+            }
+
+
+        }
+        return null;
+
+
+    }
+
+
 
 
 
