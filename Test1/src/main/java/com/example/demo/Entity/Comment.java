@@ -14,7 +14,7 @@ public class Comment {
     private String Authorname;
     private String content;
     private String date;
-    private List<CComment> commentList;
+    //private List<CComment> commentList;
 
     public String getAuthorname() {
         return Authorname;
@@ -24,13 +24,13 @@ public class Comment {
         Authorname = authorname;
     }
 
-    public List<CComment> getCommentList() {
-        return commentList;
-    }
+    //public List<CComment> getCommentList() {
+        //return commentList;
+    //}
 
-    public void setCommentList(List<CComment> commentList) {
-        this.commentList = commentList;
-    }
+    //public void setCommentList(List<CComment> commentList) {
+        //this.commentList = commentList;
+    //}
 
     public String getDate() {
         return date;

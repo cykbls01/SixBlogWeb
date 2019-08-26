@@ -44,24 +44,24 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/index.html">首页<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/">首页<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">HTML</a>
+                <a class="nav-link" href="/blog/label/HTML">HTML</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="#">JAVA</a>
+                <a class="nav-link " href="/blog/label/java">java</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="#">C++</a>
+                <a class="nav-link " href="/blog/label/C++">C++</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="#">C</a>
+                <a class="nav-link " href="/blog/label/C">C</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="#">C++</a>
+                <a class="nav-link " href="/blog/label/Python">Python</a>
             </li>
-<!--            选项卡-->
+            <!--            选项卡-->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="dropdown01" aria-haspopup="true" aria-expanded="false">
                     更多分类 <span class="caret"></span>
@@ -74,19 +74,42 @@
             </li>
 
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-2" type="submit">Search</button>
-        </form>
-        <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-            <a class="nav-link " href="#"  th:text=" @{(${session.user} ? '发布博客' : '')}">发布博客</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link " href="#"  th:text=" @{(${session.user} ? '登出系统' : '')}">登出系统</a>
-        </li>
+        <!--搜索栏:拆分按钮组确定范围-->
+        <form class="form-inline my-2 my-lg-0" th:action="@{/blog/search}" method="post">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="name">
+            <div class="btn-group">
+                <button class="btn btn-outline-success my-2 my-sm-2" type="submit">Search</button>
+                <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split my-2 my-sm-2" data-toggle="dropdown">
+                    <span class="choose"></span>
+                </button>
+                <input type="hidden" id="instruction" name="button">
+                <div class="dropdown-menu" >
+                    <a class="dropdown-item" id="bowen" href="#" onclick="clickBowen()">博文</a>
+                    <a class="dropdown-item" id="bozhu" href="#" onclick="clickBozhu()">博主</a>
+                    <script>
+                        function clickBowen() {
 
-        </ul>
+                            document.getElementById("instruction").value="博文";
+                        }
+                        function clickBozhu() {
+
+                            document.getElementById("instruction").value="博主";
+                        }
+                    </script>
+                </div>
+            </div>
+        </form>
+
+        <div style="align:right;padding-left: 10px;">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link " href="/Addblog.html"  th:text=" @{(${session.status} ? '发布博客' : '')}">发布博客</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " th:href="@{/user/logout}"  th:text=" @{(${session.status} ? '登出系统' : '')}">登出系统</a>
+                </li>
+            </ul>
+        </div>
 
     </div>
 </nav>
@@ -130,28 +153,28 @@
                 </div>
 
             </div>
-<!--            登录窗口-->
+            <!--            登录窗口-->
             <div class="col-sm-4">
                 <div class="span5 relax-sidebar" id="sidebar">
                     <div class="side-clear-box" style="border: 1px solid #5a6268;height: 300px;" >
-<!--                        登录前-->
+                        <!--                        登录前-->
                         <div  th:style="'display:' + @{(${session.status} ? 'none' : 'block')}">
-                        <div class="box-profile" style="padding-top:10%; !important;text-align: center;display:block;">
-                            <p><h2>欢迎登陆</h2></p>
-                            <form class="form-signin" th:action="@{/user/login}" method="post">
-                                <input id="email" type="text" placeholder="邮箱" name="email" style="width: 80%;">
-                                <input id="password" type="password" placeholder="密码" name="password" style="width: 80%;">
-                                <div class="btn-group btn-group-sm" style="margin: 5px; width: 80%;">
-                                    <button type="submit" class="btn btn-primary" style="align:left;">登录</button>
+                            <div class="box-profile" style="padding-top:10%; !important;text-align: center;display:block;">
+                                <p><h2>欢迎登陆</h2></p>
+                                <form class="form-signin" th:action="@{/user/login}" method="post">
+                                    <input id="email" type="text" placeholder="邮箱" name="email" style="width: 80%;">
+                                    <input id="password" type="password" placeholder="密码" name="password" style="width: 80%;">
+                                    <div class="btn-group btn-group-sm" style="margin: 5px; width: 80%;">
+                                        <button type="submit" class="btn btn-primary" style="align:left;">登录</button>
+                                    </div>
+                                </form>
+                                <div class="container">
+                                    <label><a href="/Findpwd.html">忘记密码</a></label>|
+                                    <label><a href="/Register.html">注册账号</a></label>
                                 </div>
-                            </form>
-                            <div class="container">
-                                <label><a href="/Findpwd.html">忘记密码</a></label>|
-                                <label><a href="/Register.html">注册账号</a></label>
                             </div>
                         </div>
-                        </div>
-<!--登录后显示个人信息-->
+                        <!--登录后显示个人信息-->
                         <div th:style="'display:' + @{(${session.status} ? 'block' : 'none')}" >
                             <div class="box-profile" style="!important;text-align: center; ">
                                 <p class="thumb" th:text="${icon}" style="-webkit-transition: opacity 0.3s linear;transition: opacity 0.3s linear;
@@ -188,6 +211,7 @@
                                     <a  href="[[${detail}]]">详细信息</a>
                                     <!----------------------------详细信息------------------------------------------>
                                 </p>
+                                <a th:href="@{/user/info}">进入个人空间</a>
                             </div>
                         </div>
 
@@ -195,28 +219,26 @@
                 </div>
             </div>
         </div>
-<!--        登陆后窗口-->
+        <!--        登陆后窗口-->
 
         <br>
         <hr>
         <div class="row">
-            <div class="col-md-12">
-                <h2>Heading</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+            <div class="col-md-12" th:each="blog:${blogs}">
+                <h2  th:text="${blog.theme}">Heading</h2>
+                <p th:text="${blog.content}">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                <p>
+                    <a href="#" style="color: #5a6268" th:text="${blog.Authorname}"> 作者名字</a> |
+                    <a href="#" style="color: #5a6268"> 标签</a> |
+                    <a href="#" style="color: #5a6268" th:text="${blog.date}"> 时间</a>
+                </p>
+                <p><a class="btn btn-secondary" th:href="@{/blog/get/}+${blog.id}" role="button">查看详情</a></p>
             </div>
             <br>
-            <div class="col-md-12">
-                <h2>Heading</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-            </div>
-            <br>
-            <div class="col-md-12">
-                <h2>Heading</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-            </div>
+
+
+
+
         </div>
 
         <hr>

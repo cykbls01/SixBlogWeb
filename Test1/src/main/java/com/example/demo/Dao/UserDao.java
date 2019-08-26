@@ -4,6 +4,7 @@ import com.example.demo.Entity.User;
 import com.example.demo.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao {
@@ -33,16 +34,17 @@ public class UserDao {
     public static List<User> searchbyusername(String username,UserRepository userRepository)
     {
         List<User> userList=userRepository.findAll();
+        List<User> userList1=new ArrayList<User>();
         int size=userList.size();
         for(int i=0;i<size;i++)
         {
-            if(userList.get(i).getUsername().contains(username)!=false)
+            if(userList.get(i).getUsername().contains(username))
             {
-                userList.remove(i);
+                userList1.add(userList.get(i));
             }
 
         }
-        return userList;
+        return userList1;
     }
 
 

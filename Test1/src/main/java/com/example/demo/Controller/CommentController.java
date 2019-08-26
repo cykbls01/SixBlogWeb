@@ -1,5 +1,6 @@
 package com.example.demo.Controller;
 
+import com.example.demo.Entity.Blog;
 import com.example.demo.Entity.CComment;
 import com.example.demo.Entity.Comment;
 import com.example.demo.Entity.User;
@@ -27,7 +28,7 @@ public class CommentController {
         comment.setAuthorid(user.getId());
         comment.setAuthorname(user.getUsername());
         commentRepository.save(comment);
-        return "comment/add";
+        return "redirect:/blog/get/"+comment.getBlogid();
     }
     @GetMapping(value ="/comment/delete/{id}")
     public String delete(@RequestParam("comment")String id)
@@ -41,7 +42,7 @@ public class CommentController {
     {
         ccomment.setDate(Time.getTime());
         Comment comment=commentRepository.findById(id).get();
-        comment.getCommentList().add(ccomment);
+
         commentRepository.save(comment);
         return "comment/add";
     }
@@ -50,14 +51,14 @@ public class CommentController {
     {
         ccomment.setDate(Time.getTime());
         Comment comment=commentRepository.findById(id).get();
-        for(int i=0;i<comment.getCommentList().size();i++)
+        /*for(int i=0;i<comment.getCommentList().size();i++)
         {
             if(comment.getCommentList().get(i).getId().equals(ccomment.getId()))
             {
                 comment.getCommentList().remove(i);
                 break;
             }
-        }
+        }*/
         commentRepository.save(comment);
         return "comment/delete";
     }

@@ -38,37 +38,84 @@
 <body>
 <!-- 导航栏 -->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="#">CSND</a>
+    <a class="navbar-brand" href="#">江一帆讲故事</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Java <span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+                <a class="nav-link" href="/">首页<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">C#</a>
+                <a class="nav-link" href="/blog/label/HTML">HTML</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link disabled" href="#">Python</a>
+                <a class="nav-link " href="/blog/label/java">java</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/blog/label/C++">C++</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/blog/label/C">C</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/blog/label/Python">Python</a>
+            </li>
+            <!--            选项卡-->
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">栏目</a>
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="dropdown01" aria-haspopup="true" aria-expanded="false">
+                    更多分类 <span class="caret"></span>
+                </a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="#">aaa</a>
+                    <a class="dropdown-item" href="#">bbb</a>
+                    <a class="dropdown-item" href="#">ccc</a>
                 </div>
             </li>
+
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <!--搜索栏:拆分按钮组确定范围-->
+<!--        <form class="form-inline my-2 my-lg-0" th:action="@{/blog/search}" method="post">-->
+<!--            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="name">-->
+<!--            <div class="btn-group">-->
+<!--                <button class="btn btn-outline-success my-2 my-sm-2" type="submit">Search</button>-->
+<!--                <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split my-2 my-sm-2" data-toggle="dropdown">-->
+<!--                    <span class="choose"></span>-->
+<!--                </button>-->
+<!--                <input type="hidden" id="instruction" name="button">-->
+<!--                <div class="dropdown-menu" >-->
+<!--                    <a class="dropdown-item" id="bowen" href="#" onclick="clickBowen()">博文</a>-->
+<!--                    <a class="dropdown-item" id="bozhu" href="#" onclick="clickBozhu()">博主</a>-->
+<!--                    <script>-->
+<!--                        function clickBowen() {-->
+
+<!--                            document.getElementById("instruction").value="博文";-->
+<!--                        }-->
+<!--                        function clickBozhu() {-->
+
+<!--                            document.getElementById("instruction").value="博主";-->
+<!--                        }-->
+<!--                    </script>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </form>-->
+
+        <div style="align:right;padding-left: 10px;">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link " href="/Addblog.html"  th:text=" @{(${session.status} ? '发布博客' : '')}">发布博客</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " th:href="@{/user/logout}"  th:text=" @{(${session.status} ? '登出系统' : '')}">登出系统</a>
+                </li>
+            </ul>
+        </div>
+
     </div>
 </nav>
+
 
 <main role="main">
 <form th:action="@{/Blog/add}" method="post">
@@ -88,7 +135,7 @@
         <div class="row">
             <div class="column">
 
-            <div id="middle" style="width:800px;height:1200px;margin:0px auto;">
+            <div id="middle" style="width:800px;min-height:600px;margin:0px auto;">
 
                     <!-- 加载编辑器的容器 -->
                     <script id="container" name="content" type="text/plain">
@@ -102,55 +149,55 @@
                     <script type="text/javascript">
                         var ue = UE.getEditor('container');
                     </script>
-
+                <input type="text" name="label" placeholder="输入标签，用空格分开">
             </div>
 
             </div>
-            <input type="hidden" name="label" value="java html">
+
 </form>
             <div class="side-clear-box" style="width:40px;height:400px"></div>
 
-            <div class="side-clear-box" style="width:200px;height:400px">
-                <h2 class="package-sideSection_title" style="font-family: 宋体">
-                    个人信息
-                </h2>
-                <div class="box-profile" style="border: 1px solid #5a6268 !important;text-align: center;">
-                    <p class="thumb" th:text="${icon}" style="-webkit-transition: opacity 0.3s linear;transition: opacity 0.3s linear;
-                                              position: relative;
-                                              margin: 0 auto;
-                                              margin-top: 10px;
-                                              width: 115px;
-                                              height: 115px;
-                                              position: relative;
-                                              overflow: hidden;
-                                              border-radius: 100%;
-                                              border: 1px solid #d2d2d2; ">
-                        <a href="[[${icon}]] "><img style=" position: absolute;
-                                                width: auto;
-                                                height: auto;
-                                                left: 50%;
-                                                top: 50%;
-                                                -webkit-transform: translate(-50%, -50%);
-                                                transform: translate(-50%, -50%);
-                                                max-width: 100%;"
-                                                    src="[[${icon}]]"/></a>
-                    </p>
-                    <!-------------------------------------------------头像↑  &↓-------------------------------------------------->
-                    <p class="name" style="font-size: 16px;font-size: 1.5rem;margin: 14px 0 0 0;">
-                        <span th:text="${username}">用户名</span>
-                    </p>
-                    <p class="location" style=" font-size: 10px;font-size: 1rem;margin-bottom: 0;">
-                        <span th:text="${location}">所在地</span>
-                    </p>
-                    <p class="birth" style="font-size: 10px;font-size: 1rem;margin: 4px 0 4px 0;">
-                        <span th:text="${birth}">生日</span>
-                    </p>
-                    <p th:text="${detail}" class="detail" style="font-size: 10px;font-size: 1rem;color: #df8ccf;margin-bottom: 16px;">
-                        <a  href="[[${detail}]]">详细信息</a>
-                        <!----------------------------详细信息------------------------------------------>
-                    </p>
-                </div>
-            </div>
+<!--            <div class="side-clear-box" style="width:200px;height:400px">-->
+<!--                <h2 class="package-sideSection_title" style="font-family: 宋体">-->
+<!--                    个人信息-->
+<!--                </h2>-->
+<!--                <div class="box-profile" style="border: 1px solid #5a6268 !important;text-align: center;">-->
+<!--                    <p class="thumb" th:text="${icon}" style="-webkit-transition: opacity 0.3s linear;transition: opacity 0.3s linear;-->
+<!--                                              position: relative;-->
+<!--                                              margin: 0 auto;-->
+<!--                                              margin-top: 10px;-->
+<!--                                              width: 115px;-->
+<!--                                              height: 115px;-->
+<!--                                              position: relative;-->
+<!--                                              overflow: hidden;-->
+<!--                                              border-radius: 100%;-->
+<!--                                              border: 1px solid #d2d2d2; ">-->
+<!--                        <a href="[[${icon}]] "><img style=" position: absolute;-->
+<!--                                                width: auto;-->
+<!--                                                height: auto;-->
+<!--                                                left: 50%;-->
+<!--                                                top: 50%;-->
+<!--                                                -webkit-transform: translate(-50%, -50%);-->
+<!--                                                transform: translate(-50%, -50%);-->
+<!--                                                max-width: 100%;"-->
+<!--                                                    src="[[${icon}]]"/></a>-->
+<!--                    </p>-->
+<!--                    &lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;头像↑  &↓&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--                    <p class="name" style="font-size: 16px;font-size: 1.5rem;margin: 14px 0 0 0;">-->
+<!--                        <span th:text="${username}">用户名</span>-->
+<!--                    </p>-->
+<!--                    <p class="location" style=" font-size: 10px;font-size: 1rem;margin-bottom: 0;">-->
+<!--                        <span th:text="${location}">所在地</span>-->
+<!--                    </p>-->
+<!--                    <p class="birth" style="font-size: 10px;font-size: 1rem;margin: 4px 0 4px 0;">-->
+<!--                        <span th:text="${birth}">生日</span>-->
+<!--                    </p>-->
+<!--                    <p th:text="${detail}" class="detail" style="font-size: 10px;font-size: 1rem;color: #df8ccf;margin-bottom: 16px;">-->
+<!--                        <a  href="[[${detail}]]">详细信息</a>-->
+<!--                        &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;详细信息&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--                    </p>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
        </div>  <!-- /container -->
 </div><!-- /#package_main -->

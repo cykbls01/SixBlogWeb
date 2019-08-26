@@ -11,6 +11,7 @@ import com.example.demo.Repository.FollowRepository;
 import com.example.demo.Repository.UserRepository;
 import com.example.demo.Tools.Convert;
 import com.example.demo.Tools.MailService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,7 +54,7 @@ public class UserController {
             User user=UserDao.findbyemail(email,userRepository);
             session.setAttribute("user",user);
             session.setAttribute("status","true");
-            return "redirect:/index/zone";
+            return "redirect:/";
 
         }
         else
@@ -157,21 +158,35 @@ public class UserController {
             map.put("msg","邮箱已存在");
             return "Modifyinfo";
         }
-        else if(((User)session.getAttribute("user")).getPassword().equals(user.getPassword())==false&&UserDao.findbyusername(user.getUsername(),userRepository)!=null)
+        else if(((User)session.getAttribute("user")).getUsername().equals(user.getUsername())==false&&UserDao.findbyusername(user.getUsername(),userRepository)!=null)
         {
             map.put("msg","用户名重复");
             return "Modifyinfo";
         }
         else
         {
+            if(user.getPassword().equals(((User) session.getAttribute("user")).getPassword())==false)
             user.setPassword(Convert.SHA(user.getPassword()));
+
             session.setAttribute("user",user);
             userRepository.save(user);
             return "redirect:/index.html";
         }
+    }
+
+    @GetMapping(value = "/user/logout")
+    public String logout(HttpSession session)
+    {
+        //session.removeAttribute("user");
+        session.setAttribute("status",false);
+        return "redirect:/";
 
 
     }
+
+
+
+
 
 
 

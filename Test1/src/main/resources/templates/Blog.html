@@ -1,0 +1,430 @@
+<!doctype html>
+<html>
+<html lang="en" itemscope itemtype="http://schema.org/Product" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/jumbotron/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+        .content{width: 500px; line-height: 20px; font-size: 14px; margin-left: 70px; }
+        .name{color: #eb7350; }
+        .good:after{clear:both;content:'';display:block;width:0;height:0;visibility:hidden;}
+        .good{*zoom:1;}
+        .date{float:left; color: #808080;}
+
+
+
+    </style>
+    <!-- Custom styles for this template -->
+
+    .btn-outline-success{color:#28a745;border-color:#28a745}
+    .btn-outline-success:hover{color:#fff;background-color:#28a745;border-color:#28a745}
+    .btn-outline-success.focus,.btn-outline-success:focus{box-shadow:0 0 0 .2rem rgba(40,167,69,.5)}
+    .btn-outline-success.disabled,.btn-outline-success:disabled{color:#28a745;background-color:transparent}
+    .btn-outline-success:not(:disabled):not(.disabled).active,.btn-outline-success:not(:disabled):not(.disabled):active,.show>.btn-outline-success.dropdown-toggle{color:#fff;background-color:#28a745;border-color:#28a745}
+    .btn-outline-success:not(:disabled):not(.disabled).active:focus,.btn-outline-success:not(:disabled):not(.disabled):active:focus,.show>.btn-outline-success.dropdown-toggle:focus{box-shadow:0
+    0 0 .2rem rgba(40,167,69,.5)}
+
+    <link href="https://getbootstrap.com/docs/4.3/examples/jumbotron/jumbotron.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,300,700" rel="stylesheet"/>
+
+
+    <script src="http://cdn.keyakizaka46.com/files/14/javascripts/pc.js"></script>
+    <link href="http://cdn.keyakizaka46.com/files/14/stylesheets/pc.css" rel="stylesheet"/>
+    <link href="http://cdn.keyakizaka46.com/files/14/stylesheets/pc_additional.css?20180420" rel="stylesheet"/>
+
+
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-PHQRZBQ');</script>
+    <!-- End Google Tag Manager -->
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-68428703-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+    <title>Blog</title>
+
+
+    <script>
+        function green(x) {
+            x.style.background = "#28a745";
+            x.style.color="#ffffff"
+        }
+
+        function transparent(x) {
+            x.style.background = "transparent";
+            x.style.color="#28a745";
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="https://getbootstrap.com/docs/4.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<!--导航栏-->
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="padding: 0.1rem;font-family: 微软雅黑">
+    <a class="navbar-brand" href="#"
+       style="margin-left: .7rem;margin-right: 1.2rem;font-family:inherit;font-size: 2rem;font-weight: 500">江一帆讲故事</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/index.html"
+                   style="font-family:inherit;font-size: 1.6rem;font-weight: 400;padding:1.7rem .8rem">首页<span
+                        class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"
+                   style="font-family:inherit;font-size: 1.5rem;font-weight: 400;padding:1.7rem .8rem">HTML</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#"
+                   style="font-family:inherit;font-size: 1.5rem;font-weight: 400;padding:1.7rem .8rem">JAVA</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#"
+                   style="font-family:inherit;font-size: 1.5rem;font-weight: 400;padding:1.7rem .8rem">C++</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#"
+                   style="font-family:inherit;font-size: 1.5rem;font-weight: 400;padding:1.7rem .8rem">C</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#"
+                   style="font-family:inherit;font-size: 1.5rem;font-weight: 400;padding:1.7rem .8rem">C++</a>
+            </li>
+            <!--            选项卡-->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdownMenuLink"
+                   aria-haspopup="true" aria-expanded="false"
+                   style="font-family:inherit;font-size: 1.5rem;font-weight: 400;padding:1.7rem .8rem">
+                    更多分类 <span class="caret"></span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="width: 160px;height: 120px">
+                    <a class="dropdown-item" href="#"
+                       style="padding-left:25px;padding-top:6px;position: relative;height: 40px;text-align: left;font-family: 微软雅黑;font-weight: 500;font-size: 15px"
+                    >aaa</a>
+                    <a class="dropdown-item" href="#"
+                       style="padding-left:25px;padding-top:6px;position: relative;height: 40px;text-align: left;font-family: 微软雅黑;font-weight: 500;font-size: 15px"
+                    >bbb</a>
+                    <a class="dropdown-item" href="#"
+                       style="padding-left:25px;padding-top:6px;position: relative;height: 40px;text-align: left;font-family: 微软雅黑;font-weight: 500;font-size: 15px"
+                    >ccc</a>
+                </div>
+            </li>
+
+        </ul>
+        <form class="form-inline my-2 my-lg-0" style="margin-left: 500px">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"
+                   style="font-family:-apple-system;borderradius:.8rem;width: 20rem;height:3.8rem;padding:.375rem .75rem;font-size:1.5rem;font-weight:400;line-height:1.5;">
+            <div class="btn-group">
+                <button class="btn btn-outline-success my-2 my-sm-2" type="submit"
+                        style="margin-left: .6rem;font-family:-apple-system;border-top-left-radius:.4rem;border-bottom-left-radius:.4rem;;width:7.5rem;height:3.8rem;
+                        color: #28a745;padding:.375rem .75rem;font-size:1.5rem;font-weight:400;line-height:1.5;background-color:transparent"
+                        onmousemove="green(this)" onmouseout="transparent(this)"
+                >Search
+                </button>
+                <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split my-2 my-sm-2"
+                        data-toggle="dropdown"
+                        style="margin:0rem;font-family:-apple-system;border-left-width: 0;border-top-right-radius:.4rem;border-bottom-right-radius:.4rem;width:2.8rem;height:3.8rem;
+                        color: #28a745;padding:.375rem .75rem;font-size:1.5rem;font-weight:400;line-height:1.5;background-color:transparent"
+                        onmousemove="green(this)" onmouseout="transparent(this)" onm>
+                    <span class="choose"></span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="width: 160px;height: 80px">
+                    <a class="dropdown-item" id="bowen" href="#"
+                       style="padding-left:25px;padding-top:6px;position: relative;height: 40px;text-align: left;font-family: 微软雅黑;font-weight: 500;font-size: 15px"
+                       onclick="clickBowen()">博文</a>
+                    <a class="dropdown-item" id="bozhu" href="#"
+                       style="padding-left:25px;position: relative;height: 40px;text-align: left;font-family: 微软雅黑;font-weight: 500;font-size: 15px"
+                       onclick="clickBozhu()">博主</a>
+                    <script>
+                        function clickBowen() {
+                            alert("bowen");
+                            document.getElementById("instruction").innerHTML = "博文";
+                        }
+
+                        function clickBozhu() {
+                            alert("bozhu");
+                            document.getElementById("instruction").innerHTML = "博主";
+                        }
+                    </script>
+                </div>
+            </div>
+        </form>
+        <ul class="navbar-nav mr-auto"
+            style="font-family:inherit;font-size: 1.6rem;font-weight: 400;padding:1.7rem .8rem">
+            <li class="nav-item" style="margin-right: .6rem">
+                <a class="nav-link " href="#" th:text=" @{(${session.user} ? '发布博客' : '')}">发布博客</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#" th:text=" @{(${session.user} ? '登出系统' : '')}">登出系统</a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+<br><br><br>
+
+<div class="keyaki-blog_single">
+    <div class="l-wrapper">
+        <div class="l-content">
+            <a href=" ">
+
+            </a>
+            <div class="l-inner">
+                <div class="box-content">
+                    <div class="box-main" style="border-top: 1px solid #5a6268;border-bottom: 1px solid #5a6268;">
+                        <article style="border-top: 1px solid #5a6268;border-bottom: 1px solid #5a6268;">
+                            <div class="innerHead">
+                                <div class="box-date" style="background-color:#5a6268 !important">
+                                    <time>[[${session.yyyymm}]]</time>
+                                    <time>[[${session.dd}]]</time>
+                                </div>
+                                <div class="box-ttl">
+                                    <h3>
+                                        [[${session.blog.theme}]]
+                                    </h3>
+                                    <p class="name">
+                                        <a th:href="${userzone}" style="color:#5a6268">[[${username}]]</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="box-article">
+                                [(${session.blog.content})]
+                            </div>
+                            <div class="box-bottom" style="margin-bottom: 80px">
+                                <ul>
+                                    <li>
+                                        [[${session.blog.date}]]
+                                    </li>
+                                </ul>
+                            </div>
+                        </article>
+
+
+                        <div class="content" th:each="comment:${comments}">
+                            <br>
+                            <span class="name" th:text="${comment.Authorname}">翔哥：</span><p class="text" th:text="${comment.content}">你就说，华为云比阿里云到底差几年？？</p>
+                            <div class="good"><span class="date" th:text="${comment.date}">02-14 23:01</span><a class="dzan" href="javascript:;"></a></div>
+                        </div>
+                        <br>
+
+
+
+
+                        <div class="box-navi" style="margin:30px 0 50px 0 ">
+                            <div class="box-navi_prev" style="width: 700px;border-bottom: 1px solid #d2d2d2;margin-top: 10px;margin-bottom: 10px">
+                                <div style="float:left;-webkit-transition: opacity 0.3s linear;transition: opacity 0.3s linear;
+                                              position: relative;
+                                              margin: auto;
+                                              margin-top: 0px;
+                                              width: 50px;
+                                              height: 50px;
+                                              position: relative;
+                                              overflow: hidden;
+                                              border-radius: 100%;
+                                              border: 1px solid #d2d2d2; ">
+                                    <a th:href="${userzone}"><img
+                                            style=" position: absolute;
+                                                width: auto;
+                                                height: auto;
+                                                left: 50%;
+                                                top: 50%;
+                                                -webkit-transform: translate(-50%, -50%);
+                                                transform: translate(-50%, -50%);
+                                                max-width: 100%;"
+                                            th:src="${usericon}" onerror="this.src='http://cdn.keyakizaka46.com/images/14/73b/605164b60fc9392e1ce569203e8c8/400_320_102400.jpg'"/>
+                                    </a>
+                                </div>
+                                <form class="form-inline my-2 my-lg-0"
+                                      style="margin-top: 0!important;margin-bottom: 20px!important;" th:action="@{/comment/add}" method="post">
+                                    <input class="form-control mr-sm-2" type="text" placeholder="评论"
+                                           name="content" aria-label="Comment" d="comment"
+                                           onmousemove="this.style.backgriound='transparent',this.style.borderColor='#00caff'" onmouseout="this.style.background='#f5f5f5',this.style.borderColor='#e2e2e2'"
+                                           style="background-color: #f5f5f5;position:relative;margin-left:3.5rem;border-radius:.6rem;font-family:-apple-system;width:520px;height:6rem;font-size:1.5rem;font-weight:400;line-height:1.5;">
+                                    <input type="hidden" th:value="${session.blog.id}" name="Blogid">
+                                    <button class="commentbtn" type="submit"
+                                            style="float: right;margin-left:2rem;border-radius:.6rem;border-color: #13b4ff;width:6rem;height:6rem;
+                                        font-family:-apple-system;font-size:1.3rem;font-weight:400;color: #ffffff;line-height:1.5;background-color: #13b4ff;"
+                                            onmousemove="this.style.background='#00caff'"
+                                            onmouseout="this.style.background='#13b4ff'"
+                                    >发表<br/>评论
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="box-sideMember">
+                        <div class="box-profile"
+                             style="background: transparent;border: 1px solid #5a6268 !important;text-align: center;">
+                            <p class="thumb" style="-webkit-transition: opacity 0.3s linear;transition: opacity 0.3s linear;
+                                              position: relative;
+                                              margin: 0 auto;
+                                              margin-top: 10px;
+                                              width: 115px;
+                                              height: 115px;
+                                              position: relative;
+                                              overflow: hidden;
+                                              border-radius: 100%;
+                                              border: 1px solid #d2d2d2; ">
+                                <a th:href="${icon} "><img style=" position: absolute;
+                                                width: auto;
+                                                height: auto;
+                                                left: 50%;
+                                                top: 50%;
+                                                -webkit-transform: translate(-50%, -50%);
+                                                transform: translate(-50%, -50%);
+                                                max-width: 100%;"
+                                                           th:src="${icon}"/></a>
+                            </p>
+                            <!-------------------------------------------------头像↑  &↓-------------------------------------------------->
+                            <p class="name" style="font-size: 16px;font-size: 1.5rem;margin: 14px 0 0 0;">
+                                <span th:text="${session.author.username}">用户名</span>
+                            </p>
+                            <p class="location" style=" font-size: 10px;font-size: 1rem;margin-bottom: 0;">
+                                <span th:text="${session.author.birth}">生日</span>
+                            </p>
+                            <p class="birth" style="font-size: 10px;font-size: 1rem;margin: 4px 0 4px 0;">
+                                <span th:text="${session.author.content}">个人介绍</span>
+                            </p>
+
+                        </div>
+
+                        <div class="box-nenwEntry_member" style="border: 1px solid #5a6268 !important;">
+                            <p class="name" style="color: #5a6268">
+                                [[${session.author.username}]]
+                            </p>
+                            <h4 style="color: #5a6268;">
+                                NEW ENTRY
+                            </h4>
+
+<!--                            <div class="box-newEntry_inner" style="border-top:1px solid #5a6268 !important;" th:each="newblog:${newblogs}">-->
+<!--                                <div class="box-image">-->
+<!--                                    <img class="js-replaceImage" onload="addResponsibleClass(this)"-->
+<!--                                         th:src="${newblog.imgurl}" onerror="this.src='http://cdn.keyakizaka46.com/files/14/images/common/logo_symbol.png'"/>-->
+<!--                                </div>-->
+<!--                                <div class="box-txt">-->
+<!--                                    <p class="ttl">-->
+<!--                                        <a th:href="${newblog.url}">[[${newblog.title}]]</a>-->
+<!--                                    </p>-->
+<!--                                    <p class="name" style="color:#28a745;">-->
+<!--                                        [[${username}]]-->
+<!--                                    </p>-->
+<!--                                    <time>[[${newblog.yyyymm}]].[[${newblog.dd}]]</time>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                        </div>
+                        <div class="box-banner" >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .l-content02 .l-inner .box-memberBlog ul.thumb li {
+        vertical-align: top;
+    }
+
+    .l-content02 .l-inner .box-memberBlog ul.thumb li p {
+        line-height: 1.2;
+    }
+</style>
+
+<script src="//twemoji.maxcdn.com/2/twemoji.min.js?2.4"></script>
+<style>
+    img.emoji {
+        height: 1em;
+        width: 1em;
+        margin: 0 .05em 0 .1em;
+        vertical-align: -0.1em;
+    }
+</style>
+<script>
+    twemoji.parse(document.body);
+</script>
+
+<script>
+    $(function () {
+        $("img").not('.copy_permission').attr("onmousedown", "return false");
+        $("img").not('.copy_permission').attr("onselectstart", "return false");
+        $("img").not('.copy_permission').attr("oncontextmenu", "return false");
+    });
+</script>
+
+<style>
+    img {
+        -webkit-touch-callout: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-touch-callout: none;
+        -moz-touch-callout: none;
+        touch-callout: none;
+        -webkit-user-drag: none;
+        -khtml-user-drag: none;
+        user-drag: none;
+    }
+</style>
+
+</body>
+</html>

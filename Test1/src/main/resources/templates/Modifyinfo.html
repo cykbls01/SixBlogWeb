@@ -74,10 +74,11 @@
     <br>
 
     <label for="inputUserName" class="sr-only">User name</label>
-    <textarea type="userName" name="content" th:value="${session.user.content}"   placeholder="输入个人介绍" >
+    <textarea type="text" name="content" th:value="${session.user.content}"   placeholder="输入个人介绍" >
     </textarea>
     <br>
-    <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="return checkAllInf()" id="confirmPost">注册</button>
+    <input type="hidden" th:value="${session.user.id}" name="id">
+    <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="return checkAllInf()" id="confirmPost">修改个人信息</button>
 
 </form>
 </body>

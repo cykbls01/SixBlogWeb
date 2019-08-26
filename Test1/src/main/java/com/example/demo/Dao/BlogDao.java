@@ -3,6 +3,7 @@ package com.example.demo.Dao;
 import com.example.demo.Entity.Blog;
 import com.example.demo.Repository.BlogRepository;
 import com.example.demo.Repository.UserRepository;
+import com.example.demo.Tools.Convert;
 import com.example.demo.Tools.Time;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,37 +23,22 @@ public class BlogDao {
         {
             pan[i]=0;
         }
+        int size;
         for (int i = 0; i < blogList.size(); i++)
         {
             if(blogList.get(i).getTheme().contains(name)==true||blogList.get(i).getContent().contains(name)==true)
             {
-                pan[i]=1;
+                size=blogList.get(i).getContent().length();
+                String str=Convert.splitAndFilterString(blogList.get(i).getContent(),blogList.get(i).getContent().length());
+                size=str.length();
+                if(size>50) size=50;
+                blogList.get(i).setContent(str.substring(0,size));
                 blogList1.add(blogList.get(i));
+
 
             }
 
         }
-        /*for(int k=0; k< blogList.size();k++)
-        {
-            if(pan[k]==1) continue;
-            for(int i=2;i<=5&&i<name.length();i++)
-            {
-                if(pan[k]==1) break;
-                for(int j=0;j<name.length();j++)
-                {
-                String str=name.substring(j,j+i);
-                if(blogList.get(k).getTheme().contains(str)||blogList.get(i).getContent().contains(str))
-                {
-                    pan[k]=1;
-                    blogList1.add(blogList.get(k));
-                    break;
-                }
-
-                }
-            }
-        }*/
-
-
         return blogList1;
     }
 
@@ -60,11 +46,16 @@ public class BlogDao {
         List<Blog> blogList = blogRepository.findAll();
         List<Blog> blogList1=new ArrayList<Blog>();
 
-        int size=blogList.size();
-        for(int i=0;i<size;i++)
+        int size;
+        for(int i=0;i<blogList.size();i++)
         {
-            if(blogList.get(i).getAuthorid().equals(id)==false)
+            if(blogList.get(i).getAuthorid().equals(id)==true)
             {
+                size=blogList.get(i).getContent().length();
+                String str=Convert.splitAndFilterString(blogList.get(i).getContent(),blogList.get(i).getContent().length());
+                size=str.length();
+                if(size>50) size=50;
+                blogList.get(i).setContent(str.substring(0,size));
                 blogList1.add(blogList.get(i));
             }
         }
@@ -77,14 +68,44 @@ public class BlogDao {
     public static List<Blog> sort(List<Blog> blogList) throws ParseException {
 
         int size=blogList.size();
-        for(int i=0;i<size;i++)
+        for(int i=0;i<size-1;i++)
         {
             for(int j=1;j<size;j++)
             {
                 if(i==j) continue;
                 else
                 {
-                    if (Time.compare(blogList.get(i).getDate(),blogList.get(j).getDate())==false)
+                    if (Time.compare(blogList.get(i).getDate(),blogList.get(i+1).getDate())==false)
+                    {
+                        Blog blog1=blogList.get(i);
+                        Blog blog2=blogList.get(i+1);
+                        blogList.remove(i);
+                        blogList.add(i,blog2);
+                        blogList.remove(i+1);
+                        blogList.add(i+1,blog1);
+                    }
+
+
+                }
+            }
+
+
+        }
+        return blogList;
+
+    }
+
+    public static List<Blog> sortbynumber(List<Blog> blogList) throws ParseException {
+
+        int size=blogList.size();
+        for(int i=0;i<size-1;i++)
+        {
+            for(int j=1;j<size;j++)
+            {
+                if(i==j) continue;
+                else
+                {
+                    if (blogList.get(i).getNumber()<blogList.get(i+1).getNumber())
                     {
                         Blog blog1=blogList.get(i);
                         Blog blog2=blogList.get(j);
@@ -103,17 +124,46 @@ public class BlogDao {
         return blogList;
 
     }
+
     public static List<Blog> findbylabel(String label,BlogRepository blogRepository) throws ParseException {
+        List<Blog> blogList = blogRepository.findAll();
+        List<Blog> blogList1=new ArrayList<Blog>();
+        int size;
+        for (int i = 0; i < blogList.size(); i++)
+        {
+            if(blogList.get(i).getLabel()!=null&&blogList.get(i).getLabel().contains(label)==true)
+            {
+                size=blogList.get(i).getContent().length();
+                String str=Convert.splitAndFilterString(blogList.get(i).getContent(),blogList.get(i).getContent().length());
+                size=str.length();
+                if(size>50) size=50;
+                blogList.get(i).setContent(str.substring(0,size));
+                blogList1.add(blogList.get(i));
+
+
+            }
+
+        }
+        return blogList1;
+    }
+
+    public static List<Blog> recommond(BlogRepository blogRepository) throws ParseException {
         List<Blog> blogList=blogRepository.findAll();
         List<Blog> blogList1=new ArrayList<Blog>();
         int size=blogList.size();
-        for(int i=0;i<size;i++)
+        if(size>10) size=10;
+        blogList=sortbynumber(blogList).subList(0,size);
+
+        for(int i=0;i<blogList.size();i++)
         {
-            if(blogList.get(i).getLabel().contains(label)==false)
-                blogList1.add(blogList.get(i));
+            size=blogList.get(i).getContent().length();
+            String str=Convert.splitAndFilterString(blogList.get(i).getContent(),blogList.get(i).getContent().length());
+            size=str.length();
+            if(size>50) size=50;
+            blogList.get(i).setContent(str.substring(0,size));
+
         }
-        blogList1=sort(blogList1);
-        return blogList1;
+        return blogList;
 
 
     }
