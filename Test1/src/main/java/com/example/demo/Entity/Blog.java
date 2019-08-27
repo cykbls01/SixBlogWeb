@@ -15,6 +15,7 @@ public class Blog {
     private String Authorid;
     private String Authorname;
     private int number;
+    private String Fileid;
 
     public int getNumber() {
         return number;

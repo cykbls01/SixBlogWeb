@@ -2,6 +2,7 @@ package com.example.demo.Controller;
 
 
 import com.example.demo.Dao.BlogDao;
+import com.example.demo.Dao.FollowDao;
 import com.example.demo.Entity.Blog;
 import com.example.demo.Entity.User;
 import com.example.demo.Repository.BlogRepository;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
@@ -32,6 +34,8 @@ public class JumpController {
 
     @Autowired
     private CommentRepository commentRepository;
+
+
 
 
     @RequestMapping(value = "/user/info")
@@ -62,6 +66,26 @@ public class JumpController {
             return "Login";
 
         }
+
+    }
+
+    @GetMapping(value = "/zone/author/{id}")
+    public String zone(@PathVariable String id,Model model,HttpSession session) throws ParseException {
+        User user=(User)session.getAttribute("user");
+        User author=userRepository.findById(id).get();
+        model.addAttribute("author",author);
+        List<Blog> blogList= BlogDao.findbyAuthorid(author.getId(),blogRepository);
+
+
+
+        model.addAttribute("blogs",blogList);
+        model.addAttribute("blognumber",blogList.size());
+        model.addAttribute("fstatus", FollowDao.isfollow(user.getId(),author.getId(),followRepository,userRepository));
+        return "Zone_author";
+
+
+
+
 
     }
 

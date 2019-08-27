@@ -178,8 +178,11 @@
                                                 -webkit-transform: translate(-50%, -50%);
                                                 transform: translate(-50%, -50%);
                                                 max-width: 100%;"
-                                                  src="/file/image/5d634f8d9655bf0dbcda69c4"/></a>
+                                                  th:src="@{/file/image/}+${session.user.Imageid}"/></a>
+
+
                     </p>
+                    <a th:href="@{/Upload.html}">上传头像</a>
                     <!-------------------------------------------------头像↑  &↓-------------------------------------------------->
                     <p class="name" style="font-size: 16px;font-size: 1.5rem;margin: 14px 0 0 0;">
                         <span th:text="${session.user.username}">用户名</span>

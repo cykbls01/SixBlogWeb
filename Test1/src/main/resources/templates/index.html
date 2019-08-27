@@ -195,7 +195,7 @@
                                                 -webkit-transform: translate(-50%, -50%);
                                                 transform: translate(-50%, -50%);
                                                 max-width: 100%;"
-                                                                src="/file/image/5d634f8d9655bf0dbcda69c4"/>
+                                                                th:src="@{/file/image/}+${session.user.Imageid}"/>
                                     </a>
                                 </p>
                                 <!-------------------------------------------------头像↑  &↓-------------------------------------------------->
@@ -229,7 +229,7 @@
                 <h2  th:text="${blog.theme}">Heading</h2>
                 <p th:text="${blog.content}">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
                 <p>
-                    <a href="#" style="color: #5a6268" th:text="${blog.Authorname}"> 作者名字</a> |
+                    <a th:href="@{/zone/author/}+${blog.Authorid}" style="color: #5a6268" th:text="${blog.Authorname}"> 作者名字</a> |
                     <a href="#" style="color: #5a6268"> 标签</a> |
                     <a href="#" style="color: #5a6268" th:text="${blog.date}"> 时间</a>
                 </p>

@@ -38,16 +38,18 @@ public class BlogController {
     private FollowRepository followRepository;
 
     @PostMapping(value ="/Blog/add")
-    public String add(@RequestParam("label")String label, Blog blog, HttpSession session){
+    public String add(@RequestParam("label")String[] label, Blog blog, HttpSession session){
 
         blog.setDate(Time.getTime());
-        blog.setLabel(Arrays.asList(label.split(" ")));
+
+        blog.setLabel(Arrays.asList(label));
+        System.out.println(blog.getLabel().size());
         User user=(User)session.getAttribute("user");
         blog.setAuthorid(user.getId());
         blog.setAuthorname(user.getUsername());
         blog.setNumber(0);
         blogRepository.save(blog);
-        //System.out.println(blog.getContent());
+
         return "redirect:/user/info";
     }
 
@@ -88,8 +90,7 @@ public class BlogController {
     }
 
     @PostMapping(value = "/blog/{name}")
-    public  String search(@PathVariable String name, Model model)
-    {
+    public  String search(@PathVariable String name, Model model) throws ParseException {
         List<Blog> blogList= BlogDao.search(name,blogRepository);
         model.addAttribute("blogs",blogList);
         for(int i=0;i<blogList.size();i++)
@@ -107,8 +108,7 @@ public class BlogController {
     }
 
     @PostMapping(value = "/blog/search")
-    public String search(@RequestParam("name")String name,@RequestParam("button")String label,Model model)
-    {
+    public String search(@RequestParam("name")String name,@RequestParam("button")String label,Model model) throws ParseException {
         if(label.equals("博文"))
         {
             List<Blog> blogList=BlogDao.search(name,blogRepository);
@@ -135,15 +135,22 @@ public class BlogController {
     public String recommon(Model model,HttpSession session) throws ParseException {
         List<Blog> blogList=BlogDao.recommond(blogRepository);
 
-
-
         model.addAttribute("blogs",blogList);
+        //session.setAttribute("user",new User());
         return "index";
     }
 
     @GetMapping(value = "/index.html")
     public String recommon1(Model model) throws ParseException {
         List<Blog> blogList=BlogDao.recommond(blogRepository);
+        model.addAttribute("blogs",blogList);
+        return "index";
+    }
+
+    @GetMapping(value = "/blog/new")
+    public String new1(Model model,HttpSession session) throws ParseException {
+        User user=(User)session.getAttribute("user");
+        List<Blog> blogList=BlogDao.new1(user.getId(),userRepository,blogRepository,followRepository);
         model.addAttribute("blogs",blogList);
         return "index";
     }

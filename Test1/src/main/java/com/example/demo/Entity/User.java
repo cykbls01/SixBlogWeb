@@ -21,7 +21,15 @@ public class User {
 
     private int follow;
     private int fan;
+    private String Imageid=new String();
 
+    public String getImageid() {
+        return Imageid;
+    }
+
+    public void setImageid(String imageid) {
+        Imageid = imageid;
+    }
 
     public int getFan() {
         return fan;

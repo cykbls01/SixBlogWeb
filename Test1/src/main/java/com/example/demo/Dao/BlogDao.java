@@ -1,7 +1,9 @@
 package com.example.demo.Dao;
 
 import com.example.demo.Entity.Blog;
+import com.example.demo.Entity.User;
 import com.example.demo.Repository.BlogRepository;
+import com.example.demo.Repository.FollowRepository;
 import com.example.demo.Repository.UserRepository;
 import com.example.demo.Tools.Convert;
 import com.example.demo.Tools.Time;
@@ -10,12 +12,14 @@ import org.springframework.stereotype.Controller;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 
 public class BlogDao {
 
-    public static List<Blog> search(String name,BlogRepository blogRepository) {
+    public static List<Blog> search(String name,BlogRepository blogRepository) throws ParseException {
         List<Blog> blogList = blogRepository.findAll();
         List<Blog> blogList1=new ArrayList<Blog>();
         int pan[]=new int[10000];
@@ -39,6 +43,7 @@ public class BlogDao {
             }
 
         }
+        blogList1=sort(blogList1);
         return blogList1;
     }
 
@@ -70,23 +75,20 @@ public class BlogDao {
         int size=blogList.size();
         for(int i=0;i<size-1;i++)
         {
-            for(int j=1;j<size;j++)
+            for(int j=0;j<size-1;j++)
             {
-                if(i==j) continue;
-                else
-                {
-                    if (Time.compare(blogList.get(i).getDate(),blogList.get(i+1).getDate())==false)
+
+                    if (Time.compare(blogList.get(j).getDate(),blogList.get(j+1).getDate())==false)
                     {
-                        Blog blog1=blogList.get(i);
-                        Blog blog2=blogList.get(i+1);
-                        blogList.remove(i);
-                        blogList.add(i,blog2);
-                        blogList.remove(i+1);
-                        blogList.add(i+1,blog1);
+                        //Blog blog=blogList.get(i);
+                        //blogList.set(i,blogList.get(i+1));
+                        //blogList.set(i+1,blog);
+                        Collections.swap(blogList,j,j+1);
+
                     }
 
 
-                }
+
             }
 
 
@@ -167,6 +169,24 @@ public class BlogDao {
 
 
     }
+
+    public static List<Blog> new1(String id, UserRepository userRepository, BlogRepository blogRepository, FollowRepository followRepository) throws ParseException {
+        List<Blog> blogList=new ArrayList<Blog>();
+        List<User> userList=FollowDao.findidlist(id,followRepository,userRepository);
+        for(int i=0; i<userList.size();i++)
+            blogList.addAll(findbyAuthorid(userList.get(i).getId(),blogRepository));
+        blogList=sort(blogList);
+        int size=blogList.size();
+        if(size>10) size=10;
+        blogList.subList(0,size);
+        return blogList;
+
+
+
+    }
+
+
+
 
 
 

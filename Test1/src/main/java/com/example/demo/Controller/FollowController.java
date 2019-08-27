@@ -57,7 +57,7 @@ public class FollowController {
         user=userRepository.findById(id).get();
         user.setFan(user.getFan()+1);
         userRepository.save(user);
-        return "Bingo";
+        return "redirect:/zone/author/"+id;
     }
     @PostMapping(value = "/follow/add")
     public String add1(@RequestParam("id")String id, HttpSession session)
@@ -70,7 +70,7 @@ public class FollowController {
         user=userRepository.findById(id).get();
         user.setFan(user.getFan()+1);
         userRepository.save(user);
-        return "Bingo";
+        return "redirect:/zone/author/"+id;
     }
     @GetMapping(value = "/follow/delete/{id}")
     public String delete(@PathVariable String id, HttpSession session)
@@ -83,7 +83,7 @@ public class FollowController {
         user=userRepository.findById(id).get();
         user.setFan(user.getFan()-1);
         userRepository.save(user);
-        return "Zone_follow";
+        return "redirect:/zone/author/"+id;
     }
 
 

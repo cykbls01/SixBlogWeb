@@ -9,5 +9,11 @@
     <input type="file" name="image">
     <input type="submit" value="upload">
 </form>
+
+
+<form th:action="@{/file/uploadFile}" method="post" enctype="multipart/form-data">
+    <input type="file" name="image">
+    <input type="submit" value="upload">
+</form>
 </body>
 </html>

@@ -14,7 +14,7 @@ public class FollowDao {
         List<User> userList=new ArrayList<User>();
         List<String> idList=new ArrayList<String>();
         List<Follow> followList=followRepository.findAll();
-        idList=findbyid(id,followRepository).getIdlist();
+        idList=findbyid1(id,followRepository).getIdlist();
         if(idList==null) return userList;
 
         for(int i=0;i<idList.size();i++)
@@ -31,7 +31,7 @@ public class FollowDao {
         List<User> userList=new ArrayList<User>();
         List<String> fidList=new ArrayList<String>();
         List<Follow> followList=followRepository.findAll();
-        fidList=findbyid(id,followRepository).getFidlist();
+        fidList=findbyid1(id,followRepository).getFidlist();
         if(fidList==null) return userList;
         for(int i=0;i<fidList.size();i++)
         {
@@ -66,6 +66,24 @@ public class FollowDao {
     }
 
     public static Follow findbyid(String id,FollowRepository followRepository)
+    {
+
+        List<Follow> followList=followRepository.findAll();
+        for(int i=0;i<followList.size();i++)
+        {
+            if(followList.get(i).getUserid().equals(id)==true)
+            {
+                return followList.get(i);
+            }
+
+
+        }
+        return null;
+
+
+    }
+
+    public static Follow findbyid1(String id,FollowRepository followRepository)
     {
 
         List<Follow> followList=followRepository.findAll();
