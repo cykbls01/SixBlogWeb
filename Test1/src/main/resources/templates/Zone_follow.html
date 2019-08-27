@@ -114,12 +114,12 @@
             <div class="scroll-tabs-container">
                 <ul class="nav nav-tabs " style="font-family: 宋体">
                     <li >
-                        <a href="@{/user/info}">博文一览
+                        <a th:href="@{/user/info}">博文一览
                             <span class="s10">(<span class="s10" th:text="${session.blognumber}">0</span>)</span></a>
                     </li>
                     <!---------------------------------------------------------拉取博文数量----------------------------------------->
                     <li class="active">
-                        <a href="@{/follow/get}">关注的人
+                        <a th:href="@{/follow/get}">关注的人
                             <span class="s10">(<span class="s10" th:text="${session.user.follow}">0</span>)</span></a>
                     </li>
                     <!---------------------------------------------------拉取评论数量--------------------------------------------->
