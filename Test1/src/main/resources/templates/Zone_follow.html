@@ -4,7 +4,40 @@
     <meta charset="UTF-8">
     <title>zone</title>
 
-    <link rel="index" href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Fixed top navbar example · Bootstrap</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/navbar-fixed/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/4.3/examples/navbar-fixed/navbar-top-fixed.css" rel="stylesheet">
+
+
+    <link rel="index" href=" ">
     <link rel="stylesheet" href="https://dotinstall.com/css/cf.css?v=20190611">
     <script src="https://dotinstall.com/js/jquery-1.10.2.min.js"></script>
 
@@ -23,98 +56,101 @@
     <script src="https://dotinstall.com/js/main.js?v=20190511"></script>
     <script src="https://dotinstall.com/js/bundle.min.js?v=20190603"></script>
     <script src="https://dotinstall.com/js/dotinstall.bundle.min.js?v=20190716"></script>
+    <script>
+        function green(x) {
+            x.style.background = "#28a745";
+        }
 
+        function transparent(x) {
+            x.style.background = "transparent";
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="https://getbootstrap.com/docs/4.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
+            crossorigin="anonymous"></script>
 </head>
 
 <body>
 
 <div id="fb-root" style="display:none;"></div>
 <!--导航栏-->
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="padding: 0rem;font-family: 微软雅黑">
+    <a class="navbar-brand" href="#"
+       style="margin-left: 1.5rem;margin-top:-0.2rem;margin-right: -0.4rem;font-family:inherit;font-size: 1.5rem;font-weight: 500">江一帆讲故事</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-<div class="navbar navbar-fixed-top no-top-border  dotinstall-normal-topbar " id="lesson_package_page">
+    <div id="navbarNavDropdown" style="width: 1400px">
+        <ul class="navbar-nav mr-auto" style="">
+            <li class="nav-item">
+                <a class="nav-link" href="/index.html"
+                   style="font-family:inherit;font-size: 1.3rem;font-weight: 400;padding-left: .7rem;padding-top: 2rem;padding-bottom: 1.2rem">首页<span
+                        class="sr-only">(current)</span></a>
+            </li>
+        </ul>
 
-    <div class="navbar-inner">
+        <ul class="navbar-nav "
+            style="margin-top: -70px;float: right;font-family:inherit;font-size: 1.2rem;font-weight: 400;padding-right:1.5rem;padding-top: 2.5rem;padding-bottom: 1.3rem">
+            <li class="nav-item">
+                <a class="nav-link " th:href="@{/user/logout}" th:text=" @{(${session.user} ? '登出系统' : '')}">登出系统</a>
+            </li>
+        </ul>
 
-        <div id="topbar_inner_container" class="container wide ">
-            <h2 style="margin: 18px 20px 0 0;padding: 0;height: 30px;width: 160px;float: left;align-content: center;">
-                <a href="/" style="align-self: center"><span>DSNC博客</span></a>
-            </h2>
-            <ul class="nav" id="global_menu" style="position:center;font-size:12px;width:50%;text-align:center">
-                <li style="text-align: center;align-items: center;width: 50%">
-                    <!--提交地址-->
-                    <form action="  " id="personalblog_search" style="position:relative;margin:0 0 0 170%;text-align:center;"
-                          class="form pull-left enable-incremental-lesson-search"
-                          onsubmit="if ($(this).find('.q').val() === '') { return false; }">
-                        <div class="input-append" style="padding:12px 0 0 0;">
-                            <div class="btn-group">
-                                <input type="text" style="font-size:12px;font-family: 宋体" placeholder="检索"
-                                       name="pblogsearch"
-                                       class="q" id="pblogsearch" value="" autocomplete="off">
-                                <input type="hidden" name="f" value="topbar">
-                                <button type="submit" class="btn"><i class="icon-search"></i></button>
-                            </div>
-                        </div>
-                        <div id="incremental"></div>
-                    </form>
-                </li>
-            </ul><!-- /.nav -->
+    </div>
+</nav>
 
-            <ul class="nav pull-right topbar-right-nav" id="global_pulldown">
-                <li id="topbar_login_button">
-                    <!-- login,html-->
-                    <a class="btn btn-small lh24"
-                       href="     "
-                       style="font-family: 宋体"><i class="icon-user"></i> 登录/注册</a>
-                </li>
-            </ul><!-- /nav pull-right -->
-        </div><!--/container -->
-    </div><!-- /navbar-inner -->
-</div><!-- /navbar -->
-
-<div class="container wide" style="margin-top: 24px;">
+<div class="container wide" style="position:relative;margin-top: 5rem;">
 
     <div class="row">
 
-        <div class="span13" id="package_main">
+        <div class="span13" id="package_main" style="margin-left: -40px">
 
             <div class="scroll-tabs-container">
                 <ul class="nav nav-tabs " style="font-family: 宋体">
-                    <li>
-                        <a href="/Zone.html">博文一览
+                    <li >
+                        <a href="@{/user/info}">博文一览
                             <span class="s10">(<span class="s10" th:text="${session.blognumber}">0</span>)</span></a>
                     </li>
                     <!---------------------------------------------------------拉取博文数量----------------------------------------->
                     <li class="active">
-                        <a href="/Zone_follow.html">关注动态
-                            <span class="s10">(<span class="s10" th:text="${session.follownumber}">0</span>)</span></a>
+                        <a href="@{/follow/get}">关注的人
+                            <span class="s10">(<span class="s10" th:text="${session.user.follow}">0</span>)</span></a>
                     </li>
                     <!---------------------------------------------------拉取评论数量--------------------------------------------->
+                    <li >
+                        <a th:href="@{/fan/get}">粉丝
+                            <span class="s10">(<span class="s10" th:text="${session.user.fan}">0</span>)</span></a>
+                    </li>
                 </ul>
             </div>
 
             <div class="tab-content" style="min-height:400px">
 
-                <div class="tab-pane" id="comments" th:each="follow:${follows}">
+                <div   th:each="follow:${follows}">
 
                     <h5 class="s13">
-                        <a href=" "><span>#[[${follow.order}]] [[${follow.title}]]</span></a>
+                        <a href="/"><span>[[${follow.username}]]</span></a>
+                        <br>
+                        <span>粉丝数：[[${follow.fan}]]</span>
                     </h5>
+
+                    <a class="btn btn-secondary" th:href="@{/follow/delete/}+${follow.id}" role="button">取消关注</a>
+
                     <!------------------------------------------------------title----------------------------------------->
                     <div class="commentBox round" id="supplement_1359">
-                        <div class="comment-created-at flr s12 caaa">
-<span title="2019-08-22 15:57:16">
-    <span >[[${comment.date}]]</span>
-</span>
-                            <!-----------------------------------------------------------------date------------------------------------------->
-                        </div>
+
                         <h3 class="comment-header s13b page-header">
                             <span class="comment-label label label-info">更新</span>
                             <span>[[${follow.content}]]</span>
                         </h3>
                         <!-----------------------------------------comment---------------------------------------------->
-                        <div class="comment-body breakWord markdown-body">
-                            <p style="font-family: 宋体">以上就是所有动态</p>
-                        </div>
+
                     </div>
 
                 </div><!-- /comments -->
@@ -123,13 +159,13 @@
 
         </div><!-- /#package_main -->
 
-        <div class="span5 relax-sidebar" id="sidebar">
+        <div class="span5 relax-sidebar" id="sidebar" style="">
             <div class="side-clear-box">
                 <h2 class="package-sideSection_title" style="font-family: 宋体">
                     个人信息
                 </h2>
-                <div class="box-profile" style="border: 1px solid #b57bd2 !important;text-align: center;">
-                    <p class="thumb" th:text="${icon}" style="-webkit-transition: opacity 0.3s linear;transition: opacity 0.3s linear;
+                <div class="box-profile" style="border: 1px solid #5a6268 !important;text-align: center;">
+                    <p class="thumb"  style="-webkit-transition: opacity 0.3s linear;transition: opacity 0.3s linear;
                                               position: relative;
                                               margin: 0 auto;
                                               margin-top: 10px;
@@ -139,7 +175,7 @@
                                               overflow: hidden;
                                               border-radius: 100%;
                                               border: 1px solid #d2d2d2; ">
-                        <a href="[[${icon}]] "><img style=" position: absolute;
+                        <a th:href="${icon}"><img style=" position: absolute;
                                                 width: auto;
                                                 height: auto;
                                                 left: 50%;
@@ -147,53 +183,54 @@
                                                 -webkit-transform: translate(-50%, -50%);
                                                 transform: translate(-50%, -50%);
                                                 max-width: 100%;"
-                                                    src="[[${icon}]]"/></a>
+                                                  src="/file/image/5d634f8d9655bf0dbcda69c4"/></a>
                     </p>
                     <!-------------------------------------------------头像↑  &↓-------------------------------------------------->
                     <p class="name" style="font-size: 16px;font-size: 1.5rem;margin: 14px 0 0 0;">
-                        <span th:text="${username}">用户名</span>
+                        <span th:text="${session.user.username}">用户名</span>
                     </p>
                     <p class="location" style=" font-size: 10px;font-size: 1rem;margin-bottom: 0;">
-                        <span th:text="${location}">所在地</span>
+                        <span th:text="${session.user.birth}">所在地</span>
                     </p>
-                    <p class="birth" style="font-size: 10px;font-size: 1rem;margin: 4px 0 4px 0;">
-                        <span th:text="${birth}">生日</span>
-                    </p>
-                    <p th:text="${detail}" class="detail" style="font-size: 10px;font-size: 1rem;color: #df8ccf;margin-bottom: 16px;">
-                        <a  href="[[${detail}]]">详细信息</a>
+                    <!--                    <p class="birth" style="font-size: 10px;font-size: 1rem;margin: 4px 0 4px 0;">-->
+                    <!--                        <span th:text="${birth}">生日</span>-->
+                    <!--                    </p>-->
+                    <p th:text="${session.user.content}" class="detail"
+                       style="font-size: 10px;font-size: 1rem;color: #df8ccf;margin-bottom: 16px;">
+
                         <!----------------------------详细信息------------------------------------------>
                     </p>
+                    <a th:href="@{/Modifyinfo.html}">修改个人信息</a>
                 </div>
             </div>
 
-
-            <div class="sbox">
+            <div class="sbox" style="border: 1px solid #5a6268 !important;">
                 <h2 style="font-family: 宋体">关于作者</h2>
                 <div class="sboxInner">
                     <dl class="about-video">
-
                         <dt style="font-family: 宋体">最终更新日期</dt>
                         <dd>
-                            <span class="s12">
-                                <span>[[${lastupdate}]]</span>
-                            </span><!----------------------------------date↑ ↓---------------------------------------------------->
+<span class="s12">
+    <span>[[${lastupdate}]]</span>
+</span><!----------------------------------date↑ ↓---------------------------------------------------->
                         </dd>
                         <!------------------------------------------------------tag↓------------------------------------------------------------>
-                        <dt style="font-family: 宋体">Tag <span class="s10" >([[${tagnum}]])</span></dt>
+                        <dt style="font-family: 宋体">Tag <span class="s10">([[${tagnum}]])</span></dt>
                         <dd style="font-family: 宋体">
-                            <span class="tags" th:each="tag:${tags}"><a href="[[${tag.url}]]" >[[${tag.name}]]<span
+                            <span class="tags" th:each="tag:${tags}"><a th:href="${tag.url}">[[${tag.name}]]<span
                                     class="s10">([[${tag.num}]])</span></a></span>
                         </dd>
+
                     </dl><!-- /.about-video -->
                 </div><!-- /sboxInner -->
             </div><!-- /sbox -->
             <!-------------------------------------------------------分享---------------------------------------->
-            <div class="sbox">
+            <div class="sbox" style="border: 1px solid #5a6268 !important;">
                 <h2 style="font-family: 宋体">分享</h2>
                 <div class="sboxInner">
                     <ul class="unstyled" id="shareButtons">
                         <li><a href="  "
-                               class="hatena-bookmark-button"
+                               class=" "
                                title="分享"><img
                                 src="https://dotinstall.com/img/hatena-button-only.gif" alt=" "
                                 width="20" height="20" style="border: none;"/></a>
@@ -218,7 +255,6 @@
 </div><!-- /container -->
 
 <script src="https://dotinstall.com/js/packages_for_search.js?v=2610768"></script>
-
 
 <script src="https://dotinstall.com/js/jquery.circliful.min.js"></script>
 <script src="https://dotinstall.com/js/highlight.pack.js"></script>
@@ -259,9 +295,16 @@
 
     $(function () {
         HMHM.wait(2000).done(function () {
-            frameInFrame('https://dotinstall.com/js/async.js?v=20150502');
+            frameInFrame('/js/async.js?v=20150502');
         });
     });
 </script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.3/dist/js/bootstrap.bundle.min.js"><\/script>')</script>
+<script src="/docs/4.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
+        crossorigin="anonymous"></script>
 </body>
 </html>

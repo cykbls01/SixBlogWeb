@@ -39,6 +39,7 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
                 registry.addViewController("/Addblog.html").setViewName("Addblog");
                 registry.addViewController("/Addblog").setViewName("Addblog");
                 registry.addViewController("/Zone_follow.html").setViewName("Zone_follow");
+                registry.addViewController("/Zone_fan.html").setViewName("Zone_fan");
             }
             //注册拦截器
             @Override

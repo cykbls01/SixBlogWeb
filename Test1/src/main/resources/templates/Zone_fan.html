@@ -104,13 +104,16 @@
 
     </div>
 </nav>
-<!---------------------margin width-------------->
+
 <div class="container wide" style="position:relative;margin-top: 5rem;">
+
     <div class="row">
+
         <div class="span13" id="package_main" style="margin-left: -40px">
+
             <div class="scroll-tabs-container">
-                <ul class="nav nav-tabs" style="font-family: 宋体">
-                    <li class="active">
+                <ul class="nav nav-tabs " style="font-family: 宋体">
+                    <li >
                         <a th:href="@{/user/info}">博文一览
                             <span class="s10">(<span class="s10" th:text="${session.blognumber}">0</span>)</span></a>
                     </li>
@@ -120,7 +123,7 @@
                             <span class="s10">(<span class="s10" th:text="${session.user.follow}">0</span>)</span></a>
                     </li>
                     <!---------------------------------------------------拉取评论数量--------------------------------------------->
-                    <li >
+                    <li class="active">
                         <a th:href="@{/fan/get}">粉丝
                             <span class="s10">(<span class="s10" th:text="${session.user.fan}">0</span>)</span></a>
                     </li>
@@ -129,29 +132,31 @@
 
             <div class="tab-content" style="min-height:400px">
 
-                <div id="lessons" class="tab-pane active">
-                    <ul id="lessons_list">
-                        <li id="lesson_row_49801" style="overflow:hidden;" th:each="pblog:${blogs}">
-                            <div class="responsive-flex">
-                                <span class="lessons-list-icon">
-<i class="   "></i>
-</span><!-- /icon -->
-                                <span class="lessons-list-title">
-                                    <a th:href="@{/blog/get/}+${pblog.id}" class="lesson_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
-                                            th:text="${pblog.theme}">#[[${pblog.order}]] [[${pblog.title}]]</span></a>
-<span class="s12">([[${pblog.date}]])</span>
-</span>
-                                <!------------------------------------------------日期------------------------------------------------------------------------>
-                                <span class="lessons-list-complete-btn-placeholder"></span>
-                            </div>
-                            <ul class="lesson-summaries">
-                                <li>[[${pblog.content}]]</li>
-                                <ul>&nbsp;</ul>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+                <div   th:each="fan:${fans}">
+
+                    <h5 class="s13">
+                        <a href="/"><span>[[${fan.username}]]</span></a>
+                        <br>
+                        <span>粉丝数：[[${fan.fan}]]</span>
+                    </h5>
+
+                    <a class="btn btn-secondary" th:href="@{/}" role="button">关注</a>
+
+                    <!------------------------------------------------------title----------------------------------------->
+                    <div class="commentBox round" id="supplement_1359">
+
+                        <h3 class="comment-header s13b page-header">
+                            <span class="comment-label label label-info">更新</span>
+                            <span>[[${fan.content}]]</span>
+                        </h3>
+                        <!-----------------------------------------comment---------------------------------------------->
+
+                    </div>
+
+                </div><!-- /comments -->
+
+            </div><!-- /tab-content -->
+
         </div><!-- /#package_main -->
 
         <div class="span5 relax-sidebar" id="sidebar" style="">
@@ -187,9 +192,9 @@
                     <p class="location" style=" font-size: 10px;font-size: 1rem;margin-bottom: 0;">
                         <span th:text="${session.user.birth}">所在地</span>
                     </p>
-<!--                    <p class="birth" style="font-size: 10px;font-size: 1rem;margin: 4px 0 4px 0;">-->
-<!--                        <span th:text="${birth}">生日</span>-->
-<!--                    </p>-->
+                    <!--                    <p class="birth" style="font-size: 10px;font-size: 1rem;margin: 4px 0 4px 0;">-->
+                    <!--                        <span th:text="${birth}">生日</span>-->
+                    <!--                    </p>-->
                     <p th:text="${session.user.content}" class="detail"
                        style="font-size: 10px;font-size: 1rem;color: #df8ccf;margin-bottom: 16px;">
 

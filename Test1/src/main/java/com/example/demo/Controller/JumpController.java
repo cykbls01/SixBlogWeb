@@ -38,7 +38,7 @@ public class JumpController {
     public String indextozone(HttpSession session, Model model) throws ParseException {
         User user=(User)session.getAttribute("user");
         List<Blog> blogList= BlogDao.findbyAuthorid(user.getId(),blogRepository);
-        model.addAttribute("follownumber",3);
+        session.setAttribute("blognumber",blogList.size());
         model.addAttribute("blogs",blogList);
         model.addAttribute("blognumber",blogList.size());
         return "Zone";

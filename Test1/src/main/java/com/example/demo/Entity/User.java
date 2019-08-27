@@ -20,6 +20,16 @@ public class User {
     private String birth;
 
     private int follow;
+    private int fan;
+
+
+    public int getFan() {
+        return fan;
+    }
+
+    public void setFan(int fan) {
+        this.fan = fan;
+    }
 
     public int getFollow() {
         return follow;
