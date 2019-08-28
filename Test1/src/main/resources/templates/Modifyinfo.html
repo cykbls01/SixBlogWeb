@@ -11,18 +11,15 @@
             <meta name="description" content="">
             <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
             <meta name="generator" content="Jekyll v3.8.5">
-            <title>修改个人信息</title>
+            <title>Signin Template · Bootstrap</title>
             <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
             <!--            <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">-->
             <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
             <script src="https://cdn.bootcss.com/moment.js/2.18.1/moment-with-locales.min.js"></script>
             <!--           导入 文件-->
             <link th:href="@{/bootstrap-datetimepicker.css}" rel="stylesheet">
             <script th:src="@{/bootstrap-datetimepicker.js}"></script>
-
             <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/sign-in/">
-
             <!-- Bootstrap core CSS -->
             <link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -48,22 +45,22 @@
         </head>
 <body class="text-center">
 <form class="form-signin" th:action="@{/user/modify}" method="post">
-    <img class="mb-4" src="/index.html" alt="" width="72" height="72">
+    <img class="mb-4" src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">修改个人信息</h1>
     <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
     <!--用户名-->
     <label for="inputUserName" class="sr-only">User name</label>
     <input type="userName" name="username" th:value="${session.user.username}"  id="inputUserName" class="form-control" placeholder="输入用户名" required >
-    <br>
+    <hr>
     <!--邮箱-->
     <label for="inputEmail" class="sr-only">Email address</label>
     <input type="email" name="email" th:value="${session.user.email}" id="inputEmail" class="form-control" placeholder="输入邮箱地址" required autofocus>
-    <br>
-    <!--    生日期-->
-    <label for="inputBirthday" class="sr-only">Birthday</label>
-    <input type="text" name="birth" th:value="${session.user.birth}" id="inputBirthday" class="form-control" placeholder="选择出生日期" required>
-    <br>
-    <!--    -->
+    <hr>
+    <!--个人信息-->
+    <label for="inputPersonalInf" class="sr-only">User name</label>
+    <textarea type="text" placeholder="介绍你自己(30字以内哦)" name="content" th:value="${session.user.content}" id="inputPersonalInf"  class="form-control" maxlength="50"></textarea>
+    <hr>
+
     <!--用户密码-->
     <label for="inputPassword" class="sr-only">Password</label>
     <input type="password" name="password" th:value="${session.user.password}" id="inputPassword" class="form-control" placeholder="输入密码" required>
@@ -71,13 +68,13 @@
     <label for="checkPassword" class="sr-only">Password</label>
     <input type="password" name="pwd2" th:value="${session.user.password}" id="checkPassword" class="form-control" placeholder="确认密码" onchange="check()">
     <div id="msg" style="color: red"></div>
-    <br>
+    <hr>
 
-    <label for="inputUserName" class="sr-only">User name</label>
-    <textarea type="text" name="content" th:value="${session.user.content}"   placeholder="输入个人介绍" >
-    </textarea>
-    <br>
     <input type="hidden" th:value="${session.user.id}" name="id">
+    <input type="hidden" th:value="${session.user.Imageid}" name="Imageid">
+    <input type="hidden" th:value="${session.user.follow}" name="follow">
+    <input type="hidden" th:value="${session.user.fan}" name="fan">
+    <input type="hidden" th:value="${session.user.birth}" name="birth">
     <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="return checkAllInf()" id="confirmPost">修改个人信息</button>
 
 </form>
@@ -132,10 +129,4 @@
         });
     });
 </script>
-</html>
-</title>
-</head>
-<body>
-
-</body>
 </html>

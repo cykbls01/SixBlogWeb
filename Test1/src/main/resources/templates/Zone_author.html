@@ -187,32 +187,21 @@
 
                         <!----------------------------详细信息------------------------------------------>
                     </p>
-                    <a th:href="@{/follow/add/}+${author.id}"  th:style="'display:' + @{(${fstatus} ? 'none' : 'block')}">关注</a>
-                    <a th:href="@{/follow/delete/}+${author.id}"  th:style="'display:' + @{(${fstatus} ? 'block' : 'none')}">取消关注</a>
+                    <div th:style="'display:' + @{(${session.status} ? 'block' : 'none')}" >
+                    <a th:href="@{/follow/add/}+${author.id}"  th:style="'display:' + @{(${fstatus} ? 'none' : 'block')}"
+
+
+                    >关注</a>
+                    <a th:href="@{/follow/delete/}+${author.id}"  th:style="'display:' + @{(${fstatus} ? 'block' : 'none')}"
+
+
+                    >取消关注</a>
+                    </div>
 
                 </div>
             </div>
 
-            <div class="sbox" style="border: 1px solid #5a6268 !important;">
-                <h2 style="font-family: 宋体">关于作者</h2>
-                <div class="sboxInner">
-                    <dl class="about-video">
-                        <dt style="font-family: 宋体">最终更新日期</dt>
-                        <dd>
-<span class="s12">
-    <span>[[${lastupdate}]]</span>
-</span><!----------------------------------date↑ ↓---------------------------------------------------->
-                        </dd>
-                        <!------------------------------------------------------tag↓------------------------------------------------------------>
-                        <dt style="font-family: 宋体">Tag <span class="s10">([[${tagnum}]])</span></dt>
-                        <dd style="font-family: 宋体">
-                            <span class="tags" th:each="tag:${tags}"><a th:href="${tag.url}">[[${tag.name}]]<span
-                                    class="s10">([[${tag.num}]])</span></a></span>
-                        </dd>
 
-                    </dl><!-- /.about-video -->
-                </div><!-- /sboxInner -->
-            </div><!-- /sbox -->
             <!-------------------------------------------------------分享---------------------------------------->
             <div class="sbox" style="border: 1px solid #5a6268 !important;">
                 <h2 style="font-family: 宋体">分享</h2>

@@ -122,7 +122,7 @@
 
 
 <main role="main">
-    <form th:action="@{/Blog/add}" method="post">
+    <form th:action="@{/Blog/add}" method="post" enctype="multipart/form-data">
         <!-- 发布按键栏 -->
         <div class="jumbotron">
             <div class="container">
@@ -154,6 +154,7 @@
                         </script>
                         <hr>
                         <!--                上传文件-->
+                        <input type="file" name="image">
 
 
                         <hr>
@@ -171,10 +172,9 @@
         </div>
     </form>
 
-    <form th:action="@{/file/uploadImage}" method="post" enctype="multipart/form-data">
-        <input type="file" name="image">
-        <input type="submit" value="upload">
-    </form>
+
+
+
 <!--    <img th:src="@{/file/image/5d634f8d9655bf0dbcda69c4}"/>-->
 
 

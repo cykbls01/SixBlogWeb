@@ -101,10 +101,10 @@
         <div style="align:right;padding-left: 10px;">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link " href="#"  th:text="@{(${session.user} ? '发布博客' : '')}">发布博客</a>
+                    <a class="nav-link " href="/Addblog.html"  th:text=" @{(${session.status} ? '发布博客' : '')}"></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#"  th:text="@{(${session.user} ? '登出系统' : '')}">登出系统</a>
+                    <a class="nav-link " th:href="@{/user/logout}"  th:text=" @{(${session.status} ? '登出系统' : '')}"></a>
                 </li>
             </ul>
         </div>
@@ -175,7 +175,7 @@
                         <!--登录后显示个人信息-->
                         <div th:style="'display:' + @{(${session.status} ? 'block' : 'none')}" >
                             <div class="box-profile" style="!important;text-align: center; ">
-                                <p class="thumb" th:text="${icon}" style="-webkit-transition: opacity 0.3s linear;transition: opacity 0.3s linear;
+                                <p class="thumb"  style="-webkit-transition: opacity 0.3s linear;transition: opacity 0.3s linear;
                                               position: relative;
                                               margin: 0 auto;
                                               margin-top: 10px;
@@ -193,7 +193,9 @@
                                                 -webkit-transform: translate(-50%, -50%);
                                                 transform: translate(-50%, -50%);
                                                 max-width: 100%;"
-                                                                src="[[${icon}]]"/></a>
+                                                                th:src="@{(${session.user} ? '/file/image/'+${session.user.Imageid} : 'null')}"/>
+                                        <!--                                                                th:src="@{/file/image/}+${}"/>-->
+                                    </a>
                                 </p>
                                 <!-------------------------------------------------头像↑  &↓-------------------------------------------------->
                                 <p class="name" style="font-size: 16px;font-size: 1.5rem;margin: 14px 0 0 0;">
@@ -209,6 +211,7 @@
                                     <a  href="[[${detail}]]">详细信息</a>
                                     <!----------------------------详细信息------------------------------------------>
                                 </p>
+                                <a th:href="@{/user/info}">进入个人空间</a>
                             </div>
                         </div>
 
@@ -224,14 +227,14 @@
         <div class="row">
             <div class="col-md-4" style="margin-top: 20px; height:180px;padding-top: 10px;" th:each="user:${users}">
                 <div style="float:left; width: 40%;height: 200px;padding: 5px;">
-                    <img src="59e833edbed4f.jpg" class="rounded-circle" style="width: 120px;height: 120px;">
+                    <img th:src="@{/file/image/}+${user.Imageid}" class="rounded-circle" style="width: 120px;height: 120px;">
                 </div>
                 <div style="float: left; width: 60%;height: 200px;padding-left: 10px; padding-top: 10px" >
                     <a th:href="@{/}" th:text="${user.username}">name</a>
                     <hr>
                     <p th:text="${user.content}">个人简介</p>
                     <hr>
-                    被关注: [[${user.follow}]]
+                    粉丝数: [[${user.follow}]]
 <!--                    <p th:text="${user.follow}"></p>-->
                     <br>
                     <form th:action="@{/follow/add}" method="post">
@@ -272,9 +275,7 @@
 
 </main>
 
-<footer class="container">
-    <p>&copy; Company 2017-2019</p>
-</footer>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script>window.jQuery || document.write('<script src="../static/js/jquery-slim.min.js"><\/script>')</script><script src="https://getbootstrap.com/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script></body>
 </html>

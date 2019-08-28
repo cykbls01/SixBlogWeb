@@ -11,12 +11,12 @@
     <title>Fixed top navbar example · Bootstrap</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/navbar-fixed/">
-
+    <!--    弹窗插件-->
+    <script th:src="@{/jquery-3.4.1.min.js}"></script>
+    <script th:src="@{/layer-v3.1.1/layer/layer.js}" ></script>
     <!-- Bootstrap core CSS -->
     <link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -182,22 +182,29 @@
 
 
                     </p>
-                    <a th:href="@{/Upload.html}">上传头像</a>
+                    <br>
+                    <button type="button" class="btn btn-light" id="upPhoto" >上传头像</button>
+                    <script>
+                        $("#upPhoto").on('click',function () {
+                            layer.open({
+                                type: 2,
+                                title: '上传头像',
+                                maxmin: false,
+                                closeBtn:2,
+                                shadeClose: false, //点击遮罩关闭层
+                                area : ['400px' , '300px'],
+                                content: '/upPhoto.html'
+                            });
+                        })
+                    </script>
                     <!-------------------------------------------------头像↑  &↓-------------------------------------------------->
                     <p class="name" style="font-size: 16px;font-size: 1.5rem;margin: 14px 0 0 0;">
                         <span th:text="${session.user.username}">用户名</span>
                     </p>
-                    <p class="location" style=" font-size: 10px;font-size: 1rem;margin-bottom: 0;">
-                        <span th:text="${session.user.birth}">所在地</span>
-                    </p>
-<!--                    <p class="birth" style="font-size: 10px;font-size: 1rem;margin: 4px 0 4px 0;">-->
-<!--                        <span th:text="${birth}">生日</span>-->
-<!--                    </p>-->
-                    <p th:text="${session.user.content}" class="detail"
-                       style="font-size: 10px;font-size: 1rem;color: #df8ccf;margin-bottom: 16px;">
-
-                        <!----------------------------详细信息------------------------------------------>
-                    </p>
+                    <!--                    <p class="location" style=" font-size: 10px;font-size: 1rem;margin-bottom: 0;">-->
+                    <!--                        <span th:text="${session.user.birth}">所在地</span>-->
+                    <!--                    </p>-->
+                    <br>
                     <a th:href="@{/Modifyinfo.html}">修改个人信息</a>
                 </div>
             </div>

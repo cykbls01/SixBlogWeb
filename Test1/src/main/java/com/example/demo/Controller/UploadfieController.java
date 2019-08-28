@@ -70,9 +70,6 @@ public class UploadfieController{
             uploadFile.setContentType(file.getContentType());
             uploadFile.setSize(file.getSize());
             fileRepository.save(uploadFile);
-
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -85,7 +82,13 @@ public class UploadfieController{
     @ResponseBody
     public byte[] image(@PathVariable String id){
         byte[] data = null;
-        Uploadfile file = fileRepository.findById(id).get();
+        Uploadfile file;
+        try{
+        file = fileRepository.findById(id).get();}
+        catch(Exception e)
+        {
+            file=null;
+        }
         if(file != null){
             data = file.getContent().getData();
         }
@@ -103,6 +106,7 @@ public class UploadfieController{
         response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(file.getName(), "UTF-8"));
         OutputStream os = response.getOutputStream();
         os.write(file.getContent().getData());
+        os.close();
         return "bingo";
 
 

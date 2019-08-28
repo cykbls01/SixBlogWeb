@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>登录系统</title>
+    <title>Signin Template · Bootstrap</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/sign-in/">
 
@@ -34,29 +34,17 @@
     <!-- Custom styles for this template -->
     <link href="https://getbootstrap.com/docs/4.3/examples/sign-in/signin.css" rel="stylesheet">
 </head>
-<body class="text-center">
-<form class="form-signin" th:action="@{/user/login}" method="post">
-    <a href="/index.html"><img class="mb-4" src="http://img5.imgtn.bdimg.com/it/u=4476114,4089491675&fm=26&gp=0.jpg"  alt="" width="72" height="72"></a>
-    <h1 class="h3 mb-3 font-weight-normal">登录系统</h1>
-    <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
-    <label for="inputEmail" class="sr-only">输入邮箱地址</label>
-    <input type="email" name="email" id="inputEmail" class="form-control" placeholder="输入邮箱地址" required autofocus>
-    <label for="inputPassword" class="sr-only">输入密码</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="输入密码" required>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
-        <button type="button" class="btn btn-sm btn-default" onclick=jumpRegister()>注册</button>
-        <button type="button" class="btn btn-sm btn-default" onclick=findCode()>忘记密码</button>
-
-
-
+<body class="text-center" >
+<form th:action="@{/file/uploadImage}" method="post" enctype="multipart/form-data">
+    <h3>选择你的头像</h3>
+    <input type="file" placeholder="选择你的头像" class="form-control" name="image">
+    <button type="submit" class="btn btn-primary" style="float: right;" onclick="closeInframe()">上传图片</button>
 </form>
 </body>
 <script>
-    function jumpRegister() {
-        window.location.href="/Register.html";
-    }
-    function findCode() {
-        window.location.href="/Findpwd.html";
+    function closeInframe() {
+        var index = parent.layer.getFrameIndex(window.name);
+        parent.layer.close(index);
     }
 </script>
 </html>

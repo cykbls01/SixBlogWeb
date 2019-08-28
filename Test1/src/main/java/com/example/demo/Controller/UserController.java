@@ -59,7 +59,6 @@ public class UserController {
 
         }
         else
-
         {
             map.put("msg","密码错误");
             return "Login";
@@ -85,12 +84,12 @@ public class UserController {
         {
             user.setPassword(Convert.SHA(user.getPassword()));
             user.setContent(" ");
-            user.setBirth(Time.getTime());
+            user.setBirth(Time.getTime().substring(0,10));
             user.setFollow(0);
             userRepository.save(user);
             user=UserDao.findbyusername(user.getUsername(),userRepository);
             session.setAttribute("user",user);
-            session.setAttribute("status",true);
+            session.setAttribute("status","true");
             return "redirect:/";
         }
     }
@@ -111,7 +110,7 @@ public class UserController {
         else
         {
             User user=UserDao.findbyemail(email,userRepository);
-            session.setAttribute("user",user);
+            session.setAttribute("email",user.getEmail());
             String yanzhengma=(String.valueOf((int)(1+Math.random()*(100000))));
             mail.sendSimpleMail(user.getEmail(),"密码找回邮件",yanzhengma);
             session.setAttribute("pan",yanzhengma);
@@ -127,7 +126,8 @@ public class UserController {
                          HttpSession session) throws NoSuchAlgorithmException {
         if(yanzhengma.equals(session.getAttribute("pan"))==true)
         {
-            User user=(User)session.getAttribute("user");
+            String email=(String)session.getAttribute("email");
+            User user=UserDao.findbyemail(email,userRepository);
             user.setPassword(Convert.SHA(password));
             userRepository.save(user);
             return "redirect:/Login.html";
@@ -157,17 +157,16 @@ public class UserController {
         {
             if(user.getPassword().equals(((User) session.getAttribute("user")).getPassword())==false)
             user.setPassword(Convert.SHA(user.getPassword()));
-
             session.setAttribute("user",user);
             userRepository.save(user);
-            return "redirect:/Login.html";
+            return "redirect:/user/info";
         }
     }
 
     @GetMapping(value = "/user/logout")
     public String logout(HttpSession session)
     {
-        //session.removeAttribute("user");
+        session.removeAttribute("user");
         session.setAttribute("status",false);
         return "redirect:/";
 

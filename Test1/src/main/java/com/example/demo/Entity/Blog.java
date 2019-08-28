@@ -15,7 +15,15 @@ public class Blog {
     private String Authorid;
     private String Authorname;
     private int number;
-    private String Fileid;
+    private String Fileid=new String();
+
+    public String getFileid() {
+        return Fileid;
+    }
+
+    public void setFileid(String fileid) {
+        Fileid = fileid;
+    }
 
     public int getNumber() {
         return number;

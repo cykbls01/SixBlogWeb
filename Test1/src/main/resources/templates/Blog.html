@@ -256,6 +256,18 @@
                                 </ul>
                             </div>
                         </article>
+                        <a th:href="@{(${isfile} ? '/download/file/'+${blog.Fileid} : '')}"
+                        th:text="@{(${isfile} ? '点击下载': '')}">
+
+
+                            点击下载
+
+
+
+                        </a>
+
+
+
 
 
                         <div class="content" th:each="comment:${comments}">
@@ -349,10 +361,11 @@
 
                         <div class="box-nenwEntry_member" style="border: 1px solid #5a6268 !important;">
                             <p class="name" style="color: #5a6268">
-                                [[${author.username}]]
+
                             </p>
                             <h4 style="color: #5a6268;">
-                                NEW ENTRY
+                                最新更新:
+                                <a th:href="@{/blog/get/}+${lastupdate.id}">[[${lastupdate.theme}]]</a>
                             </h4>
 
 <!--                            <div class="box-newEntry_inner" style="border-top:1px solid #5a6268 !important;" th:each="newblog:${newblogs}">-->

@@ -50,6 +50,8 @@ public class FollowController {
     public String add(@PathVariable String id, HttpSession session)
     {
         User user=(User)session.getAttribute("user");
+        if(FollowDao.isfollow(user.getId(),id,followRepository,userRepository)==true)
+            return "redirect:/zone/author/"+id;
         FollowDao.add(user.getId(),id,followRepository);
         user.setFollow(user.getFollow()+1);
         userRepository.save(user);

@@ -1,25 +1,19 @@
 package com.example.demo.Controller;
 
-import com.example.demo.Dao.BlogDao;
-import com.example.demo.Dao.CommentDao;
-import com.example.demo.Dao.FollowDao;
-import com.example.demo.Dao.UserDao;
-import com.example.demo.Entity.Blog;
-import com.example.demo.Entity.Comment;
-import com.example.demo.Entity.Follow;
-import com.example.demo.Entity.User;
-import com.example.demo.Repository.BlogRepository;
-import com.example.demo.Repository.CommentRepository;
-import com.example.demo.Repository.FollowRepository;
-import com.example.demo.Repository.UserRepository;
+import com.example.demo.Dao.*;
+import com.example.demo.Entity.*;
+import com.example.demo.Repository.*;
 import com.example.demo.Tools.Time;
+import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.*;
 
@@ -36,18 +30,34 @@ public class BlogController {
     private CommentRepository commentRepository;
     @Autowired
     private FollowRepository followRepository;
+    @Autowired
+    private FileRepository fileRepository;
 
     @PostMapping(value ="/Blog/add")
-    public String add(@RequestParam("label")String[] label, Blog blog, HttpSession session){
+    public String add(@RequestParam(value = "image") MultipartFile file,@RequestParam("label")String[] label, Blog blog, HttpSession session){
 
         blog.setDate(Time.getTime());
-
         blog.setLabel(Arrays.asList(label));
         System.out.println(blog.getLabel().size());
         User user=(User)session.getAttribute("user");
         blog.setAuthorid(user.getId());
         blog.setAuthorname(user.getUsername());
         blog.setNumber(0);
+        String fileName = file.getOriginalFilename();
+        Uploadfile uploadFile = new Uploadfile();
+        try {
+
+            uploadFile.setName(fileName);
+            uploadFile.setCreatedTime(Time.getTime());
+            uploadFile.setContent(new Binary(file.getBytes()));
+            uploadFile.setContentType(file.getContentType());
+            uploadFile.setSize(file.getSize());
+            fileRepository.save(uploadFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        uploadFile= FileDao.find(uploadFile,fileRepository);
+        blog.setFileid(uploadFile.getId());
         blogRepository.save(blog);
 
         return "redirect:/user/info";
@@ -71,8 +81,7 @@ public class BlogController {
 
 
     @GetMapping(value ="/blog/get/{id}")
-    public String getbyid(@PathVariable String id, Model model,HttpSession session)
-    {
+    public String getbyid(@PathVariable String id, Model model,HttpSession session) throws ParseException {
         Blog blog=blogRepository.findById(id).get();
         System.out.println(blog.getContent());
         User author= UserDao.findbyusername(blog.getAuthorname(),userRepository);
@@ -80,6 +89,10 @@ public class BlogController {
         model.addAttribute("author",author);
         model.addAttribute("yyyymm",blog.getDate().substring(0,4)+blog.getDate().substring(5,7));
         model.addAttribute("dd",blog.getDate().substring(8,10));
+
+        model.addAttribute("lastupdate",BlogDao.findbyAuthorid(author.getId(),blogRepository).get(0));
+        if(blog.getFileid().length()==0) model.addAttribute("isfile","false");
+        else model.addAttribute("isfile","true");
         session.setAttribute("blog",blog);
         session.setAttribute("author",author);
         session.setAttribute("yyyymm",blog.getDate().substring(0,4)+blog.getDate().substring(5,7));
@@ -148,11 +161,29 @@ public class BlogController {
     }
 
     @GetMapping(value = "/blog/new")
-    public String new1(Model model,HttpSession session) throws ParseException {
-        User user=(User)session.getAttribute("user");
-        List<Blog> blogList=BlogDao.new1(user.getId(),userRepository,blogRepository,followRepository);
-        model.addAttribute("blogs",blogList);
-        return "index";
+    public String new1(Model model,HttpSession session,Map<String,Object> map) throws ParseException {
+        if(session.getAttribute("status")==null)
+            session.setAttribute("status","false");
+
+        if(session.getAttribute("status").equals("true"))
+        {
+            User user=(User)session.getAttribute("user");
+            List<Blog> blogList=BlogDao.new1(user.getId(),userRepository,blogRepository,followRepository);
+            model.addAttribute("blogs",blogList);
+            return "index";
+
+
+        }
+        else
+        {
+            map.put("msg","请先登录");
+            return "Login";
+
+        }
+
+
+
+
     }
 
 

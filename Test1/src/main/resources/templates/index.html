@@ -73,6 +73,10 @@
                 </div>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link " href="/blog/new">关注动态</a>
+            </li>
+
         </ul>
         <!--搜索栏:拆分按钮组确定范围-->
         <form class="form-inline my-2 my-lg-0" th:action="@{/blog/search}" method="post">
@@ -103,10 +107,10 @@
         <div style="align:right;padding-left: 10px;">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link " href="/Addblog.html"  th:text=" @{(${session.status} ? '发布博客' : '')}">发布博客</a>
+                    <a class="nav-link " href="/Addblog.html"  th:text=" @{(${session.status} ? '发布博客' : '')}"></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " th:href="@{/user/logout}"  th:text=" @{(${session.status} ? '登出系统' : '')}">登出系统</a>
+                    <a class="nav-link " th:href="@{/user/logout}"  th:text=" @{(${session.status} ? '登出系统' : '')}"></a>
                 </li>
             </ul>
         </div>
@@ -195,7 +199,8 @@
                                                 -webkit-transform: translate(-50%, -50%);
                                                 transform: translate(-50%, -50%);
                                                 max-width: 100%;"
-                                                                th:src="@{/file/image/}+${session.user.Imageid}"/>
+                                    th:src="@{(${session.user} ? '/file/image/'+${session.user.Imageid} : 'null')}"/>
+<!--                                                                th:src="@{/file/image/}+${}"/>-->
                                     </a>
                                 </p>
                                 <!-------------------------------------------------头像↑  &↓-------------------------------------------------->
@@ -250,9 +255,7 @@
 
 </main>
 
-<footer class="container">
-    <p>&copy; Company 2017-2019</p>
-</footer>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script>window.jQuery || document.write('<script src="../static/js/jquery-slim.min.js"><\/script>')</script><script src="https://getbootstrap.com/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script></body>
 </html>

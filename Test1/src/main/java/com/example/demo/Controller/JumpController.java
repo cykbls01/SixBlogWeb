@@ -51,9 +51,10 @@ public class JumpController {
     @RequestMapping(value ="/Addblog.html")
     public String addblog(HttpSession session, Map<String,Object> map)
     {
+
         if(session.getAttribute("status")==null)
             session.setAttribute("status","false");
-        System.out.println(session.getAttribute("status"));
+
         if(session.getAttribute("status").equals("true"))
         {
             return "redirect:/Addblog";
@@ -72,6 +73,8 @@ public class JumpController {
     @GetMapping(value = "/zone/author/{id}")
     public String zone(@PathVariable String id,Model model,HttpSession session) throws ParseException {
         User user=(User)session.getAttribute("user");
+
+        if(user!=null&&user.getId().equals(id)) return "redirect:/user/info";
         User author=userRepository.findById(id).get();
         model.addAttribute("author",author);
         List<Blog> blogList= BlogDao.findbyAuthorid(author.getId(),blogRepository);
@@ -80,7 +83,9 @@ public class JumpController {
 
         model.addAttribute("blogs",blogList);
         model.addAttribute("blognumber",blogList.size());
+        if(user!=null)
         model.addAttribute("fstatus", FollowDao.isfollow(user.getId(),author.getId(),followRepository,userRepository));
+        else model.addAttribute("fstatus",false);
         return "Zone_author";
 
 
