@@ -8,13 +8,10 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>发表博客</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/jumbotron/">
+    <title>编辑博客</title>
     <link rel="icon" type="image/png"href="https://www.seawork.com/__data/assets/image/0017/921401/Blog-logo.jpg">
 
-    <script th:src="@{/jquery-3.4.1.min.js}"></script>
-    <script th:src="@{/layer-v3.1.1/layer/layer.js}" ></script>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/jumbotron/">
 
     <!-- Bootstrap core CSS -->
     <link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -130,11 +127,12 @@
 
 
 <main role="main">
-    <form th:action="@{/Blog/add}" method="post" enctype="multipart/form-data">
+    <form th:action="@{/Blog/edit}" method="post" enctype="multipart/form-data">
         <!-- 发布按键栏 -->
         <div class="jumbotron">
             <div class="container">
-                <input name="theme" class="display-3" placeholder="创建新的博文"></input>
+                <input name="theme" class="display-3" placeholder="创建新的博文" th:value="${blog.theme}"></input>
+                <input type="hidden" name="id" th:value="${blog.id}">
 
                 <p>  </p>
 
@@ -149,8 +147,8 @@
                     <div id="middle" style="width:800px;min-height:600px;margin:0px auto;">
 
                         <!-- 加载编辑器的容器 -->
-                        <script id="container" name="content" type="text/plain">
-                    在这里创建新的博文
+                        <script id="container" name="content" type="text/plain" >
+                    [(${blog.content})]
                     </script>
                         <!-- 配置文件 -->
                         <script type="text/javascript" th:src="@{/Addblog/ueditor.config.js}"></script>
@@ -167,24 +165,10 @@
                             <input type="file" name="image" size="60">
                         </div>
                         <hr>
-                        <button id="upPicture" type="button" class="btn btn-outline-secondary">上传所需图片</button>
-                        <script>
-                            $("#upPicture").on('click',function () {
-                                layer.open({
-                                    type: 2,
-                                    title: '上传图片',
-                                    maxmin: false,
-                                    shadeClose: true, //点击遮罩关闭层
-                                    area : ['800px' , '600px'],
-                                    content: '/user/image',
-                                    closeBtn:2,
-                                })
-                            })
-                        </script>
                         <div class="btn-group">
                             <button type="button" id="chooseType" class="btn btn-outline-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">选择博文类别 </button>
                             <div class="dropdown-menu" id="kind">
-                                <input type="checkbox" value="C" name="label" checked> C<br>
+                                <input type="checkbox" value="C" name="label"> C<br>
                                 <input type="checkbox" value="C++" name="label"> C++<br>
                                 <input type="checkbox" value="Python" name="label"> Python<br>
                                 <input type="checkbox" value="HTML" name="label"> HTML<br>

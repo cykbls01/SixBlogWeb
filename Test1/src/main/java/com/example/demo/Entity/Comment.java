@@ -12,9 +12,19 @@ public class Comment {
     private String Blogid;
     private String Authorid;
     private String Authorname;
+    private String AuthorImageid;
     private String content;
     private String date;
     //private List<CComment> commentList;
+
+
+    public String getAuthorImageid() {
+        return AuthorImageid;
+    }
+
+    public void setAuthorImageid(String authorImageid) {
+        AuthorImageid = authorImageid;
+    }
 
     public String getAuthorname() {
         return Authorname;

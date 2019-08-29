@@ -8,14 +8,15 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Fixed top navbar example · Bootstrap</title>
+    <title>个人空间</title>
+    <link rel="icon" type="image/png"href="https://www.seawork.com/__data/assets/image/0017/921401/Blog-logo.jpg">
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/navbar-fixed/">
     <!--    弹窗插件-->
     <script th:src="@{/jquery-3.4.1.min.js}"></script>
     <script th:src="@{/layer-v3.1.1/layer/layer.js}" ></script>
     <!-- Bootstrap core CSS -->
-    <link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet"
+                  <link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
         .bd-placeholder-img {
@@ -146,8 +147,12 @@
                             </div>
                             <ul class="lesson-summaries">
                                 <li>[[${pblog.content}]]</li>
-                                <ul>&nbsp;</ul>
+                                <a th:href="@{/Editblog.html/}+${pblog.id}"><img th:src="@{/2.png}"   width="25" height="25" ></img></a>
+                                <a th:href="@{/Blog/delete/}+${pblog.id}"><img th:src="@{/1.png}"   width="24" height="24" ></img></a>
+                                <br>
+
                             </ul>
+
                         </li>
                     </ul>
                 </div>
@@ -193,7 +198,10 @@
                                 closeBtn:2,
                                 shadeClose: false, //点击遮罩关闭层
                                 area : ['400px' , '300px'],
-                                content: '/upPhoto.html'
+                                content: '/upPhoto.html',
+                                end :function () {
+                                    window.location.reload();
+                                }
                             });
                         })
                     </script>
@@ -220,11 +228,11 @@
 </span><!----------------------------------date↑ ↓---------------------------------------------------->
                         </dd>
                         <!------------------------------------------------------tag↓------------------------------------------------------------>
-                        <dt style="font-family: 宋体">Tag <span class="s10">([[${tagnum}]])</span></dt>
-                        <dd style="font-family: 宋体">
-                            <span class="tags" th:each="tag:${tags}"><a th:href="${tag.url}">[[${tag.name}]]<span
-                                    class="s10">([[${tag.num}]])</span></a></span>
-                        </dd>
+<!--                        <dt style="font-family: 宋体">Tag <span class="s10">([[${tagnum}]])</span></dt>-->
+<!--                        <dd style="font-family: 宋体">-->
+<!--                            <span class="tags" th:each="tag:${tags}"><a th:href="${tag.url}">[[${tag.name}]]<span-->
+<!--                                    class="s10">([[${tag.num}]])</span></a></span>-->
+<!--                        </dd>-->
 
                     </dl><!-- /.about-video -->
                 </div><!-- /sboxInner -->

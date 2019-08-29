@@ -8,9 +8,13 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Fixed top navbar example · Bootstrap</title>
+    <title>关注列表</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/navbar-fixed/">
+    <link rel="icon" type="image/png"href="https://www.seawork.com/__data/assets/image/0017/921401/Blog-logo.jpg">
+
+    <script th:src="@{/jquery-3.4.1.min.js}"></script>
+    <script th:src="@{/layer-v3.1.1/layer/layer.js}" ></script>
 
     <!-- Bootstrap core CSS -->
     <link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -146,7 +150,7 @@
                     <div class="commentBox round" id="supplement_1359">
 
                         <h3 class="comment-header s13b page-header">
-                            <span class="comment-label label label-info">更新</span>
+                            <span class="comment-label label label-info"></span>
                             <span>[[${follow.content}]]</span>
                         </h3>
                         <!-----------------------------------------comment---------------------------------------------->
@@ -183,23 +187,33 @@
                                                 -webkit-transform: translate(-50%, -50%);
                                                 transform: translate(-50%, -50%);
                                                 max-width: 100%;"
-                                                  src="/file/image/5d634f8d9655bf0dbcda69c4"/></a>
+                                                  th:src="@{/file/image/}+${session.user.Imageid}"/></a>
+
+
                     </p>
+                    <br>
+                    <button type="button" class="btn btn-light" id="upPhoto" >上传头像</button>
+                    <script>
+                        $("#upPhoto").on('click',function () {
+                            layer.open({
+                                type: 2,
+                                title: '上传头像',
+                                maxmin: false,
+                                closeBtn:2,
+                                shadeClose: false, //点击遮罩关闭层
+                                area : ['400px' , '300px'],
+                                content: '/upPhoto.html'
+                            });
+                        })
+                    </script>
                     <!-------------------------------------------------头像↑  &↓-------------------------------------------------->
                     <p class="name" style="font-size: 16px;font-size: 1.5rem;margin: 14px 0 0 0;">
                         <span th:text="${session.user.username}">用户名</span>
                     </p>
-                    <p class="location" style=" font-size: 10px;font-size: 1rem;margin-bottom: 0;">
-                        <span th:text="${session.user.birth}">所在地</span>
-                    </p>
-                    <!--                    <p class="birth" style="font-size: 10px;font-size: 1rem;margin: 4px 0 4px 0;">-->
-                    <!--                        <span th:text="${birth}">生日</span>-->
+                    <!--                    <p class="location" style=" font-size: 10px;font-size: 1rem;margin-bottom: 0;">-->
+                    <!--                        <span th:text="${session.user.birth}">所在地</span>-->
                     <!--                    </p>-->
-                    <p th:text="${session.user.content}" class="detail"
-                       style="font-size: 10px;font-size: 1rem;color: #df8ccf;margin-bottom: 16px;">
-
-                        <!----------------------------详细信息------------------------------------------>
-                    </p>
+                    <br>
                     <a th:href="@{/Modifyinfo.html}">修改个人信息</a>
                 </div>
             </div>
@@ -215,11 +229,11 @@
 </span><!----------------------------------date↑ ↓---------------------------------------------------->
                         </dd>
                         <!------------------------------------------------------tag↓------------------------------------------------------------>
-                        <dt style="font-family: 宋体">Tag <span class="s10">([[${tagnum}]])</span></dt>
-                        <dd style="font-family: 宋体">
-                            <span class="tags" th:each="tag:${tags}"><a th:href="${tag.url}">[[${tag.name}]]<span
-                                    class="s10">([[${tag.num}]])</span></a></span>
-                        </dd>
+<!--                        <dt style="font-family: 宋体">Tag <span class="s10">([[${tagnum}]])</span></dt>-->
+<!--                        <dd style="font-family: 宋体">-->
+<!--                            <span class="tags" th:each="tag:${tags}"><a th:href="${tag.url}">[[${tag.name}]]<span-->
+<!--                                    class="s10">([[${tag.num}]])</span></a></span>-->
+<!--                        </dd>-->
 
                     </dl><!-- /.about-video -->
                 </div><!-- /sboxInner -->

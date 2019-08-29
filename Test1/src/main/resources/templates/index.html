@@ -7,8 +7,8 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Jumbotron Template · Bootstrap</title>
-
+    <title>主页</title>
+    <link rel="icon" type="image/png"href="https://www.seawork.com/__data/assets/image/0017/921401/Blog-logo.jpg">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/jumbotron/">
     <!-- Bootstrap core CSS -->
     <link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -67,9 +67,9 @@
                     更多分类 <span class="caret"></span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item" href="#">aaa</a>
-                    <a class="dropdown-item" href="#">bbb</a>
-                    <a class="dropdown-item" href="#">ccc</a>
+                    <a class="dropdown-item" href="/blog/label/css">css</a>
+                    <a class="dropdown-item" href="/blog/label/Javascript">Javascript</a>
+                    <a class="dropdown-item" href="/blog/label/MySql">MySql</a>
                 </div>
             </li>
 
@@ -180,7 +180,7 @@
                         </div>
                         <!--登录后显示个人信息-->
                         <div th:style="'display:' + @{(${session.status} ? 'block' : 'none')}" >
-                            <div class="box-profile" style="!important;text-align: center; ">
+                            <div class="box-profile" style="!important;text-align: center;min-height: auto ">
                                 <p class="thumb"  style="-webkit-transition: opacity 0.3s linear;transition: opacity 0.3s linear;
                                               position: relative;
                                               margin: 0 auto;
@@ -211,9 +211,9 @@
                                     <span th:text=" @{(${session.user} ? ${session.user.email} : 'null')}">所在地</span>
                                 </p>
                                 <p class="birth" style="font-size: 10px;font-size: 1rem;margin: 4px 0 4px 0;">
-                                    <span th:text="@{(${session.user} ? ${session.user.birth} : 'null')}">生日</span>
+                                    <span th:text="@{(${session.user} ? '入站时间：'+${session.user.birth} : 'null')}">生日</span>
                                 </p>
-                                <p th:text="@{(${session.user} ? ${session.user.content} : 'null')}" class="detail" style="font-size: 10px;font-size: 1rem;color: #df8ccf;margin-bottom: 16px;">
+                                <p th:text="@{(${session.user} ? ${session.user.content} : 'null')}" class="detail" style="font-size: 10px;font-size: 1rem;color: #df8ccf;margin-bottom: 16px; word-break:break-word;">
                                     <a  href="[[${detail}]]">详细信息</a>
                                     <!----------------------------详细信息------------------------------------------>
                                 </p>
@@ -231,12 +231,12 @@
         <hr>
         <div class="row">
             <div class="col-md-12" th:each="blog:${blogs}">
-                <h2  th:text="${blog.theme}">Heading</h2>
+                <a th:href="@{/blog/get/}+${blog.id}"><h2  th:text="${blog.theme}">Heading</h2></a>
                 <p th:text="${blog.content}">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
                 <p>
                     <a th:href="@{/zone/author/}+${blog.Authorid}" style="color: #5a6268" th:text="${blog.Authorname}"> 作者名字</a> |
-                    <a href="#" style="color: #5a6268"> 标签</a> |
-                    <a href="#" style="color: #5a6268" th:text="${blog.date}"> 时间</a>
+<!--                    <a href="#" style="color: #5a6268" th:text="${label}" >标签</a> |-->
+                    <a  style="color: #5a6268" th:text="${blog.date}"> 时间</a>
                 </p>
                 <p><a class="btn btn-secondary" th:href="@{/blog/get/}+${blog.id}" role="button">查看详情</a></p>
                 <br>

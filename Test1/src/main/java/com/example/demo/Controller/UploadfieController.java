@@ -56,7 +56,7 @@ public class UploadfieController{
         }
         return "redirect:/user/info";
 
-    }
+    }//上传图片
 
     @PostMapping("/file/uploadFile")
     public String uploadFile(@RequestParam(value = "image") MultipartFile file, HttpSession session){
@@ -93,7 +93,7 @@ public class UploadfieController{
             data = file.getContent().getData();
         }
         return data;
-    }
+    }//获取头像
 
 
     @GetMapping(value = "/download/file/{id}")
@@ -112,7 +112,7 @@ public class UploadfieController{
 
 
 
-    }
+    }//下载文件
 
 
 

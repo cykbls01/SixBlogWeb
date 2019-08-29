@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 
 @Controller
@@ -21,22 +22,32 @@ public class CommentController {
     private CommentRepository commentRepository;
 
     @PostMapping(value ="/comment/add")
-    public String add(Comment comment, HttpSession session)
+    public String add(Comment comment, HttpSession session, Map<String,Object>map)
     {
+        if(session.getAttribute("status")==null)
+            session.setAttribute("status","false");
+        if(session.getAttribute("status").equals("false")) {
+            map.put("msg", "请先登录");
+            return "Login";
+        }
         comment.setDate(Time.getTime());
         User user=(User)session.getAttribute("user");
         comment.setAuthorid(user.getId());
         comment.setAuthorname(user.getUsername());
         commentRepository.save(comment);
         return "redirect:/blog/get/"+comment.getBlogid();
-    }
+    }//添加评论
+
+
     @GetMapping(value ="/comment/delete/{id}")
     public String delete(@RequestParam("comment")String id)
     {
 
         commentRepository.deleteById(id);
         return "comment/delete";
-    }
+    }//删除评论
+
+
     @PostMapping(value ="/ccomment/add")
     public String add(CComment ccomment,@RequestParam("comment")String id)
     {

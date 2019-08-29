@@ -32,9 +32,9 @@ public class FollowController {
         List<User> userList= FollowDao.findidlist(user.getId(),followRepository,userRepository);
         session.setAttribute("followlists",userList);
         model.addAttribute("follows",userList);
-        System.out.println(userList.size());
+
         return "Zone_follow";
-    }
+    }//获取关注列表
 
     @GetMapping(value = "/fan/get")
     public String fanget(HttpSession session, Model model)
@@ -43,9 +43,10 @@ public class FollowController {
         List<User> userList= FollowDao.findfidlist(user.getId(),followRepository,userRepository);
         session.setAttribute("followlists",userList);
         model.addAttribute("fans",userList);
-        System.out.println(userList.size());
+
         return "Zone_fan";
-    }
+    }//获取粉丝列表
+
     @GetMapping(value = "/follow/add/{id}")
     public String add(@PathVariable String id, HttpSession session)
     {
@@ -60,7 +61,8 @@ public class FollowController {
         user.setFan(user.getFan()+1);
         userRepository.save(user);
         return "redirect:/zone/author/"+id;
-    }
+    }//关注
+
     @PostMapping(value = "/follow/add")
     public String add1(@RequestParam("id")String id, HttpSession session)
     {
@@ -74,6 +76,7 @@ public class FollowController {
         userRepository.save(user);
         return "redirect:/zone/author/"+id;
     }
+
     @GetMapping(value = "/follow/delete/{id}")
     public String delete(@PathVariable String id, HttpSession session)
     {
@@ -86,7 +89,7 @@ public class FollowController {
         user.setFan(user.getFan()-1);
         userRepository.save(user);
         return "redirect:/zone/author/"+id;
-    }
+    }//取消关注
 
 
 

@@ -14,6 +14,7 @@
             <title>找回密码</title>
 
             <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/sign-in/">
+            <link rel="icon" type="image/png"href="https://www.seawork.com/__data/assets/image/0017/921401/Blog-logo.jpg">
 
             <!-- Bootstrap core CSS -->
             <link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -40,7 +41,7 @@
         </head>
 <body class="text-center">
 <form class="form-signin" th:action="@{/user/findpwd}" method="post">
-    <a href="/index.html"><img class="mb-4" src="http://img5.imgtn.bdimg.com/it/u=4476114,4089491675&fm=26&gp=0.jpg"  alt="" width="72" height="72"></a>
+    <a href="/index.html"><img class="mb-4" src="http://www.lyc-lecorbusier-cormeilles.ac-versailles.fr/wp-content/uploads/sites/63/2019/01/blog-logo-animated_720x342.gif"  alt="" width="216" height="102"></a>
     <h1 class="h3 mb-3 font-weight-normal">找回密码</h1>
     <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
     <label for="inputEmail" class="sr-only">Email address</label>

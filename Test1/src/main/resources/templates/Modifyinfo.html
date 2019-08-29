@@ -11,13 +11,15 @@
             <meta name="description" content="">
             <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
             <meta name="generator" content="Jekyll v3.8.5">
-            <title>Signin Template · Bootstrap</title>
+            <title>修改个人信息</title>
             <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
             <!--            <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">-->
             <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
             <script src="https://cdn.bootcss.com/moment.js/2.18.1/moment-with-locales.min.js"></script>
             <!--           导入 文件-->
             <link th:href="@{/bootstrap-datetimepicker.css}" rel="stylesheet">
+            <link rel="icon" type="image/png"href="https://www.seawork.com/__data/assets/image/0017/921401/Blog-logo.jpg">
+
             <script th:src="@{/bootstrap-datetimepicker.js}"></script>
             <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/sign-in/">
             <!-- Bootstrap core CSS -->
@@ -58,7 +60,7 @@
     <hr>
     <!--个人信息-->
     <label for="inputPersonalInf" class="sr-only">User name</label>
-    <textarea type="text" placeholder="介绍你自己(30字以内哦)" name="content" th:value="${session.user.content}" id="inputPersonalInf"  class="form-control" maxlength="50"></textarea>
+    <textarea type="text" placeholder="介绍你自己(30字以内哦)" name="content" th:value="${session.user.content}" id="inputPersonalInf"  class="form-control" maxlength="30"></textarea>
     <hr>
 
     <!--用户密码-->

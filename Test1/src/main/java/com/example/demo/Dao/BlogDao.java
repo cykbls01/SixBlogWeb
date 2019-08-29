@@ -141,11 +141,9 @@ public class BlogDao {
                 if(size>50) size=50;
                 blogList.get(i).setContent(str.substring(0,size));
                 blogList1.add(blogList.get(i));
-
-
             }
-
         }
+        blogList1=sortbynumber(blogList1);
         return blogList1;
     }
 
@@ -155,7 +153,6 @@ public class BlogDao {
         int size=blogList.size();
         if(size>10) size=10;
         blogList=sortbynumber(blogList).subList(0,size);
-
         for(int i=0;i<blogList.size();i++)
         {
             size=blogList.get(i).getContent().length();
@@ -163,11 +160,8 @@ public class BlogDao {
             size=str.length();
             if(size>50) size=50;
             blogList.get(i).setContent(str.substring(0,size));
-
         }
         return blogList;
-
-
     }
 
     public static List<Blog> new1(String id, UserRepository userRepository, BlogRepository blogRepository, FollowRepository followRepository) throws ParseException {
@@ -180,16 +174,6 @@ public class BlogDao {
         if(size>10) size=10;
         blogList.subList(0,size);
         return blogList;
-
-
-
     }
-
-
-
-
-
-
-
 
 }
