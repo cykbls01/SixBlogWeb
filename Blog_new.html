@@ -1,0 +1,732 @@
+<!doctype html>
+<html>
+<html lang="en" itemscope itemtype="http://schema.org/Product" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/jumbotron/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+
+    </style>
+
+
+    <style>
+        body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td{margin:0;padding:0;border:none; outline: none;}
+        h1,h2,h3,h4,h5,h6{font-size:100%;}
+        address,cite,dfn,em,var{font-style:normal;}
+        code,kbd,pre,samp{font-family:courier new,courier,monospace;}
+        ul,ol{list-style:none;}
+        a{text-decoration:none;}
+        a:hover, a:visited, a:link, a:active{text-decoration:none;}
+        sup{vertical-align:text-top;}
+        sub{vertical-align:text-bottom;}
+        legend{color:#000;}
+        fieldset,img{border:0;}
+        button,input,select,textarea{font-size:100%;}
+        table{border-collapse:collapse;border-spacing:0;}
+        .clear{clear: both;float: none;height: 0;overflow: hidden;}
+        body{color:#333; font: 12px/1.3 'Arial','Microsoft YaHei';}
+        #pn{width: 550px; height: auto; background: #fff; margin: 0 auto; padding: 20px;}
+        .list0{padding: 20px 0; position: relative; border-top: 1px solid #eee;}
+        .head{width: 60px; float: left;}
+        .head img{width: 60px; height: 60px; }
+        .close{width: 20px; height: 20px; position: absolute; top: 0; right: 0; color: #696e78; font-size: 14px; text-align: center; line-height: 20px;}
+        .close:hover{color: #eb7350;}
+        .content{width: 500px; line-height: 20px; font-size: 14px; margin-left: 70px; }
+        .name{color: #eb7350; }
+        .pic{margin: 5px 0;}
+        .good:after{clear:both;content:'';display:block;width:0;height:0;visibility:hidden;}
+        .good{*zoom:1;}
+        .date{float:left; color: #808080;}
+        .good a{float: right; color: #808080;}
+        .people{background: #F7F7F7; height: 28px; line-height: 28px; padding-left: 10px; margin: 5px 0;}
+        .comment:after{clear:both;content:'';display:block;width:0;height:0;visibility:hidden;}
+        .comment{*zoom:1; padding: 10px 0; border-top: 1px solid #eee;}
+        .comment-left{width: 30px; float: left; display: inline; margin-right: 10px;}
+        .comment-left img{width: 30px; height: 30px;}
+        .comment-right{float: left; width: 490px;}
+        .comment-text{line-height: 18px;}
+        .comment-text span{color:#eb7350;}
+        .comment-date{font-size: 12px; line-height: 14px; color: #ccc; position: relative;}
+        .comment-zan{position: absolute; right: 40px; bottom: 0; color: #808080;}
+        .comment-dele{position: absolute; right: 0; bottom: 0; color: #808080;}
+        .hf:after{clear:both;content:'';display:block;width:0;height:0;visibility:hidden;}
+        .hf{*zoom:1;}
+        .hf-text{ border: 1px solid #eee; display: block; height: 15px; width: 470px; padding: 5px; resize: none; color: #ccc; font-size:12px;}
+        .hf-on .hf-text{height: 60px; color: #333; border:1px solid #ff8140;}
+        .hf-btn{float: right; width: 65px; height: 26px; background: #f7f7f7; color: #ccc; font-size: 12px; display: none;}
+        .hf-btn-on{background: #ff8140; color: #fff; }
+        .hf-nub{float: right; padding: 3px 5px; color: #666; display: none;}
+        .hf-on .hf-btn{display: inline;}
+        .hf-on .hf-nub{display: inline;}
+    </style>
+
+
+
+    <!-- Custom styles for this template -->
+
+    .btn-outline-success{color:#28a745;border-color:#28a745}
+    .btn-outline-success:hover{color:#fff;background-color:#28a745;border-color:#28a745}
+    .btn-outline-success.focus,.btn-outline-success:focus{box-shadow:0 0 0 .2rem rgba(40,167,69,.5)}
+    .btn-outline-success.disabled,.btn-outline-success:disabled{color:#28a745;background-color:transparent}
+    .btn-outline-success:not(:disabled):not(.disabled).active,.btn-outline-success:not(:disabled):not(.disabled):active,.show>.btn-outline-success.dropdown-toggle{color:#fff;background-color:#28a745;border-color:#28a745}
+    .btn-outline-success:not(:disabled):not(.disabled).active:focus,.btn-outline-success:not(:disabled):not(.disabled):active:focus,.show>.btn-outline-success.dropdown-toggle:focus{box-shadow:0
+    0 0 .2rem rgba(40,167,69,.5)}
+
+    <link href="https://getbootstrap.com/docs/4.3/examples/jumbotron/jumbotron.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,300,700" rel="stylesheet"/>
+
+
+    <script src="http://cdn.keyakizaka46.com/files/14/javascripts/pc.js"></script>
+    <link href="http://cdn.keyakizaka46.com/files/14/stylesheets/pc.css" rel="stylesheet"/>
+    <link href="http://cdn.keyakizaka46.com/files/14/stylesheets/pc_additional.css?20180420" rel="stylesheet"/>
+
+
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-PHQRZBQ');</script>
+    <!-- End Google Tag Manager -->
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-68428703-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+    <title>Blog</title>
+
+
+    <script>
+        function green(x) {
+            x.style.background = "#28a745";
+        }
+
+        function transparent(x) {
+            x.style.background = "transparent";
+        }
+    </script>
+</head>
+
+
+
+
+
+
+<body>
+<!--导航栏-->
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="padding: 0.5rem">
+    <a class="navbar-brand" href="#" style="margin-left: .7rem;margin-top:0.4rem;font-family:inherit;font-size: 2rem;font-weight: 500">江一帆讲故事</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/index.html"
+                   style="font-family:inherit;font-size: 1.6rem;font-weight: 400;padding:1.7rem .8rem">首页<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" style="font-family:inherit;font-size: 1.5rem;font-weight: 400;padding:1.7rem .8rem">HTML</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#" style="font-family:inherit;font-size: 1.5rem;font-weight: 400;padding:1.7rem .8rem">JAVA</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#" style="font-family:inherit;font-size: 1.5rem;font-weight: 400;padding:1.7rem .8rem">C++</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#" style="font-family:inherit;font-size: 1.5rem;font-weight: 400;padding:1.7rem .8rem">C</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#" style="font-family:inherit;font-size: 1.5rem;font-weight: 400;padding:1.7rem .8rem">C++</a>
+            </li>
+            <!--            选项卡-->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="dropdown01" aria-haspopup="true" aria-expanded="false"
+                   style="font-family:inherit;font-size: 1.5rem;font-weight: 400;padding:1.7rem .8rem">
+                    更多分类 <span class="caret"></span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item" href="#">aaa</a>
+                    <a class="dropdown-item" href="#">bbb</a>
+                    <a class="dropdown-item" href="#">ccc</a>
+                </div>
+            </li>
+
+        </ul>
+        <form class="form-inline my-2 my-lg-0" >
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"
+                   style="font-family:-apple-system;border-radius:.4rem;height:calc(2.5rem + 1rem + 2px);padding:.375rem .75rem;font-size:1.5rem;font-weight:400;line-height:1.5;">
+
+            <button class="btn btn-outline-success my-2 my-sm-2" type="submit"
+                    style="margin:0rem .6rem;font-family:-apple-system;border-radius:.4rem;width:7rem;height:calc(2.5rem + 1rem + 2px);box-shadow:0 0 0 .2rem rgba(40,167,69,.5);padding:.375rem .75rem;font-size:1.5rem;font-weight:400;line-height:1.5;background-color:transparent"
+                    onmousemove="green(this)" onmouseout="transparent(this)"
+            >Search</button>
+        </form>
+        <ul class="navbar-nav mr-auto" style="font-family:inherit;font-size: 1.6rem;font-weight: 400;padding:1.7rem .8rem">
+            <li class="nav-item">
+                <a class="nav-link " href="#"  th:text=" @{(${session.user} ? '发布博客' : '')}">发布博客</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#"  th:text=" @{(${session.user} ? '登出系统' : '')}">登出系统</a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+<div class="keyaki-blog_single">
+    <div class="l-wrapper">
+        <div class="l-content">
+            <a href=" ">
+
+            </a>
+            <div class="l-inner">
+                <div class="box-content">
+                    <div class="box-main" style="border-top: 1px solid #5a6268;border-bottom: 1px solid #5a6268;">
+                        <article style="border-top: 1px solid #5a6268;border-bottom: 1px solid #5a6268;">
+                            <div class="innerHead">
+                                <div class="box-date" style="background-color:#5a6268 !important">
+                                    <time>[[${yyyymm}]]</time>
+                                    <time>[[${dd}]]</time>
+                                </div>
+                                <div class="box-ttl">
+                                    <h3>
+                                        [[${blog.theme}]]
+                                    </h3>
+                                    <p class="name">
+                                        <a th:href="${userzone}" style="color:#5a6268">[[${username}]]</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="box-article">
+                                [(${blog.content})]
+                            </div>
+                            <div class="box-bottom" style="margin-bottom: 80px">
+                                <ul>
+                                    <li>
+                                        [[${blog.date}]]
+                                    </li>
+                                </ul>
+                            </div>
+                        </article>
+
+
+
+
+
+
+
+                        <div>
+                            <ul id="pn">
+                                <li class="list0">
+
+                                    <!-- 圆框头像 -->
+                                    <div style="float:left;-webkit-transition: opacity 0.3s linear;transition: opacity 0.3s linear;
+                                              position: relative;
+                                              margin: auto;
+                                              margin-top: 0px;
+                                              width: 50px;
+                                              height: 50px;
+                                              position: relative;
+                                              overflow: hidden;
+                                              border-radius: 100%;
+                                              border: 1px solid #d2d2d2; ">
+                                        <a th:href="${userzone}"><img
+                                                style=" position: absolute;
+                                                width: auto;
+                                                height: auto;
+                                                left: 50%;
+                                                top: 50%;
+                                                -webkit-transform: translate(-50%, -50%);
+                                                transform: translate(-50%, -50%);
+                                                max-width: 100%;"
+                                                th:src="${usericon}" onerror="this.src='1.jpg'"/>
+                                        </a>
+                                    </div>
+
+
+
+                                    <div class="content">
+                                        <p class="text"><span class="name">翔哥：</span>你就说，华为云比阿里云到底差几年？？</p>
+                                        <div class="good"><span class="date">02-14 23:01</span><a class="dzan" href="javascript:;"></a></div>
+                                    </div>
+                                </li>
+                                <li class="list0">
+
+
+                                    <div style="float:left;-webkit-transition: opacity 0.3s linear;transition: opacity 0.3s linear;
+                                              position: relative;
+                                              margin: auto;
+                                              margin-top: 0px;
+                                              width: 50px;
+                                              height: 50px;
+                                              position: relative;
+                                              overflow: hidden;
+                                              border-radius: 100%;
+                                              border: 1px solid #d2d2d2; ">
+                                        <a th:href="${userzone}"><img
+                                                style=" position: absolute;
+                                                width: auto;
+                                                height: auto;
+                                                left: 50%;
+                                                top: 50%;
+                                                -webkit-transform: translate(-50%, -50%);
+                                                transform: translate(-50%, -50%);
+                                                max-width: 100%;"
+                                                th:src="${usericon}" onerror="this.src='http://cdn.keyakizaka46.com/images/14/73b/605164b60fc9392e1ce569203e8c8/400_320_102400.jpg'"/>
+                                        </a>
+                                    </div>
+
+
+
+
+                                    <div class="content">
+                                        <p class="text"><span class="name">猿：</span>你们都给我挂</p>
+
+                                        <div class="good"><span class="date">02-14 23:01</span><a class="dzan" href="javascript:;"></a></div>
+                                        <div class="people" total="0" style="display: none;"></div>
+
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+                        <div class="box-navi" style="margin:30px 0 50px 0">
+                            <div class="box-navi_prev" style="width: 700px;border-bottom: 1px solid #d2d2d2;margin-top: 10px;margin-bottom: 10px">
+                                <div style="float:left;-webkit-transition: opacity 0.3s linear;transition: opacity 0.3s linear;
+                                              position: relative;
+                                              margin: auto;
+                                              margin-top: 0px;
+                                              width: 50px;
+                                              height: 50px;
+                                              position: relative;
+                                              overflow: hidden;
+                                              border-radius: 100%;
+                                              border: 1px solid #d2d2d2; ">
+                                    <a th:href="${userzone}"><img
+                                            style=" position: absolute;
+                                                width: auto;
+                                                height: auto;
+                                                left: 50%;
+                                                top: 50%;
+                                                -webkit-transform: translate(-50%, -50%);
+                                                transform: translate(-50%, -50%);
+                                                max-width: 100%;"
+                                            th:src="${usericon}" onerror="this.src='http://cdn.keyakizaka46.com/images/14/73b/605164b60fc9392e1ce569203e8c8/400_320_102400.jpg'"/>
+                                    </a>
+                                </div>
+
+
+
+
+
+
+                                <form class="form-inline my-2 my-lg-0"
+                                      style="margin-top: 0!important;margin-bottom: 20px!important;">
+                                    <input class="form-control mr-sm-2" type="text" placeholder="评论"
+                                           name="comment" aria-label="Comment" id="comment"
+                                           onmousemove="this.style.background='transparent',this.style.borderColor='#00caff'" onmouseout="this.style.background='#f5f5f5',this.style.borderColor='#e2e2e2'"
+                                           style="background-color: #f5f5f5;position:relative;margin-left:3.5rem;border-radius:.6rem;font-family:-apple-system;width:520px;height:6rem;font-size:1.5rem;font-weight:400;line-height:1.5;">
+
+                                    <button class="commentbtn" type="submit"
+                                            style="float: right;margin-left:2rem;border-radius:.6rem;border-color: #13b4ff;width:6rem;height:6rem;
+                                        font-family:-apple-system;font-size:1.3rem;font-weight:400;color: #ffffff;line-height:1.5;background-color: #13b4ff;"
+                                            onmousemove="this.style.background='#00caff'"
+                                            onmouseout="this.style.background='#13b4ff'"
+                                    >发表<br/>评论
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="box-sideMember">
+                        <div class="box-profile"
+                             style="background: transparent;border: 1px solid #5a6268 !important;text-align: center;">
+                            <p class="thumb" style="-webkit-transition: opacity 0.3s linear;transition: opacity 0.3s linear;
+                                              position: relative;
+                                              margin: 0 auto;
+                                              margin-top: 10px;
+                                              width: 115px;
+                                              height: 115px;
+                                              position: relative;
+                                              overflow: hidden;
+                                              border-radius: 100%;
+                                              border: 1px solid #d2d2d2; ">
+                                <a th:href="${icon} "><img style=" position: absolute;
+                                                width: auto;
+                                                height: auto;
+                                                left: 50%;
+                                                top: 50%;
+                                                -webkit-transform: translate(-50%, -50%);
+                                                transform: translate(-50%, -50%);
+                                                max-width: 100%;"
+                                                           th:src="${icon}"/></a>
+                            </p>
+
+
+
+
+
+                            <!-------------------------------------------------头像↑  &↓-------------------------------------------------->
+                            <p class="name" style="font-size: 16px;font-size: 1.5rem;margin: 14px 0 0 0;">
+                                <span th:text="${author.username}">用户名</span>
+                            </p>
+                            <p class="location" style=" font-size: 10px;font-size: 1rem;margin-bottom: 0;">
+                                <span th:text="${author.birth}">生日</span>
+                            </p>
+                            <p class="birth" style="font-size: 10px;font-size: 1rem;margin: 4px 0 4px 0;">
+                                <span th:text="${author.content}">个人介绍</span>
+                            </p>
+
+                        </div>
+
+                        <div class="box-nenwEntry_member" style="border: 1px solid #5a6268 !important;">
+                            <p class="name" style="color: #5a6268">
+                                [[${author.username}]]
+                            </p>
+                            <h4 style="color: #5a6268;">
+                                NEW ENTRY
+                            </h4>
+
+                            <!--                            <div class="box-newEntry_inner" style="border-top:1px solid #5a6268 !important;" th:each="newblog:${newblogs}">-->
+                            <!--                                <div class="box-image">-->
+                            <!--                                    <img class="js-replaceImage" onload="addResponsibleClass(this)"-->
+                            <!--                                         th:src="${newblog.imgurl}" onerror="this.src='http://cdn.keyakizaka46.com/files/14/images/common/logo_symbol.png'"/>-->
+                            <!--                                </div>-->
+                            <!--                                <div class="box-txt">-->
+                            <!--                                    <p class="ttl">-->
+                            <!--                                        <a th:href="${newblog.url}">[[${newblog.title}]]</a>-->
+                            <!--                                    </p>-->
+                            <!--                                    <p class="name" style="color:#28a745;">-->
+                            <!--                                        [[${username}]]-->
+                            <!--                                    </p>-->
+                            <!--                                    <time>[[${newblog.yyyymm}]].[[${newblog.dd}]]</time>-->
+                            <!--                                </div>-->
+                            <!--                            </div>-->
+                        </div>
+                        <div class="box-banner" >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .l-content02 .l-inner .box-memberBlog ul.thumb li {
+        vertical-align: top;
+    }
+
+    .l-content02 .l-inner .box-memberBlog ul.thumb li p {
+        line-height: 1.2;
+    }
+</style>
+
+<script src="//twemoji.maxcdn.com/2/twemoji.min.js?2.4"></script>
+<style>
+    img.emoji {
+        height: 1em;
+        width: 1em;
+        margin: 0 .05em 0 .1em;
+        vertical-align: -0.1em;
+    }
+</style>
+<script>
+    twemoji.parse(document.body);
+</script>
+
+<script>
+    $(function () {
+        $("img").not('.copy_permission').attr("onmousedown", "return false");
+        $("img").not('.copy_permission').attr("onselectstart", "return false");
+        $("img").not('.copy_permission').attr("oncontextmenu", "return false");
+    });
+</script>
+<script type="text/javascript">
+    //在页面加载完后立即执行多个函数。
+    function addloadEvent(func){
+        var oldonload=window.onload;
+        if(typeof window.onload !="function"){
+            window.onload=func;
+        }
+        else{
+            window.onload=function(){
+                if(oldonload){
+                    oldonload();
+                }
+                func();
+            }
+        }
+    }
+    addloadEvent(b);
+    function b(){
+        var pn=document.getElementById("pn");
+        var lists=pn.children;
+        //删除当前节点
+        function remove(node){
+            node.parentNode.removeChild(node);
+        }
+        //上面的点赞
+        function praisebox(box,el){
+            //获取赞数量容器
+            var praise=box.getElementsByClassName("people")[0];
+            //获取容器当前total值
+            var total=parseInt(praise.getAttribute("total"));
+            //获取点击的innerHTML
+            var txt=el.innerHTML;
+            //创建一个新的total存储用
+            var newtotal;
+            //判断点击的文字内容
+            if(txt=="赞"){
+                //total值+1 因为我还没点击赞，所以要点击的时候就多了一个人 total+1
+                newtotal=total+1;
+                //判断赞数量 把相应文字放到赞容器里
+                praise.innerHTML=newtotal==1 ? "我觉得很赞" : "我和" + total +"个人觉得很赞";
+                el.innerHTML="取消赞";
+            }
+            else{
+                //反之total值-1
+                newtotal=total-1;
+                praise.innerHTML=newtotal==0 ? "" : newtotal +"个人觉得很赞";
+                el.innerHTML="赞";
+            }
+            //更新total值
+            praise.setAttribute("total",newtotal);
+            //如果没有人点赞容器隐藏
+            praise.style.display=(newtotal==0) ? "none" : "block";
+        }
+        //回复评论
+        function reply(box){
+            //获取评论框
+            var textarea=box.getElementsByTagName("textarea")[0];
+            //获取包含所有评论的容器
+            var comment=box.getElementsByClassName("comment-list")[0];
+            //创建新的评论div
+            var div=document.createElement("div");
+            //赋类名
+            div.className="comment";
+            //设置属性
+            div.setAttribute("user","self");
+            //获取每条评论的innerHTML结构，每次只替换textarea的输入内容和 当前发送时间
+            var html='<div class="comment-left">'+'<img src="images/T2.jpg" alt=""/>'+'</div>'+
+                '<div class="comment-right">'+
+                '<div class="comment-text"><span>我：</span>'+textarea.value+'</div>'+
+                '<div class="comment-date">'+
+                getTime()+
+                '<a class="comment-zan" href="javascript:;" total="0" my="0">赞</a>'+
+                '<a class="comment-dele" href="javascript:;">删除</a>'+
+                '</div>'+
+                '</div>';
+            //插入到新建的评论div
+            div.innerHTML=html;
+            //把新评论插入到评论列表
+            comment.appendChild(div);
+            //评论后初始化textarea输入框
+            textarea.value="评论…";
+            textarea.parentNode.className="hf";
+        }
+        //获取当前时间回复评论时调用
+        function getTime(){
+            var t=new Date();
+            var y=t.getFullYear();
+            var m=t.getMonth()+1;
+            var d=t.getDate();
+            var h=t.getHours();
+            var mi=t.getMinutes();
+            m=m<10?"0"+m:m;
+            d=d<10?"0"+d:d;
+            h=h<10?"0"+h:h;
+            mi=mi<10?"0"+mi:mi;
+            return y+"-"+m+"-"+d+""+h+":"+mi;
+        }
+        //回复里点赞
+        function praiseReply(el){
+            //获取当前total值 也就是所有点赞数量
+            var total=parseInt(el.getAttribute("total"));
+            //获取当前my值 我的点赞
+            var my=parseInt(el.getAttribute("my"));
+            //创建新的total
+            var newtotal;
+            //判断my=0就是我准备要点赞
+            if(my==0){
+                //我点了赞总数量就要+1
+                newtotal=total+1;
+                //更新total值
+                el.setAttribute("total",newtotal);
+                //更新my值
+                el.setAttribute("my",1);
+                //更新文字 就是我点了后 文字就是取消赞了
+                el.innerHTML=newtotal+" 取消赞";
+            }else{
+                //反之-1
+                newtotal=total-1;
+                el.setAttribute("total",newtotal);
+                el.setAttribute("my",0);
+                el.innerHTML=(newtotal==0)?" 赞":newtotal+" 赞";
+            }
+        }
+        //操作回复
+        function operateReply(el){
+            //每条评论
+            var comment=el.parentNode.parentNode.parentNode;
+            //整个状态
+            var box=comment.parentNode.parentNode.parentNode;
+            //评论框
+            var textarea=box.getElementsByTagName("textarea")[0];
+            //名字
+            var user=comment.getElementsByClassName("user")[0];
+            //点击的innerHTML
+            var txt=el.innerHTML;
+            //判断当前点击的是否为回复
+            if(txt=="回复"){
+                //评论框触发焦点事件 也就是变高
+                textarea.onfocus();
+                //内容变为回复+当前人的名字
+                textarea.value="回复 "+user.innerHTML;
+                //调用键盘事件
+                textarea.onkeyup();
+            }else{
+                //否则就是删除节点
+                remove(comment);
+            }
+        }
+        //遍历所有状态消息
+        for(var i=0;i<lists.length;i++){
+            //全部事件代理
+            lists[i].onclick=function(e){
+                //获取当前点击事件
+                var e=e||window.event;
+                var el=e.srcElement;
+                if(!el){
+                    el=e.target;//兼容火狐
+                }
+                //判断点击的类名
+                switch(el.className){
+                    //关闭整个状态
+                    case "close":
+                        remove(el.parentNode);
+                        break;
+                    //上面的点赞
+                    case "dzan":
+                        praisebox(el.parentNode.parentNode.parentNode,el);
+                        break;
+                    //回复评论
+                    case "hf-btn hf-btn-on":
+                        reply(el.parentNode.parentNode.parentNode);
+                        break;
+                    //每条评论中点赞
+                    case "comment-zan":
+                        praiseReply(el);
+                        break;
+                    case "comment-dele":
+                        operateReply(el);
+                        break;
+                }
+            }
+            var textarea=lists[i].getElementsByClassName("hf-text")[0];
+            //焦点事件
+            textarea.onfocus=function(){
+                this.parentNode.className='hf hf-on';
+                this.value = this.value == '评论…' ? '' : this.value;
+            }
+            //失焦事件
+            textarea.onblur=function(){
+                if(this.value==''){
+                    this.parentNode.className='hf';
+                    this.value ='评论…';
+                }
+            }
+            //键盘事件
+            textarea.onkeyup=function(){
+                var len=this.value.length;
+                var textParentNode=this.parentNode;
+                var textBtn=textParentNode.children[1];
+                var textNub=textParentNode.children[2];
+                if(len==0 /*|| len>100*/){
+                    textBtn.className="hf-btn";
+                }else{
+                    textBtn.className="hf-btn hf-btn-on";
+                    /*this.style.color="#333"; */
+                }
+                textNub.innerHTML=len+"/100";
+            }
+        }
+        //遍历结束
+    }
+</script>
+<style>
+    img {
+        -webkit-touch-callout: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-touch-callout: none;
+        -moz-touch-callout: none;
+        touch-callout: none;
+        -webkit-user-drag: none;
+        -khtml-user-drag: none;
+        user-drag: none;
+    }
+</style>
+
+</body>
+</html>
