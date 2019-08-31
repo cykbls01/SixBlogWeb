@@ -59,7 +59,7 @@ public class FollowDao {
 
         }
 
-        if(idList.contains(fid))
+        if(idList!=null&&idList.contains(fid))
         return true;
         else
             return false;

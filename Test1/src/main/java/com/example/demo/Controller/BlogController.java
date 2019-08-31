@@ -73,7 +73,7 @@ public class BlogController {
 
         Blog blog=blogRepository.findById(id).get();
         Up up=UpDao.findbyblogid(id,upRepository);
-        if(up==null) upRepository.delete(up);
+        if(up!=null) upRepository.delete(up);
         fileRepository.deleteById(blog.getFileid());
         CommentDao.deletebyblogid(id,commentRepository);
         blogRepository.deleteById(id);

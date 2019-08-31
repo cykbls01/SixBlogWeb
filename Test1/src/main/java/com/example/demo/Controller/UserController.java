@@ -86,6 +86,7 @@ public class UserController {
             user.setContent(" ");
             user.setBirth(Time.getTime().substring(0,10));
             user.setFollow(0);
+            user.setImageid("5d69bb4e9655bf343c2bd25a");
             userRepository.save(user);
             user=UserDao.findbyusername(user.getUsername(),userRepository);
             session.setAttribute("user",user);
@@ -167,7 +168,7 @@ public class UserController {
     public String logout(HttpSession session)
     {
         session.removeAttribute("user");
-        session.setAttribute("status",false);
+        session.setAttribute("status","false");
         return "redirect:/";
 
 

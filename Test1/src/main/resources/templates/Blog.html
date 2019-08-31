@@ -183,8 +183,8 @@
 <body>
 <!--导航栏-->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="padding: 0.1rem;font-family: 微软雅黑">
-    <a class="navbar-brand" href="#"
-       style="margin-left: .7rem;margin-right: 1.2rem;font-family:inherit;font-size: 2rem;font-weight: 500">江一帆讲故事</a>
+    <a class="navbar-brand" href="/"
+       style="margin-left: .7rem;margin-right: 1.2rem;font-family:inherit;font-size: 2rem;font-weight: 500">NDSC</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
             aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -354,9 +354,23 @@
                         <div class="content" th:each="comment:${comments}" >
                             <br>
                             <div style="width:100%;min-height: 100px;margin-top: 10px;margin-bottom: 10px;">
-                                <div style="width:80px;height:80px;float: left;">
-                                    <img style="border-radius:100%;width: 70px;height: 70px;"
-                                         th:src="@{/file/image/}+${comment.AuthorImageid}">
+                                <div style="width:80px;height:80px;float: left;overflow: hidden">
+                                    <p class="thumb" style="-webkit-transition: opacity 0.3s linear;transition: opacity 0.3s linear;
+                                              position: relative;
+                                              margin: 0 auto;
+                                              width: 80px;
+                                              height: 80px;
+                                              overflow: hidden;
+                                              border-radius: 100%;
+                                              border: 1px solid #d2d2d2; ">
+                                        <img th:src="@{/file/image/}+${comment.AuthorImageid}" style=" position: absolute;
+                                                width: auto;
+                                                height: auto;
+                                                left: 50%;
+                                                top: 50%;
+                                                -webkit-transform: translate(-50%, -50%);
+                                                transform: translate(-50%, -50%);
+                                                max-width: 100%;">
                                 </div>
                                 <div style="width: 80%;float: left;margin-left: 20px;">
                                     <a th:href="@{/zone/author/}+${comment.Authorid}"><span class="name" th:text="${comment.Authorname}">翔哥：</span></a>
@@ -460,11 +474,11 @@
 
                         <div class="box-nenwEntry_member" style="border: 1px solid #5a6268 !important;">
                             <a th:href="@{/blog/get/}+${lastupdate.id}">
-                            <h5 style="color: #5a6268;">
-                                最近更新:
-                                <br>
-                                [[${lastupdate.theme}]]
-                            </h5></a>
+                                <h5 style="color: #5a6268;">
+                                    最近更新:
+                                    <br>
+                                    [[${lastupdate.theme}]]
+                                </h5></a>
 
                         </div>
 

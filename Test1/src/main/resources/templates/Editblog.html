@@ -12,6 +12,8 @@
     <link rel="icon" type="image/png"href="https://www.seawork.com/__data/assets/image/0017/921401/Blog-logo.jpg">
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/jumbotron/">
+    <script th:src="@{/jquery-3.4.1.min.js}"></script>
+    <script th:src="@{/layer-v3.1.1/layer/layer.js}" ></script>
 
     <!-- Bootstrap core CSS -->
     <link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -43,7 +45,7 @@
 <body>
 <!-- 导航栏 -->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="#">江一帆讲故事</a>
+    <a class="navbar-brand" href="/">NDSC</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -159,20 +161,39 @@
                             var ue = UE.getEditor('container');
                         </script>
                         <hr>
+
                         <!--                上传文件-->
                         <div class="column" style="font-size: 16px">附件
                             <img th:src="@{\fujian.png}" width="80" height="60"></img>
                             <input type="file" name="image" size="60">
                         </div>
                         <hr>
+                        <button id="upPicture" type="button" class="btn btn-outline-secondary">上传本地图片</button>
+                        <script>
+                            $("#upPicture").on('click',function () {
+                                layer.open({
+                                    type: 2,
+                                    title: '上传图片',
+                                    maxmin: false,
+                                    shadeClose: true, //点击遮罩关闭层
+                                    area : ['800px' , '600px'],
+                                    content: '/user/image',
+                                    closeBtn:2,
+                                })
+                            })
+                        </script>
+
                         <div class="btn-group">
                             <button type="button" id="chooseType" class="btn btn-outline-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">选择博文类别 </button>
                             <div class="dropdown-menu" id="kind">
-                                <input type="checkbox" value="C" name="label"> C<br>
+                                <input type="checkbox" value="C" name="label" checked> C<br>
                                 <input type="checkbox" value="C++" name="label"> C++<br>
                                 <input type="checkbox" value="Python" name="label"> Python<br>
                                 <input type="checkbox" value="HTML" name="label"> HTML<br>
-                                <input type="checkbox" value="JAVA" name="label"> JAVA<br>
+                                <input type="checkbox" value="java" name="label"> JAVA<br>
+                                <input type="checkbox" value="css" name="label"> css<br>
+                                <input type="checkbox" value="Javascript" name="label"> Javascript<br>
+                                <input type="checkbox" value="MySql" name="label"> MySql<br>
                             </div>
                         </div>
                     </div>
@@ -189,54 +210,32 @@
 
     <div class="side-clear-box" style="width:40px;height:400px"></div>
 
-    <!--            <div class="side-clear-box" style="width:200px;height:400px">-->
-    <!--                <h2 class="package-sideSection_title" style="font-family: 宋体">-->
-    <!--                    个人信息-->
-    <!--                </h2>-->
-    <!--                <div class="box-profile" style="border: 1px solid #5a6268 !important;text-align: center;">-->
-    <!--                    <p class="thumb" th:text="${icon}" style="-webkit-transition: opacity 0.3s linear;transition: opacity 0.3s linear;-->
-    <!--                                              position: relative;-->
-    <!--                                              margin: 0 auto;-->
-    <!--                                              margin-top: 10px;-->
-    <!--                                              width: 115px;-->
-    <!--                                              height: 115px;-->
-    <!--                                              position: relative;-->
-    <!--                                              overflow: hidden;-->
-    <!--                                              border-radius: 100%;-->
-    <!--                                              border: 1px solid #d2d2d2; ">-->
-    <!--                        <a href="[[${icon}]] "><img style=" position: absolute;-->
-    <!--                                                width: auto;-->
-    <!--                                                height: auto;-->
-    <!--                                                left: 50%;-->
-    <!--                                                top: 50%;-->
-    <!--                                                -webkit-transform: translate(-50%, -50%);-->
-    <!--                                                transform: translate(-50%, -50%);-->
-    <!--                                                max-width: 100%;"-->
-    <!--                                                    src="[[${icon}]]"/></a>-->
-    <!--                    </p>-->
-    <!--                    &lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;头像↑  &↓&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-    <!--                    <p class="name" style="font-size: 16px;font-size: 1.5rem;margin: 14px 0 0 0;">-->
-    <!--                        <span th:text="${username}">用户名</span>-->
-    <!--                    </p>-->
-    <!--                    <p class="location" style=" font-size: 10px;font-size: 1rem;margin-bottom: 0;">-->
-    <!--                        <span th:text="${location}">所在地</span>-->
-    <!--                    </p>-->
-    <!--                    <p class="birth" style="font-size: 10px;font-size: 1rem;margin: 4px 0 4px 0;">-->
-    <!--                        <span th:text="${birth}">生日</span>-->
-    <!--                    </p>-->
-    <!--                    <p th:text="${detail}" class="detail" style="font-size: 10px;font-size: 1rem;color: #df8ccf;margin-bottom: 16px;">-->
-    <!--                        <a  href="[[${detail}]]">详细信息</a>-->
-    <!--                        &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;详细信息&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-    <!--                    </p>-->
-    <!--                </div>-->
-    <!--            </div>-->
+
     </div>
     </div>  <!-- /container -->
     </div><!-- /#package_main -->
 
 
 </main>
+<div class="box" id="box" style="position: fixed;right: 10px;bottom: 20px;">
+    <img id="backToTop" th:src="@{\Top.jpg}" width="40" height="40">
+</div>
 
+<script>
+    var timer = null;
+    box.onclick = function(){
+        cancelAnimationFrame(timer);
+        timer = requestAnimationFrame(function fn(){
+            var oTop = document.body.scrollTop || document.documentElement.scrollTop;
+            if(oTop > 0){
+                document.body.scrollTop = document.documentElement.scrollTop = oTop - 50;
+                timer = requestAnimationFrame(fn);
+            }else{
+                cancelAnimationFrame(timer);
+            }
+        });
+    }
+</script>
 
 </body>
 </html>

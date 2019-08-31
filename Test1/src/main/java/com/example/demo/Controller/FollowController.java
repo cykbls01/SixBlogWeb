@@ -88,7 +88,7 @@ public class FollowController {
         user=userRepository.findById(id).get();
         user.setFan(user.getFan()-1);
         userRepository.save(user);
-        return "redirect:/zone/author/"+id;
+        return "redirect:/user/info";
     }//取消关注
 
 
