@@ -75,7 +75,7 @@
             crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body th:background="@{\Background.jpg}">
 
 <div id="fb-root" style="display:none;"></div>
 <!--导航栏-->
@@ -220,22 +220,7 @@
                 </div>
             </div>
 
-            <div class="sbox" style="border: 1px solid #5a6268 !important;">
-                <h2 style="font-family: 宋体">关于作者</h2>
-                <div class="sboxInner">
-                    <dl class="about-video">
-                        <dt style="font-family: 宋体">最终更新日期</dt>
-                        <dd>
-<span class="s12">
-    <span>[[${lastupdate}]]</span>
-</span><!----------------------------------date↑ ↓---------------------------------------------------->
-                        </dd>
-                        <!------------------------------------------------------tag↓------------------------------------------------------------>
 
-
-                    </dl><!-- /.about-video -->
-                </div><!-- /sboxInner -->
-            </div><!-- /sbox -->
             <!-------------------------------------------------------分享---------------------------------------->
 
 

@@ -35,7 +35,7 @@
     <!-- Custom styles for this template -->
     <link href="https://getbootstrap.com/docs/4.3/examples/jumbotron/jumbotron.css" rel="stylesheet">
 </head>
-<body>
+<body th:background="@{\Background.jpg}">
 <!--导航栏-->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <a class="navbar-brand" href="/">NDSC</a>
@@ -261,7 +261,7 @@
                     <br>
                     <p th:text="${user.content}">个人简介</p>
                     <br>
-                    粉丝数: [[${user.follow}]]
+                    粉丝数: [[${user.fan}]]
                     <!--                    <p th:text="${user.follow}"></p>-->
                     <br>
 

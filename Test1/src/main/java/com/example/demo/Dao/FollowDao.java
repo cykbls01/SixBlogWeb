@@ -33,6 +33,7 @@ public class FollowDao {
         List<Follow> followList=followRepository.findAll();
         fidList=findbyid1(id,followRepository).getFidlist();
         if(fidList==null) return userList;
+
         for(int i=0;i<fidList.size();i++)
         {
             userList.add(userRepository.findById(fidList.get(i)).get());

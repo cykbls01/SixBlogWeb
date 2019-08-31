@@ -74,9 +74,17 @@ public class JumpController {
     @GetMapping(value = "/Editblog.html/{id}")
     public String editblog(@PathVariable String id, HttpSession session, Map<String, Object> map, Model model) {
 
+
         Blog blog = blogRepository.findById(id).get();
+
+        User user=(User)session.getAttribute("user");
+        if(user==null||user.getId().equals(blog.getAuthorid())==false)
+        {
+            return "redirect:/index.html";
+        }
+        else{
         model.addAttribute("blog", blog);
-        return "Editblog";
+        return "Editblog";}
 
 
     }

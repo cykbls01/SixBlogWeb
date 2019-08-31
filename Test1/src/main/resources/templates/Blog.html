@@ -180,7 +180,7 @@
 
 
 </head>
-<body>
+<body th:background="@{\Background.jpg}">
 <!--导航栏-->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="padding: 0.1rem;font-family: 微软雅黑">
     <a class="navbar-brand" href="/"
@@ -306,13 +306,19 @@
                                     <time>[[${yyyymm}]]</time>
                                     <time>[[${dd}]]</time>
                                 </div>
-                                <div class="box-ttl">
+                                <div class="box-ttl" style="width: 70%">
                                     <h3>
                                         [[${blog.theme}]]
                                     </h3>
                                     <p class="name">
                                         <a th:href="${userzone}" style="color:#5a6268" th:text="${author.username}">username</a>
                                     </p>
+                                    <div style="float: left;" th:each="lable:${lables}">
+                                        <a th:href="@{/blog/label/}+${lable}"><font size="3" th:text="${lable}">type</font>  <font size="3"> | </font></a>
+                                    </div>
+<!--                                    <div style="float: left;">-->
+<!--                                        <a href="#"><font size="2">type</font>| </a>-->
+<!--                                    </div>-->
                                 </div>
                                 <form style="float: right;height: 60px;width: 100px;margin-top: -15px" id="likenum">
                                     <!-----------------------------------提交点赞数------------------------->

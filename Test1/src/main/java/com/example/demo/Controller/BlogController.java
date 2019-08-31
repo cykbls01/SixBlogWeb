@@ -69,14 +69,22 @@ public class BlogController {
     }//写博客+上传资源
 
     @GetMapping(value ="/Blog/delete/{id}")
-    public String delete(@PathVariable String id){
+    public String delete(@PathVariable String id,HttpSession session){
+
 
         Blog blog=blogRepository.findById(id).get();
-        Up up=UpDao.findbyblogid(id,upRepository);
-        if(up!=null) upRepository.delete(up);
-        fileRepository.deleteById(blog.getFileid());
-        CommentDao.deletebyblogid(id,commentRepository);
-        blogRepository.deleteById(id);
+        User user=(User)session.getAttribute("user");
+        if(user==null||user.getId().equals(blog.getAuthorid())==false)
+        {
+            return "redirect:/index.html";
+        }
+        else {
+            Up up = UpDao.findbyblogid(id, upRepository);
+            if (up != null) upRepository.delete(up);
+            fileRepository.deleteById(blog.getFileid());
+            CommentDao.deletebyblogid(id, commentRepository);
+            blogRepository.deleteById(id);
+        }
 
 
         return "redirect:/user/info";
@@ -118,6 +126,7 @@ public class BlogController {
         model.addAttribute("author",author);
         model.addAttribute("yyyymm",blog.getDate().substring(0,4)+blog.getDate().substring(5,7));
         model.addAttribute("dd",blog.getDate().substring(8,10));
+        model.addAttribute("lables",blog.getLabel());
 
 
 
