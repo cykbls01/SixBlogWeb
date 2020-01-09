@@ -37,7 +37,7 @@ public class BlogController {
     private UpRepository upRepository;
 
     @PostMapping(value ="/Blog/add")
-    public String add(@RequestParam(value = "image") MultipartFile file,@RequestParam("label")String[] label, Blog blog, HttpSession session){
+    public String add(@RequestParam(value = "radio1") MultipartFile file,@RequestParam("label")String[] label, Blog blog, HttpSession session){
 
         blog.setDate(Time.getTime());
         if(label!=null)

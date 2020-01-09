@@ -51,16 +51,16 @@ public class BlogDao {
         List<Blog> blogList = blogRepository.findAll();
         List<Blog> blogList1=new ArrayList<Blog>();
 
-        int size;
+        //int size;
         for(int i=0;i<blogList.size();i++)
         {
             if(blogList.get(i).getAuthorid().equals(id)==true)
             {
-                size=blogList.get(i).getContent().length();
-                String str=Convert.splitAndFilterString(blogList.get(i).getContent(),blogList.get(i).getContent().length());
-                size=str.length();
-                if(size>50) size=50;
-                blogList.get(i).setContent(str.substring(0,size));
+                //size=blogList.get(i).getContent().length();
+                //String str=Convert.splitAndFilterString(blogList.get(i).getContent(),blogList.get(i).getContent().length());
+                //size=str.length();
+                //if(size>50) size=50;
+                //blogList.get(i).setContent(str.substring(0,size));
                 blogList1.add(blogList.get(i));
             }
         }
@@ -150,16 +150,16 @@ public class BlogDao {
     public static List<Blog> recommond(BlogRepository blogRepository) throws ParseException {
         List<Blog> blogList=blogRepository.findAll();
         List<Blog> blogList1=new ArrayList<Blog>();
-        int size=blogList.size();
-        if(size>10) size=10;
-        blogList=sortbynumber(blogList).subList(0,size);
+        //int size=blogList.size();
+        //if(size>10) size=10;
+        //blogList=sortbynumber(blogList).subList(0,size);
         for(int i=0;i<blogList.size();i++)
         {
-            size=blogList.get(i).getContent().length();
-            String str=Convert.splitAndFilterString(blogList.get(i).getContent(),blogList.get(i).getContent().length());
-            size=str.length();
-            if(size>50) size=50;
-            blogList.get(i).setContent(str.substring(0,size));
+            //size=blogList.get(i).getContent().length();
+            //String str=Convert.splitAndFilterString(blogList.get(i).getContent(),blogList.get(i).getContent().length());
+            //size=str.length();
+            //if(size>50) size=50;
+            //blogList.get(i).setContent(str.substring(0,size));
         }
         return blogList;
     }

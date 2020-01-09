@@ -46,7 +46,7 @@
 <body>
 <!-- 导航栏 -->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="/">NDSC</a>
+    <a class="navbar-brand" href="/">音频转换</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -56,36 +56,36 @@
             <li class="nav-item">
                 <a class="nav-link" href="/">首页<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/blog/label/HTML">HTML</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="/blog/label/java">java</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="/blog/label/C++">C++</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="/blog/label/C">C</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="/blog/label/Python">Python</a>
-            </li>
-            <!--            选项卡-->
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="dropdown01" aria-haspopup="true" aria-expanded="false">
-                    更多分类 <span class="caret"></span>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item" href="/blog/label/css">css</a>
-                    <a class="dropdown-item" href="/blog/label/Javascript">Javascript</a>
-                    <a class="dropdown-item" href="/blog/label/MySql">MySql</a>
-                </div>
-            </li>
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="/blog/label/HTML">HTML</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link " href="/blog/label/java">java</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link " href="/blog/label/C++">C++</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link " href="/blog/label/C">C</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link " href="/blog/label/Python">Python</a>-->
+<!--            </li>-->
+<!--            &lt;!&ndash;            选项卡&ndash;&gt;-->
+<!--            <li class="nav-item dropdown">-->
+<!--                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="dropdown01" aria-haspopup="true" aria-expanded="false">-->
+<!--                    更多分类 <span class="caret"></span>-->
+<!--                </a>-->
+<!--                <div class="dropdown-menu" aria-labelledby="dropdown01">-->
+<!--                    <a class="dropdown-item" href="/blog/label/css">css</a>-->
+<!--                    <a class="dropdown-item" href="/blog/label/Javascript">Javascript</a>-->
+<!--                    <a class="dropdown-item" href="/blog/label/MySql">MySql</a>-->
+<!--                </div>-->
+<!--            </li>-->
 
-            <li class="nav-item">
-                <a class="nav-link " href="/blog/new">关注动态</a>
-            </li>
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link " href="/blog/new">关注动态</a>-->
+<!--            </li>-->
 
         </ul>
         <!--搜索栏:拆分按钮组确定范围-->
@@ -116,9 +116,9 @@
 
         <div style="align:right;padding-left: 10px;">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link " href="/Addblog.html"  th:text=" @{(${session.status} ? '发布博客' : '')}">发布博客</a>
-                </li>
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link " href="/Addblog.html"  th:text=" @{(${session.status} ? '发布博客' : '')}">发布博客</a>-->
+<!--                </li>-->
                 <li class="nav-item">
                     <a class="nav-link " th:href="@{/user/logout}"  th:text=" @{(${session.status} ? '登出系统' : '')}">登出系统</a>
                 </li>
@@ -134,11 +134,11 @@
         <!-- 发布按键栏 -->
         <div class="jumbotron">
             <div class="container">
-                <input name="theme" class="display-3" placeholder="创建新的博文"></input>
+                <input name="theme" class="display-3" placeholder="标题"></input>
 
                 <p>  </p>
 
-                <button class="btn btn-primary btn-lg" th:type="submit">发布 &raquo;</button>
+                <button class="btn btn-primary btn-lg" th:type="submit">提交</button>
             </div>
         </div>
 
@@ -149,49 +149,54 @@
                     <div id="middle" style="width:800px;min-height:600px;margin:0px auto;">
 
                         <!-- 加载编辑器的容器 -->
-                        <script id="container" name="content" type="text/plain">
-                    在这里创建新的博文
-                    </script>
-                        <!-- 配置文件 -->
-                        <script type="text/javascript" th:src="@{/Addblog/ueditor.config.js}"></script>
-                        <!-- 编辑器源码文件 -->
-                        <script type="text/javascript" th:src="@{/Addblog/ueditor.all.js}"></script>
-                        <!-- 实例化编辑器 -->
-                        <script type="text/javascript">
-                            var ue = UE.getEditor('container');
-                        </script>
-                        <hr>
+<!--                        <script id="container" name="content" type="text/plain">-->
+<!--                    在这里创建新的博文-->
+<!--                    </script>-->
+<!--                        &lt;!&ndash; 配置文件 &ndash;&gt;-->
+<!--                        <script type="text/javascript" th:src="@{/Addblog/ueditor.config.js}"></script>-->
+<!--                        &lt;!&ndash; 编辑器源码文件 &ndash;&gt;-->
+<!--                        <script type="text/javascript" th:src="@{/Addblog/ueditor.all.js}"></script>-->
+<!--                        &lt;!&ndash; 实例化编辑器 &ndash;&gt;-->
+<!--                        <script type="text/javascript">-->
+<!--                            var ue = UE.getEditor('container');-->
+<!--                        </script>-->
+<!--                        <hr>-->
                         <!--                上传文件-->
-                        <div class="column" style="font-size: 16px">附件
-                            <img th:src="@{\fujian.png}" width="80" height="60"></img>
-                            <input type="file" name="image" size="60">
+                        <div class="column" style="font-size: 16px">源音频
+<!--                            <img th:src="@{\fujian.png}" width="80" height="60"></img>-->
+                            <input type="file" name="radio1" size="60">
                         </div>
                         <hr>
-                        <button id="upPicture" type="button" class="btn btn-outline-secondary">上传本地图片</button>
-                        <script>
-                            $("#upPicture").on('click',function () {
-                                layer.open({
-                                    type: 2,
-                                    title: '上传图片',
-                                    maxmin: false,
-                                    shadeClose: true, //点击遮罩关闭层
-                                    area : ['800px' , '600px'],
-                                    content: '/user/image',
-                                    closeBtn:2,
-                                })
-                            })
-                        </script>
+                        <div class="column" style="font-size: 16px">转换音频
+                            <!--                            <img th:src="@{\fujian.png}" width="80" height="60"></img>-->
+                            <input type="file" name="radio2" size="60">
+                        </div>
+                        <hr>
+<!--                        <button id="upPicture" type="button" class="btn btn-outline-secondary">上传本地图片</button>-->
+<!--                        <script>-->
+<!--                            $("#upPicture").on('click',function () {-->
+<!--                                layer.open({-->
+<!--                                    type: 2,-->
+<!--                                    title: '上传图片',-->
+<!--                                    maxmin: false,-->
+<!--                                    shadeClose: true, //点击遮罩关闭层-->
+<!--                                    area : ['800px' , '600px'],-->
+<!--                                    content: '/user/image',-->
+<!--                                    closeBtn:2,-->
+<!--                                })-->
+<!--                            })-->
+<!--                        </script>-->
                         <div class="btn-group">
-                            <button type="button" id="chooseType" class="btn btn-outline-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">选择博文类别 </button>
+                            <button type="button" id="chooseType" class="btn btn-outline-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">选择转换类别</button>
                             <div class="dropdown-menu" id="kind">
-                                <input type="checkbox" value="C" name="label" checked> C<br>
-                                <input type="checkbox" value="C++" name="label"> C++<br>
-                                <input type="checkbox" value="Python" name="label"> Python<br>
-                                <input type="checkbox" value="HTML" name="label"> HTML<br>
-                                <input type="checkbox" value="java" name="label"> JAVA<br>
-                                <input type="checkbox" value="css" name="label"> css<br>
-                                <input type="checkbox" value="Javascript" name="label"> Javascript<br>
-                                <input type="checkbox" value="MySql" name="label"> MySql<br>
+                                <input type="checkbox" value="C" name="label" checked>音频转换<br>
+                                <input type="checkbox" value="C++" name="label">音频去噪<br>
+<!--                                <input type="checkbox" value="Python" name="label"><br>-->
+<!--                                <input type="checkbox" value="HTML" name="label"> HTML<br>-->
+<!--                                <input type="checkbox" value="java" name="label"> JAVA<br>-->
+<!--                                <input type="checkbox" value="css" name="label"> css<br>-->
+<!--                                <input type="checkbox" value="Javascript" name="label"> Javascript<br>-->
+<!--                                <input type="checkbox" value="MySql" name="label"> MySql<br>-->
                             </div>
                         </div>
                     </div>

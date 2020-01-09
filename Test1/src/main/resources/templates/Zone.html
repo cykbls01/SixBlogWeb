@@ -81,7 +81,7 @@
 <!--导航栏-->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="padding: 0rem;font-family: 微软雅黑">
     <a class="navbar-brand" href="/"
-       style="margin-left: 1.5rem;margin-top:-0.2rem;margin-right: -0.4rem;font-family:inherit;font-size: 1.5rem;font-weight: 500">NDSC</a>
+       style="margin-left: 1.5rem;margin-top:-0.2rem;margin-right: -0.4rem;font-family:inherit;font-size: 1.5rem;font-weight: 500">音频转换</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
             aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -99,7 +99,7 @@
         <ul class="navbar-nav "
             style="margin-top: -70px;float: right;font-family:inherit;font-size: 1.2rem;font-weight: 400;padding-right:1.5rem;padding-top: 2.5rem;padding-bottom: 1.3rem">
             <li class="nav-item">
-                <a class="nav-link " href="/Addblog.html"  th:text=" @{(${session.status} ? '发布博客' : '')}"></a>
+                <a class="nav-link " href="/Addblog.html"  th:text=" @{(${session.status} ? '开始音频转换' : '')}"></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link " th:href="@{/user/logout}" th:text=" @{(${session.user} ? '登出系统' : '')}">登出系统</a>
@@ -115,19 +115,19 @@
             <div class="scroll-tabs-container">
                 <ul class="nav nav-tabs" style="font-family: 宋体">
                     <li class="active">
-                        <a th:href="@{/user/info}">博文一览
+                        <a th:href="@{/user/info}">全部订单
                             <span class="s10">(<span class="s10" th:text="${session.blognumber}">0</span>)</span></a>
                     </li>
                     <!---------------------------------------------------------拉取博文数量----------------------------------------->
-                    <li >
-                        <a th:href="@{/follow/get}">关注的人
-                            <span class="s10">(<span class="s10" th:text="${session.user.follow}">0</span>)</span></a>
-                    </li>
-                    <!---------------------------------------------------拉取评论数量--------------------------------------------->
-                    <li >
-                        <a th:href="@{/fan/get}">粉丝
-                            <span class="s10">(<span class="s10" th:text="${session.user.fan}">0</span>)</span></a>
-                    </li>
+<!--                    <li >-->
+<!--                        <a th:href="@{/follow/get}">关注的人-->
+<!--                            <span class="s10">(<span class="s10" th:text="${session.user.follow}">0</span>)</span></a>-->
+<!--                    </li>-->
+<!--                    &lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;拉取评论数量-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--                    <li >-->
+<!--                        <a th:href="@{/fan/get}">粉丝-->
+<!--                            <span class="s10">(<span class="s10" th:text="${session.user.fan}">0</span>)</span></a>-->
+<!--                    </li>-->
                 </ul>
             </div>
 
@@ -141,17 +141,19 @@
 <i class="   "></i>
 </span><!-- /icon -->
                                 <span class="lessons-list-title">
-                                    <a th:href="@{/blog/get/}+${pblog.id}" class="lesson_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                                    <a  class="lesson_title"><span
                                             th:text="${pblog.theme}">#[[${pblog.order}]] [[${pblog.title}]]</span></a>
 <span class="s12">([[${pblog.date}]])</span>
 </span>
+                                <span class="s12">转换中</span>
+                                </span>
                                 <!------------------------------------------------日期------------------------------------------------------------------------>
                                 <span class="lessons-list-complete-btn-placeholder"></span>
                             </div>
                             <ul class="lesson-summaries">
-                                <li>[[${pblog.content}]]</li>
-                                <a th:href="@{/Editblog.html/}+${pblog.id}"><img th:src="@{/2.png}"   width="25" height="25" ></img></a>
-                                <a th:href="@{/Blog/delete/}+${pblog.id}"><img th:src="@{/1.png}"   width="24" height="24" ></img></a>
+<!--                               <li>    </li>-->
+<!--                                <a th:href="@{/Editblog.html/}+${pblog.id}"><img th:src="@{/2.png}"   width="25" height="25" ></img></a>-->
+                                <a th:href="@{/Blog/delete/}+${pblog.id}"><img th:src="@{/1.png}"width="24" height="24" ></img></a>
                                 <br>
 
                             </ul>
